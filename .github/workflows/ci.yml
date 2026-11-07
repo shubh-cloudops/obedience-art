@@ -43,8 +43,9 @@ jobs:
           path: lhci-report/
           retention-days: 14
 
+      # --root-dir resolves internal links such as /posts/<slug>/ against the built site.
       - name: Check every source link in posts
         uses: lycheeverse/lychee-action@v2
         with:
-          args: --config lychee.toml --no-progress "src/content/posts/**/*.mdx" "src/content/posts/**/*.md"
+          args: --config lychee.toml --no-progress --root-dir "${{ github.workspace }}/dist" "src/content/posts/**/*.mdx" "src/content/posts/**/*.md"
           fail: true
