@@ -30,6 +30,7 @@ jobs:
       - name: Build (enforces the cross-check rules)
         run: npm run build
 
+      # Each page runs 3 times and the median is scored, so one noisy run cannot fail CI.
       # Fails if a key page drops below: performance 90, accessibility 95, best practices 90, SEO 95.
       # Config: lighthouserc.json. The full HTML reports are attached to the run as "lighthouse-reports".
       - name: Lighthouse budgets
@@ -43,8 +44,9 @@ jobs:
           path: lhci-report/
           retention-days: 14
 
+      # --root-dir resolves internal links such as /posts/<slug>/ against the built site.
       - name: Check every source link in posts
         uses: lycheeverse/lychee-action@v2
         with:
-          args: --config lychee.toml --no-progress "src/content/posts/**/*.mdx" "src/content/posts/**/*.md"
+          args: --config lychee.toml --no-progress --root-dir "${{ github.workspace }}/dist" "src/content/posts/**/*.mdx" "src/content/posts/**/*.md"
           fail: true

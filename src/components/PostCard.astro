@@ -8,11 +8,11 @@ interface Props { post: CollectionEntry<'posts'>; featured?: boolean }
 const { post, featured = false } = Astro.props;
 const { title, description, pubDate, pillar, verdict, cover, coverAlt } = post.data;
 ---
-<a href={`/posts/${post.id}/`} class:list={['card group flex flex-col overflow-hidden', !cover && (featured ? 'p-6 md:p-8' : 'p-6')]}>
+<a href={`/posts/${post.id}/`} class:list={['card group flex flex-col overflow-hidden', featured && cover && 'lg:grid lg:grid-cols-[3fr_2fr]', !cover && (featured ? 'p-6 md:p-8' : 'p-6')]}>
   {cover && (
-    <Image src={cover} alt={coverAlt!} widths={[400, 800, 1200]} sizes={featured ? '(min-width: 1024px) 1100px, 100vw' : '(min-width: 768px) 540px, 100vw'} class:list={['w-full border-b border-line object-cover transition-transform duration-500 group-hover:scale-[1.02] motion-reduce:transform-none', featured ? 'aspect-[21/9]' : 'aspect-[16/9]']} />
+    <Image src={cover} alt={coverAlt!} widths={[400, 800, 1200]} sizes={featured ? '(min-width: 1024px) 830px, 100vw' : '(min-width: 768px) 540px, 100vw'} class:list={['w-full border-b border-line object-cover transition-transform duration-500 group-hover:scale-[1.02] motion-reduce:transform-none', 'aspect-[16/9]', featured && 'lg:border-b-0 lg:border-r']} />
   )}
-  <div class:list={['flex flex-1 flex-col', cover && (featured ? 'p-6 md:p-8' : 'p-6')]}>
+  <div class:list={['flex flex-1 flex-col', cover && (featured ? 'p-6 md:p-8 lg:justify-center' : 'p-6')]}>
   <div class="flex flex-wrap items-center gap-3">
     <span class="kicker">{PILLARS[pillar].label}</span>
     {verdict && <VerdictBadge verdict={verdict} />}
