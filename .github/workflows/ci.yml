@@ -30,6 +30,7 @@ jobs:
       - name: Build (enforces the cross-check rules)
         run: npm run build
 
+      # Each page runs 3 times and the median is scored, so one noisy run cannot fail CI.
       # Fails if a key page drops below: performance 90, accessibility 95, best practices 90, SEO 95.
       # Config: lighthouserc.json. The full HTML reports are attached to the run as "lighthouse-reports".
       - name: Lighthouse budgets

@@ -8,7 +8,7 @@
         "/tracker/exploitgym-hugging-face/index.html",
         "/about/index.html"
       ],
-      "numberOfRuns": 1,
+      "numberOfRuns": 3,
       "settings": { "chromeFlags": "--no-sandbox --headless=new" }
     },
     "assert": {
