@@ -1,0 +1,22 @@
+---
+// Email signup through Buttondown (free up to 100 subscribers). Set PUBLIC_BUTTONDOWN_USER to your
+// Buttondown username in GitHub Actions; until then readers are offered the RSS feed instead.
+import { NEWSLETTER_USER } from '../lib/site';
+interface Props { compact?: boolean }
+const { compact = false } = Astro.props;
+const action = `https://buttondown.com/api/emails/embed-subscribe/${encodeURIComponent(NEWSLETTER_USER)}`;
+---
+<section class:list={['rounded-2xl border border-line bg-surface', compact ? 'mt-10 p-5' : 'p-6 sm:p-8']} aria-labelledby="nl-h" data-pagefind-ignore>
+  <h2 id="nl-h" class:list={['font-display font-semibold', compact ? 'text-lg' : 'text-2xl']}>Get the next autopsy by email</h2>
+  <p class="mt-2 max-w-xl text-sm leading-relaxed text-muted">One email when a new story is taken apart. No spam, unsubscribe in one click.</p>
+  {NEWSLETTER_USER ? (
+    <form action={action} method="post" target="_blank" class="mt-4 flex max-w-md flex-col gap-2 sm:flex-row">
+      <label for="nl-email" class="sr-only">Email address</label>
+      <input id="nl-email" type="email" name="email" required autocomplete="email" placeholder="you@example.com" class="min-w-0 flex-1 rounded-lg border border-line bg-bg px-3 py-2 text-sm focus:border-cyan focus:outline-none" />
+      <input type="hidden" name="embed" value="1" />
+      <button type="submit" class="rounded-lg bg-cyan px-4 py-2 text-sm font-medium text-bg hover:opacity-90">Subscribe</button>
+    </form>
+  ) : (
+    <p class="mt-4 text-sm"><a href="/rss.xml" class="text-cyan hover:underline">Follow by RSS</a> <span class="text-muted">(email signup is coming soon)</span></p>
+  )}
+</section>

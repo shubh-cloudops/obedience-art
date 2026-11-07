@@ -1,0 +1,19 @@
+---
+interface Source { title: string; url: string; publisher: string; kind: 'primary' | 'independent' | 'news' }
+interface Props { sources: Source[]; checked: Date }
+const { sources, checked } = Astro.props;
+const label = { primary: 'Primary', independent: 'Independent review', news: 'News' };
+import { formatDate } from '../lib/format';
+---
+<section data-art="proud" data-art-say="Every claim here has at least two sources. I checked." aria-labelledby="sources-h" class="my-12">
+  <h2 id="sources-h" class="font-display text-lg font-semibold">Sources</h2>
+  <p class="mt-1 text-sm text-muted">Cross-checked on {formatDate(checked)}. Found an error? <a class="text-cyan underline underline-offset-2" href="/corrections/">Tell us</a>.</p>
+  <ul class="mt-4 space-y-3">
+    {sources.map((s) => (
+      <li class="flex gap-3 text-sm">
+        <span class="mt-0.5 w-28 shrink-0 font-mono text-[0.7rem] uppercase tracking-wide text-muted">{label[s.kind]}</span>
+        <span><a class="text-cyan hover:underline" href={s.url} rel="noopener">{s.title}</a> <span class="text-muted">· {s.publisher}</span></span>
+      </li>
+    ))}
+  </ul>
+</section>

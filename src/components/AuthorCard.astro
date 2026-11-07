@@ -1,0 +1,15 @@
+---
+// Who wrote this: a named practitioner, not an anonymous site. Edit the details in src/lib/site.ts (AUTHOR).
+import { AUTHOR } from '../lib/site';
+---
+<aside class="mt-14 flex gap-4 rounded-2xl border border-line bg-surface p-5" aria-label="About the author" data-pagefind-ignore>
+  <span class="grid size-12 shrink-0 place-items-center rounded-full bg-gradient-to-br from-cyan to-violet font-brand text-lg font-bold text-bg" aria-hidden="true">{AUTHOR.initials}</span>
+  <div>
+    <p class="font-display text-lg font-semibold">Written by {AUTHOR.name}</p>
+    <p class="mt-1 text-sm leading-relaxed text-muted">{AUTHOR.bio}</p>
+    <p class="mt-2 flex flex-wrap gap-x-4 gap-y-1 font-mono text-xs">
+      {AUTHOR.links.map((l) => <a href={l.href} class="text-cyan hover:underline">{l.label}</a>)}
+      <a href="/about/" class="text-cyan hover:underline">How we check facts</a>
+    </p>
+  </div>
+</aside>

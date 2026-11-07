@@ -1,0 +1,39 @@
+---
+import Logo from './Logo.astro';
+import ThemeToggle from './ThemeToggle.astro';
+const links = [
+  { href: '/posts/', label: 'Posts' },
+  { href: '/tracker/', label: 'Tracker' },
+  { href: '/picks/', label: 'AI Picks' },
+  { href: '/pillars/claim-check/', label: 'Claim Check' },
+  { href: '/about/', label: 'About' },
+  { href: '/search/', label: 'Search' },
+];
+const path = Astro.url.pathname;
+---
+<header class="sticky top-0 z-40 border-b border-line/70 bg-bg/80 backdrop-blur-md">
+  <div class="mx-auto flex max-w-6xl items-center justify-between gap-2 px-4 sm:gap-4 py-3 sm:px-6">
+    <a href="/" class="flex shrink-0 items-center gap-2 font-brand text-base sm:gap-2.5 sm:text-lg font-semibold tracking-tight">
+      <Logo />
+      <span class="whitespace-nowrap">Obedience <span class="brand-gradient">ART</span></span>
+    </a>
+    <nav aria-label="Main" class="flex min-w-0 items-center gap-0 text-sm sm:gap-1">
+      {links.map((l) => (
+        <a
+          href={l.href}
+          class:list={[
+            'hidden rounded-md px-3 py-1.5 transition-colors hover:text-cyan sm:inline-block',
+            path.startsWith(l.href) ? 'text-cyan' : 'text-muted',
+          ]}
+          aria-current={path.startsWith(l.href) ? 'page' : undefined}
+        >{l.label}</a>
+      ))}
+      <a href="/search/" class="rounded-md px-1.5 py-1.5 text-muted hover:text-cyan sm:hidden" aria-label="Search">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      </a>
+      <a href="/posts/" class="rounded-md px-1.5 py-1.5 text-muted hover:text-cyan sm:hidden">Posts</a>
+      <a href="/tracker/" class="rounded-md px-1.5 py-1.5 text-muted hover:text-cyan sm:hidden">Tracker</a>
+      <ThemeToggle />
+    </nav>
+  </div>
+</header>

@@ -1,0 +1,210 @@
+---
+// The animated brand ambassador. Art greets readers, glides along the bottom of the screen,
+// follows the cursor and changes expression as the reader scrolls past elements marked with
+// data-art="<expression>" (and optional data-art-say="<line>").
+// AMBASSADOR.mode picks how Art is drawn: 'portrait' (the living painting, plain DOM + CSS) or
+// '3d' (a model in public/models, Three.js). ?art=portrait or ?art=3d overrides it for comparing.
+// Everything loads after the page is idle, so it never slows the first paint.
+import { getImage } from 'astro:assets';
+import { AMBASSADOR } from '../lib/site';
+import { getPortraits } from '../lib/ambassador';
+
+// Small WebP versions of every painted expression for the living portrait (~10 KB each).
+const portraits = Object.fromEntries(
+  await Promise.all(
+    getPortraits().map(async (p) => [p.name, (await getImage({ src: p.src, width: 256, height: 256, format: 'webp', quality: 78 })).src]),
+  ),
+);
+---
+<div id="art-companion" class="art-companion" data-name={AMBASSADOR.name} data-mode={AMBASSADOR.mode} data-portraits={JSON.stringify(portraits)} hidden>
+  <p class="art-bubble" aria-hidden="true"></p>
+  <div class="art-stage" aria-hidden="true"></div>
+  <button type="button" class="art-hide" aria-label={`Hide ${AMBASSADOR.name}, the animated host`}>×</button>
+</div>
+<button type="button" id="art-restore" class="art-restore" hidden aria-label={`Show ${AMBASSADOR.name}, the animated host`}>
+  <span aria-hidden="true">👋</span> <span class="art-restore-label">{AMBASSADOR.name}</span>
+</button>
+
+<style>
+  .art-companion {
+    --w: 140px;
+    --h: 270px;
+    position: fixed;
+    right: 12px;
+    bottom: 0;
+    z-index: 40;
+    width: var(--w);
+    height: var(--h);
+    transform: translateX(var(--x, 0px));
+    pointer-events: none;
+  }
+  @media (min-width: 768px) {
+    .art-companion { --w: 160px; --h: 310px; right: 20px; }
+  }
+  @media (max-width: 480px) {
+    .art-companion { --w: 100px; --h: 195px; right: 4px; }
+  }
+  .art-companion[hidden], .art-restore[hidden] { display: none; }
+  .art-stage {
+    position: absolute;
+    inset: 0;
+    pointer-events: auto;
+    cursor: pointer;
+  }
+  .art-stage :global(canvas) { width: 100%; height: 100%; display: block; }
+
+  /* ---- Living portrait ---- */
+  .art-companion[data-mode='portrait'] { --w: 128px; --h: 150px; bottom: 14px; }
+  @media (min-width: 768px) { .art-companion[data-mode='portrait'] { --w: 148px; --h: 172px; } }
+  @media (max-width: 480px) { .art-companion[data-mode='portrait'] { --w: 96px; --h: 114px; bottom: 10px; } }
+  .art-companion[data-mode='portrait'] .art-bubble { bottom: 96%; right: 40%; }
+  .art-stage :global(.ap-card) {
+    position: absolute;
+    left: 6%;
+    right: 6%;
+    bottom: 4%;
+    aspect-ratio: 1;
+    border-radius: 22%;
+    transform-origin: 50% 90%;
+    will-change: transform;
+    filter: drop-shadow(0 10px 18px rgb(0 0 0 / 0.45));
+  }
+  .art-stage :global(.ap-ring) {
+    position: absolute;
+    inset: -3px;
+    border-radius: inherit;
+    background: conic-gradient(from var(--ring, 0deg), var(--cyan), var(--violet), #f5b94c, var(--cyan));
+    animation: ap-spin 8s linear infinite;
+    opacity: 0.9;
+  }
+  @property --ring { syntax: '<angle>'; inherits: false; initial-value: 0deg; }
+  @keyframes ap-spin { to { --ring: 360deg; } }
+  .art-stage :global(.ap-frame) {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    border-radius: inherit;
+    background: var(--surface);
+  }
+  .art-stage :global(.ap-face) {
+    position: absolute;
+    inset: -6%;
+    width: 112%;
+    height: 112%;
+    object-fit: cover;
+    transform: translate(var(--px, 0px), var(--py, 0px));
+    opacity: 0;
+    transition: opacity 0.45s ease;
+  }
+  .art-stage :global(.ap-face.on) { opacity: 1; }
+  .art-stage :global(.ap-shine) {
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: radial-gradient(circle at var(--shine, 50%) 18%, rgb(255 255 255 / 0.22), transparent 55%);
+    mix-blend-mode: soft-light;
+    pointer-events: none;
+  }
+  .art-stage :global(.ap-hand) {
+    position: absolute;
+    left: -6%;
+    bottom: 50%;
+    font-size: 28px;
+    transform-origin: 70% 90%;
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+  .art-stage :global(.ap-hand.on) { opacity: 1; }
+  .art-stage :global(.ap-bars) {
+    position: absolute;
+    left: 50%;
+    bottom: -4px;
+    display: flex;
+    gap: 3px;
+    align-items: flex-end;
+    height: 14px;
+    padding: 2px 6px;
+    border-radius: 999px;
+    background: var(--surface);
+    border: 1px solid var(--cyan);
+    translate: -50% 0;
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+  .art-stage :global(.ap-bars.on) { opacity: 1; }
+  .art-stage :global(.ap-bars i) {
+    width: 3px;
+    height: 100%;
+    border-radius: 2px;
+    background: var(--cyan);
+    animation: ap-bar 0.5s ease-in-out infinite alternate;
+  }
+  .art-stage :global(.ap-bars i:nth-child(2)) { animation-delay: -0.15s; }
+  .art-stage :global(.ap-bars i:nth-child(3)) { animation-delay: -0.3s; }
+  .art-stage :global(.ap-bars i:nth-child(4)) { animation-delay: -0.45s; }
+  @keyframes ap-bar { from { transform: scaleY(0.25); } to { transform: scaleY(1); } }
+  @media (prefers-reduced-motion: reduce) {
+    .art-stage :global(.ap-ring), .art-stage :global(.ap-bars i) { animation: none; }
+  }
+  .art-bubble {
+    position: absolute;
+    right: 70%;
+    bottom: 84%;
+    width: max-content;
+    max-width: min(240px, 60vw);
+    margin: 0;
+    padding: 0.55rem 0.8rem;
+    border: 1px solid var(--cyan);
+    border-radius: 14px 14px 2px 14px;
+    background: var(--surface);
+    color: var(--text);
+    font-size: 0.85rem;
+    line-height: 1.35;
+    box-shadow: 0 8px 30px rgb(0 0 0 / 0.35);
+    opacity: 0;
+    transform: translateY(6px) scale(0.96);
+    transform-origin: bottom right;
+    transition: opacity 0.25s ease, transform 0.25s ease;
+    pointer-events: none;
+  }
+  .art-bubble.show { opacity: 1; transform: none; }
+  .art-hide {
+    position: absolute;
+    top: 4px;
+    right: 2px;
+    width: 26px;
+    height: 26px;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    background: var(--surface);
+    color: var(--muted);
+    font-size: 16px;
+    line-height: 1;
+    pointer-events: auto;
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+  .art-companion:hover .art-hide, .art-hide:focus-visible { opacity: 1; }
+  @media (hover: none) { .art-hide { opacity: 0.8; } }
+  .art-restore {
+    position: fixed;
+    right: 12px;
+    bottom: 12px;
+    z-index: 40;
+    padding: 0.4rem 0.8rem;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    background: var(--surface);
+    color: var(--muted);
+    font-size: 0.8rem;
+  }
+  .art-restore:hover { color: var(--cyan); border-color: var(--cyan); }
+  @media print { .art-companion, .art-restore { display: none !important; } }
+</style>
+
+<script>
+  import { startCompanion } from '../scripts/companion/controller';
+  const start = () => startCompanion();
+  if ('requestIdleCallback' in window) requestIdleCallback(start, { timeout: 2500 });
+  else setTimeout(start, 1200);
+</script>

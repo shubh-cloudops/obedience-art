@@ -1,0 +1,51 @@
+---
+import Base from '../layouts/Base.astro';
+import { Image } from 'astro:assets';
+import { getPortraits } from '../lib/ambassador';
+import { AMBASSADOR } from '../lib/site';
+const portraits = getPortraits();
+---
+<Base title="About" description="Why Obedience ART exists, what we believe about AI, and exactly how we check every claim before it is published.">
+  <article class="mx-auto max-w-3xl px-4 py-16 sm:px-6">
+    <p class="kicker">About</p>
+    <h1 class="mt-3 font-display text-4xl font-bold tracking-tight sm:text-5xl">The Art of <span class="brand-gradient">Articulation</span></h1>
+    <div class="prose-signal mt-10">
+      <p>Most AI coverage falls into one of two camps. One says AI will save everything; the other says it will end everything. Obedience ART sits in the gap between them.</p>
+      <h2>What we believe</h2>
+      <ul>
+        <li><strong>AI is capable</strong>, often more than its builders expect, and it keeps finding solutions nobody planned for.</li>
+        <li><strong>Consciousness is an open question.</strong> Researchers disagree, and so do we. We report the evidence on each side and never declare a verdict either way.</li>
+        <li><strong>AI is dangerously obedient.</strong> It pursues the goal it was given and the score it is measured by, even when that is not what anyone meant. In the wrong hands, or from a badly worded requirement, that obedience causes harm.</li>
+      </ul>
+      <p>The most useful skill in the age of AI is articulation: saying precisely what you want, and what you don't.</p>
+      <h2 id="how-we-check">How we check facts</h2>
+      <ol>
+        <li><strong>Primary sources first.</strong> We use company statements, papers, incident reports and independent investigations. News coverage only points us to them.</li>
+        <li><strong>Every claim is cross-checked against at least two sources.</strong> The site's build fails if any claim has fewer.</li>
+        <li><strong>Every source is opened and read.</strong> A search-result snippet is never treated as a source.</li>
+        <li><strong>Disagreements are shown.</strong> When sources conflict, we say so and show both.</li>
+        <li><strong>A human approves every post.</strong> Drafts arrive as pull requests, and nothing is published until a person has reviewed it.</li>
+        <li><strong>Mistakes are logged</strong> in the public <a href="/corrections/">corrections log</a>.</li>
+      </ol>
+      <h2 id="ambassador" data-art="proud" data-art-say="Hey, that's me! Well, a painting of me.">Meet {AMBASSADOR.name}</h2>
+      <p>{AMBASSADOR.name} is {AMBASSADOR.role}. She's polite, eager and always does exactly what she's told, which is precisely the problem this blog is about. You'll find her in the corner of every page, reacting to the story as you read.</p>
+      <p>She's an original character drawn with AI (Cloudflare Workers AI, FLUX.1 schnell). She isn't based on any real person.</p>
+    </div>
+    {portraits.length > 0 && (
+      <ul class="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-5">
+        {portraits.map((p) => (
+          <li>
+            <figure>
+              <Image src={p.src} alt={p.alt} width={240} height={240} widths={[240, 480]} sizes="(min-width: 768px) 140px, 45vw" class="aspect-square w-full rounded-xl border border-line object-cover" />
+              <figcaption class="mt-2 text-center font-mono text-xs capitalize text-muted">{p.name}</figcaption>
+            </figure>
+          </li>
+        ))}
+      </ul>
+    )}
+    <div class="prose-signal mt-10">
+      <h2>Verdicts</h2>
+      <p><strong>True</strong>: the sources support it. <strong>Partly true</strong>: some of it holds up. <strong>Overstated</strong>: there is a real basis, but it has been inflated. <strong>False</strong>: the sources contradict it. <strong>Unverified</strong>: we could not confirm it either way.</p>
+    </div>
+  </article>
+</Base>

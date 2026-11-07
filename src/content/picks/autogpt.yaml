@@ -1,0 +1,43 @@
+name: AutoGPT
+repo: Significant-Gravitas/AutoGPT
+tagline: "The project that kicked off the AI-agent craze: give it a goal and it plans and runs the steps itself."
+category: agents
+license: Mixed (see LICENSE)
+stars: 187923
+statsCheckedOn: 2026-11-06
+addedOn: 2026-11-06
+whatItDoes: >-
+  AutoGPT connects a language model to tools such as web search and files, then loops: it plans a step, runs
+  it, reads the result and plans the next one until the goal is met. It went viral in April 2023 and has since
+  grown into the AutoGPT Platform, where you build agents from blocks in a visual editor and run them on your
+  own server.
+howToUse:
+  shell: PowerShell (Windows 11, Docker Desktop and Git installed)
+  steps:
+    - text: Clone the repository.
+      code: git clone https://github.com/Significant-Gravitas/AutoGPT.git
+    - text: Open the platform folder and follow the self-hosting guide in its README to set your environment file.
+      code: cd AutoGPT/autogpt_platform
+    - text: Start the platform in Docker, then open the address the guide gives you in your browser.
+      code: docker compose up -d
+    - text: Stop everything when you are done.
+      code: docker compose down
+bestPractices:
+  - Set a monthly spending limit on the API key you give it. Agents call the model many times per task and
+    costs add up fast.
+  - Keep a human approval step for anything that sends, buys or deletes. Agents can loop on a wrong path or
+    make things up.
+  - Give small, specific goals. "Summarise these 3 pages" works; "grow my business" doesn't.
+  - Check the licence. The newer platform code is not under the same licence as the classic version.
+coverage:
+  - publisher: TechCrunch
+    title: What is Auto-GPT and why does it matter?
+    date: 2023-04-22
+    url: https://techcrunch.com/2023/04/22/what-is-auto-gpt-and-why-does-it-matter/
+  - publisher: Tom's Hardware
+    title: Auto-GPT and BabyAGI Are AI's New Hotness, But They Suck Right Now
+    date: 2023-04-22
+    url: https://www.tomshardware.com/news/autonomous-agents-new-big-thing
+starHistory:
+  - date: 2026-11-06
+    stars: 187923

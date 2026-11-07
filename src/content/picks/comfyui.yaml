@@ -1,0 +1,39 @@
+name: ComfyUI
+repo: Comfy-Org/ComfyUI
+tagline: A node-based studio for making AI images and video on your own GPU, where you see and control every step.
+category: images
+license: GPL-3.0
+stars: 145392
+statsCheckedOn: 2026-11-06
+addedOn: 2026-11-06
+whatItDoes: >-
+  ComfyUI runs image and video models such as Stable Diffusion and Flux locally. Instead of one prompt box,
+  you connect boxes (nodes) for the model, the prompt, the sampler and the output into a workflow you can save
+  and share. That makes results repeatable and lets you chain steps like upscaling or inpainting. Nvidia even
+  connected its RTX Remix modding tool to it.
+howToUse:
+  shell: Windows 11 (File Explorer), Nvidia GPU recommended
+  steps:
+    - text: Download the Windows portable build or ComfyUI Desktop from the repo's Releases page and extract it.
+    - text: Put a model file (.safetensors) into the models\checkpoints folder.
+      code: ComfyUI_windows_portable\ComfyUI\models\checkpoints\
+    - text: Start it, then open http://127.0.0.1:8188 in your browser and press Run on the default workflow.
+      code: .\run_nvidia_gpu.bat
+bestPractices:
+  - Install custom nodes only from authors you trust. Custom nodes are code, and a malicious one has stolen
+    users' passwords before.
+  - Use .safetensors model files, not .ckpt or .pt, which can run hidden code when loaded.
+  - Save the workflow JSON with your images so you can recreate any result later.
+  - Keep it on 127.0.0.1. Don't add --listen to expose it on your network unless you know who can reach it.
+coverage:
+  - publisher: Tom's Hardware
+    title: Nvidia's RTX Remix goes open source, with a REST API that interfaces with ComfyUI
+    date: 2024-07-04
+    url: https://www.tomshardware.com/pc-components/gpus/nvidia-rtx-remix-goes-open-source
+  - publisher: 404 Media
+    title: Hackers Target AI Users With Malicious Stable Diffusion Tool on GitHub to Protest 'Art Theft'
+    date: 2024-06-11
+    url: https://www.404media.co/hackers-target-ai-users-with-malicious-stable-diffusion-tool-on-github/
+starHistory:
+  - date: 2026-11-06
+    stars: 145392

@@ -1,0 +1,30 @@
+---
+import { SITE, PILLARS } from '../lib/site';
+const year = new Date().getFullYear();
+---
+<footer class="mt-24 border-t border-line">
+  <div class="mx-auto grid max-w-6xl gap-10 px-4 py-12 sm:px-6 md:grid-cols-3">
+    <div>
+      <p class="font-brand text-lg font-semibold">Obedience <span class="brand-gradient">ART</span></p>
+      <p class="mt-2 max-w-xs text-sm text-muted">{SITE.tagline}. AI does what we ask. The craft is in asking well.</p>
+    </div>
+    <div>
+      <p class="kicker">Pillars</p>
+      <ul class="mt-3 space-y-1.5 text-sm">
+        {Object.entries(PILLARS).map(([k, p]) => (
+          <li><a class="text-muted hover:text-cyan" href={`/pillars/${k}/`}>{p.label}</a></li>
+        ))}
+      </ul>
+    </div>
+    <div>
+      <p class="kicker">Standards</p>
+      <ul class="mt-3 space-y-1.5 text-sm">
+        <li><a class="text-muted hover:text-cyan" href="/about/#how-we-check">How we check facts</a></li>
+        <li><a class="text-muted hover:text-cyan" href="/picks/">Open-Source AI Picks</a></li>
+        <li><a class="text-muted hover:text-cyan" href="/corrections/">Corrections log</a></li>
+        <li><a class="text-muted hover:text-cyan" href="/rss.xml">RSS feed</a></li>
+      </ul>
+    </div>
+  </div>
+  <p class="border-t border-line/60 py-5 text-center text-xs text-muted">© {year} {SITE.name}. Every claim links to its sources.</p>
+</footer>

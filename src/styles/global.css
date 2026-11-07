@@ -1,0 +1,251 @@
+@import 'tailwindcss';
+@import '@fontsource-variable/inter';
+@import '@fontsource-variable/space-grotesk';
+@import '@fontsource-variable/newsreader';
+@import '@fontsource-variable/jetbrains-mono';
+
+/* "Signal" palette. Dark is the default; [data-theme='light'] switches. */
+:root,
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --bg: #0b0f1a;
+  --surface: #121829;
+  --surface-2: #182036;
+  --border: #243049;
+  --text: #e6eaf2;
+  --muted: #94a3b8;
+  --cyan: #22d3ee;
+  --violet: #a78bfa;
+  --amber: #fbbf24;
+  --green: #34d399;
+  --magenta: #f472b6;
+  --glow: 0.55;
+}
+
+:root[data-theme='light'] {
+  color-scheme: light;
+  --bg: #f7f8fb;
+  --surface: #ffffff;
+  --surface-2: #eef1f7;
+  --border: #d7dce7;
+  --text: #0b0f1a;
+  --muted: #475569;
+  --cyan: #0e7490;
+  --violet: #6d28d9;
+  --amber: #b45309;
+  --green: #047857;
+  --magenta: #be185d;
+  --glow: 0.25;
+}
+
+@theme {
+  /* Headlines: editorial serif (magazine feel). Brand mark and UI keep the geometric sans. */
+  --font-display: 'Newsreader Variable', Georgia, 'Times New Roman', serif;
+  --font-brand: 'Space Grotesk Variable', ui-sans-serif, system-ui, sans-serif;
+  --font-sans: 'Inter Variable', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono Variable', ui-monospace, monospace;
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-line: var(--border);
+  --color-ink: var(--text);
+  --color-muted: var(--muted);
+  --color-cyan: var(--cyan);
+  --color-violet: var(--violet);
+  --color-amber: var(--amber);
+  --color-green: var(--green);
+  --color-magenta: var(--magenta);
+}
+
+html {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg);
+  min-height: 100vh;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--cyan) 35%, transparent);
+}
+
+:focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.brand-gradient {
+  background: linear-gradient(100deg, var(--cyan), var(--violet));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Hero backdrop: a dot grid with a slow cyan-to-violet glow. CSS only. */
+.signal-field {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  background-image: radial-gradient(color-mix(in srgb, var(--muted) 35%, transparent) 1px, transparent 1px);
+  background-size: 22px 22px;
+  mask-image: radial-gradient(ellipse 80% 70% at 50% 40%, black 30%, transparent 75%);
+}
+.signal-field::before,
+.signal-field::after {
+  content: '';
+  position: absolute;
+  width: 46vmax;
+  height: 46vmax;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: var(--glow);
+  animation: drift 18s ease-in-out infinite alternate;
+}
+.signal-field::before {
+  background: radial-gradient(circle, color-mix(in srgb, var(--cyan) 55%, transparent), transparent 65%);
+  top: -18vmax;
+  left: -8vmax;
+}
+.signal-field::after {
+  background: radial-gradient(circle, color-mix(in srgb, var(--violet) 55%, transparent), transparent 65%);
+  bottom: -24vmax;
+  right: -10vmax;
+  animation-delay: -9s;
+}
+@keyframes drift {
+  to {
+    transform: translate(6vmax, 4vmax) scale(1.08);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .signal-field::before,
+  .signal-field::after {
+    animation: none;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  transition: border-color 0.2s, transform 0.2s;
+}
+a.card:hover {
+  border-color: color-mix(in srgb, var(--cyan) 60%, var(--border));
+  transform: translateY(-2px);
+}
+
+.kicker {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--cyan);
+}
+
+/* Long-form reading styles for post bodies. */
+.prose-signal {
+  font-size: 1.075rem;
+  line-height: 1.75;
+  color: var(--text);
+}
+.prose-signal > * + * {
+  margin-top: 1.15em;
+}
+.prose-signal h2 {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  font-weight: 650;
+  line-height: 1.25;
+  margin-top: 2.2em;
+  letter-spacing: -0.01em;
+}
+.prose-signal h3 {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-top: 1.8em;
+}
+.prose-signal a {
+  color: var(--cyan);
+  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, var(--cyan) 40%, transparent);
+  text-underline-offset: 3px;
+}
+.prose-signal a:hover {
+  text-decoration-color: var(--cyan);
+}
+.prose-signal strong {
+  font-weight: 650;
+}
+.prose-signal :where(ul, ol):not(.not-prose *) {
+  padding-left: 1.4em;
+}
+.prose-signal ul:not(.not-prose *) {
+  list-style: disc;
+}
+.prose-signal ol:not(.not-prose *) {
+  list-style: decimal;
+}
+.prose-signal li + li:not(.not-prose *) {
+  margin-top: 0.4em;
+}
+.prose-signal li::marker {
+  color: var(--muted);
+}
+.prose-signal blockquote {
+  border-left: 3px solid var(--violet);
+  padding: 0.2em 0 0.2em 1.1em;
+  color: var(--muted);
+  font-style: italic;
+}
+.prose-signal code:not(pre code) {
+  font-family: var(--font-mono);
+  font-size: 0.88em;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 0.1em 0.35em;
+}
+.prose-signal pre {
+  font-family: var(--font-mono);
+  font-size: 0.88rem;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1em 1.2em;
+  overflow-x: auto;
+}
+.prose-signal table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+  display: block;
+  overflow-x: auto;
+}
+.prose-signal th,
+.prose-signal td {
+  border-bottom: 1px solid var(--border);
+  padding: 0.6em 0.75em;
+  text-align: left;
+  vertical-align: top;
+}
+.prose-signal th {
+  font-family: var(--font-display);
+  font-weight: 600;
+  color: var(--muted);
+}
+.prose-signal hr {
+  border: 0;
+  border-top: 1px solid var(--border);
+  margin: 2.5em 0;
+}

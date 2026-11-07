@@ -1,0 +1,31 @@
+---
+import { EVENT_TYPES, type TrackerEntry } from '../lib/events';
+import { formatDate } from '../lib/format';
+interface Props { entries: TrackerEntry[] }
+const { entries } = Astro.props;
+const host = (u: string) => new URL(u).hostname.replace(/^www\./, '');
+---
+<ol data-art="thinking" data-art-say="Each step here was cross-checked. The chain keeps growing." class="relative mt-10 border-l border-line pl-8 sm:ml-2">
+  {entries.map((e) => {
+    const t = EVENT_TYPES[e.type];
+    return (
+      <li class="relative pb-10 last:pb-2">
+        <span class="absolute -left-[2.45rem] top-1.5 flex h-4 w-4 items-center justify-center rounded-full border-2 bg-bg" style={`border-color:${t.color}`} aria-hidden="true">
+          <span class="h-1.5 w-1.5 rounded-full" style={`background:${t.color}`}></span>
+        </span>
+        <div class="flex flex-wrap items-center gap-x-3 gap-y-1.5 font-mono text-xs">
+          <time datetime={e.date.toISOString()} class="text-muted">{formatDate(e.date)}</time>
+          <span class="rounded-full border px-2 py-0.5 uppercase tracking-wide" style={`color:${t.color};border-color:color-mix(in srgb, ${t.color} 45%, transparent)`}>{t.label}</span>
+          <span class="font-sans text-sm font-semibold">{e.actor}</span>
+          {e.confidence === 'reported' && <span class="rounded-full border border-line px-2 py-0.5 uppercase tracking-wide text-muted" title="Based on anonymous or second-hand sourcing">Reported</span>}
+        </div>
+        <h2 class="mt-2 font-display text-lg font-semibold leading-snug">{e.title}</h2>
+        <p class="mt-1.5 leading-relaxed text-ink/90">{e.detail}</p>
+        {e.note && <p class="mt-2 border-l-2 border-amber/60 pl-3 text-sm text-muted">{e.note}</p>}
+        <p class="mt-2 flex flex-wrap gap-x-3 gap-y-1 font-mono text-xs">
+          {e.sources.map((s) => <a class="text-cyan hover:underline" href={s} rel="noopener">{host(s)}</a>)}
+        </p>
+      </li>
+    );
+  })}
+</ol>

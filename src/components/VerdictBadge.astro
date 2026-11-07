@@ -1,0 +1,15 @@
+---
+import { VERDICTS, type VerdictKey } from '../lib/site';
+interface Props { verdict: VerdictKey; size?: 'sm' | 'md' }
+const { verdict, size = 'sm' } = Astro.props;
+const v = VERDICTS[verdict];
+const tone = {
+  good: 'text-green border-green/40 bg-green/10',
+  warn: 'text-amber border-amber/40 bg-amber/10',
+  bad: 'text-magenta border-magenta/40 bg-magenta/10',
+  muted: 'text-muted border-line bg-surface-2',
+}[v.tone];
+---
+<span class:list={['inline-flex items-center gap-1.5 rounded-full border font-mono font-medium uppercase tracking-wide whitespace-nowrap', tone, size === 'sm' ? 'px-2.5 py-0.5 text-[0.68rem]' : 'px-3 py-1 text-xs']}>
+  <span class="h-1.5 w-1.5 rounded-full bg-current" aria-hidden="true"></span>{v.label}
+</span>

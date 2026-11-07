@@ -1,0 +1,15 @@
+node_modules/
+dist/
+.astro/
+.env
+.env.*
+!.env.example
+.DS_Store
+Thumbs.db
+
+# Raw VRoid export (14 MB); the site uses the packed public/models/art.vrm.gz
+public/models/*.vrm
+art-source/
+public/models/*.glb
+.lighthouseci/
+lhci-report/

@@ -1,0 +1,72 @@
+---
+import { render } from 'astro:content';
+import { Image, getImage } from 'astro:assets';
+import Base from '../../layouts/Base.astro';
+import VerdictBadge from '../../components/VerdictBadge.astro';
+import ClaimTable from '../../components/ClaimTable.astro';
+import SourceList from '../../components/SourceList.astro';
+import Giscus from '../../components/Giscus.astro';
+import TrackerCard from '../../components/TrackerCard.astro';
+import AuthorCard from '../../components/AuthorCard.astro';
+import Newsletter from '../../components/Newsletter.astro';
+import { trackersForPost } from '../../lib/events';
+import { getPosts } from '../../lib/posts';
+import { PILLARS, AUTHOR } from '../../lib/site';
+import { formatDate, readingMinutes } from '../../lib/format';
+
+export async function getStaticPaths() {
+  const posts = await getPosts();
+  return posts.map((post) => ({ params: { slug: post.id }, props: { post } }));
+}
+const { post } = Astro.props;
+const { Content } = await render(post);
+const d = post.data;
+const trackers = await trackersForPost(post.id);
+const VERDICT_MOOD = {
+  true: ['proud', 'Verdict: true. The sources back it up.'],
+  'partly-true': ['thinking', 'Verdict: partly true. Some of it holds up.'],
+  overstated: ['sceptical', 'Verdict: overstated. Real story, inflated headline.'],
+  false: ['alert', 'Verdict: false. The sources say otherwise.'],
+  unverified: ['concerned', "Verdict: unverified. Nobody can confirm it yet."],
+} as const;
+const verdictMood = d.verdict ? VERDICT_MOOD[d.verdict] : undefined;
+const og = d.cover ? (await getImage({ src: d.cover, width: 1200, height: 630, fit: 'cover', format: 'jpeg' })).src : undefined;
+---
+<Base title={d.title} seoTitle={d.seoTitle} ogTitle={d.ogTitle} description={d.description} image={og} article={{ published: d.pubDate, updated: d.updatedDate, section: PILLARS[d.pillar].label, tags: d.tags }}>
+  <article class="mx-auto max-w-3xl px-4 py-14 sm:px-6" data-pagefind-body>
+    <header>
+      <div class="flex flex-wrap items-center gap-3">
+        <a href={`/pillars/${d.pillar}/`} class="kicker hover:underline">{PILLARS[d.pillar].label}</a>
+        {d.verdict && <span data-art={verdictMood?.[0]} data-art-say={verdictMood?.[1]}><VerdictBadge verdict={d.verdict} size="md" /></span>}
+        {d.draft && <span class="rounded-full border border-amber px-2.5 py-0.5 font-mono text-xs text-amber">DRAFT</span>}
+      </div>
+      <h1 class="mt-4 font-display text-3xl font-bold leading-tight tracking-tight sm:text-5xl">{d.title}</h1>
+      <p class="mt-5 text-lg leading-relaxed text-muted">{d.description}</p>
+      <p class="mt-6 font-mono text-xs text-muted" data-pagefind-ignore>
+        By <a href="#author" class="text-ink underline underline-offset-2 hover:text-cyan">{AUTHOR.name}</a>{' · '}
+        <time datetime={d.pubDate.toISOString()}>{formatDate(d.pubDate)}</time>
+        {d.updatedDate && <>{' · updated '}{formatDate(d.updatedDate)}</>}
+        {` · ${readingMinutes(post.body ?? '')} min read · ${d.sources.length} sources`}
+      </p>
+    </header>
+    {d.cover && (
+      <figure class="mt-10" data-pagefind-ignore>
+        <Image src={d.cover} alt={d.coverAlt!} widths={[480, 768, 1200]} sizes="(min-width: 768px) 720px, 100vw" class="aspect-[16/9] w-full rounded-2xl border border-line object-cover" loading="eager" />
+        <figcaption class="mt-2 font-mono text-[0.7rem] uppercase tracking-wide text-muted">{d.coverOrgs ? 'Logos are trademarks of their owners, shown to identify the organisations in this story' : 'AI illustration · not a photograph of real events'}</figcaption>
+      </figure>
+    )}
+    {trackers.length > 0 && (
+      <aside class="mt-8" data-pagefind-ignore aria-label="Follow this story">
+        {trackers.map((t) => <TrackerCard tracker={t} compact />)}
+      </aside>
+    )}
+    <div class="prose-signal mt-10">
+      <Content />
+    </div>
+    <ClaimTable claims={d.claims} />
+    <SourceList sources={d.sources} checked={d.factCheckedOn} />
+    <div id="author"><AuthorCard /></div>
+    <Newsletter compact />
+    <Giscus />
+  </article>
+</Base>

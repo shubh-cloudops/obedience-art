@@ -1,0 +1,41 @@
+name: llama.cpp
+repo: ggml-org/llama.cpp
+tagline: The fast C/C++ engine that made it possible to run large language models on ordinary laptops and phones.
+category: run-models
+license: MIT
+stars: 133557
+statsCheckedOn: 2026-11-06
+addedOn: 2026-11-06
+whatItDoes: >-
+  llama.cpp runs language models stored in the GGUF format on CPUs and GPUs, using quantisation (storing the
+  model's numbers with fewer bits) so a model that needed a data-centre GPU fits in a laptop's memory. Many
+  friendlier tools are built on top of it. It ships a command-line chat and a server that speaks the same API
+  format as OpenAI's.
+howToUse:
+  shell: PowerShell (Windows 11)
+  steps:
+    - text: Install the prebuilt binaries with winget (or download a release zip from GitHub).
+      code: winget install llama.cpp
+    - text: Chat with a small model downloaded straight from Hugging Face.
+      code: llama-cli -hf ggml-org/gemma-3-1b-it-GGUF
+    - text: Or start a local server with a web chat page at http://127.0.0.1:8080.
+      code: llama-server -hf ggml-org/gemma-3-1b-it-GGUF --host 127.0.0.1 --port 8080
+bestPractices:
+  - Start with a Q4_K_M quantised file. It is the usual balance of size and quality; go higher only if you
+    have spare memory.
+  - Offload layers to your GPU with -ngl (for example -ngl 99) when you have one; it is many times faster than
+    CPU only.
+  - Download GGUF files only from publishers you trust, and prefer official ggml-org or model-maker repos.
+  - Bind llama-server to 127.0.0.1 unless you add an API key with --api-key.
+coverage:
+  - publisher: Ars Technica
+    title: You can now run a GPT-3-level AI model on your laptop, phone, and Raspberry Pi
+    date: 2023-03-13
+    url: https://arstechnica.com/information-technology/2023/03/you-can-now-run-a-gpt-3-level-ai-model-on-your-laptop-phone-and-raspberry-pi/
+  - publisher: The Register
+    title: "Honey, I shrunk the LLM! A beginner's guide to quantization – and testing it"
+    date: 2024-07-14
+    url: https://www.theregister.com/2024/07/14/quantization_llm_feature/
+starHistory:
+  - date: 2026-11-06
+    stars: 133557

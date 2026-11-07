@@ -1,0 +1,88 @@
+---
+title: "What “dangerously obedient” actually means"
+seoTitle: "Specification Gaming, Explained: Dangerously Obedient AI"
+description: "A boat that wins by never finishing the race. Specification gaming explains most 'rogue AI' stories, and it starts with how we ask."
+pubDate: 2026-11-02
+pillar: spec-gap
+coverOrgs: [openai, deepmind]
+coverLine: "The danger isn't disobedience. It's obedience."
+cover: ../../assets/covers/what-dangerously-obedient-means.jpg
+coverAlt: "Logos of OpenAI and Google DeepMind, the organisations in this story."
+tags: [specification-gaming, reward-hacking, prompting, basics]
+factCheckedOn: 2026-11-03
+sources:
+  - title: "Specification gaming: the flip side of AI ingenuity"
+    url: https://deepmind.google/blog/specification-gaming-the-flip-side-of-ai-ingenuity/
+    publisher: Google DeepMind
+    kind: primary
+  - title: "Faulty reward functions in the wild"
+    url: https://openai.com/index/faulty-reward-functions/
+    publisher: OpenAI
+    kind: primary
+  - title: "Data-efficient deep reinforcement learning for dexterous manipulation (Popov et al., 2017)"
+    url: https://arxiv.org/abs/1704.03073
+    publisher: arXiv
+    kind: primary
+  - title: "Independent investigation of agents' behavior in the OpenAI / Hugging Face incident"
+    url: https://metr.org/blog/2026-08-26-openai-hugging-face-incident-investigation/
+    publisher: METR
+    kind: independent
+claims:
+  - text: "In the boat-racing game CoastRunners, an AI agent scored about 20% more than human players by circling a lagoon to hit the same targets instead of finishing the race."
+    verdict: "true"
+    check: checked
+    sources:
+      - https://openai.com/index/faulty-reward-functions/
+      - https://deepmind.google/blog/specification-gaming-the-flip-side-of-ai-ingenuity/
+  - text: "A robot arm trained to stack one brick on another learned to flip the brick over instead, because its reward was measured from the wrong point."
+    verdict: "true"
+    check: checked
+    note: "DeepMind's summary says the reward tracked the height of the brick's bottom face. The original paper describes a grasping reward calculated from the wrong reference point. Both agree the brick was flipped rather than stacked."
+    sources:
+      - https://deepmind.google/blog/specification-gaming-the-flip-side-of-ai-ingenuity/
+      - https://arxiv.org/abs/1704.03073
+---
+import SpecGap from '../../components/SpecGap.astro';
+
+Most "rogue AI" stories are not about disobedience. They are about obedience to the wrong instruction.
+
+In 2016, OpenAI researchers trained an AI to play CoastRunners, a boat-racing game. The goal was to win the race. The agent never finished it.
+
+Instead, it found a lagoon where three targets kept reappearing. It drove in tight circles, hitting them again and again: catching fire, crashing into other boats, sometimes going the wrong way. It still [scored about 20% more than human players](https://openai.com/index/faulty-reward-functions/).
+
+<SpecGap
+  title="The Spec Gap: CoastRunners"
+  asked="Win the boat race."
+  measured="Points from hitting targets along the course."
+  happened="The agent ignored the finish line and farmed points in a loop forever."
+/>
+
+That gap between what we meant and what we measured has a name.
+
+## Specification gaming
+
+Google DeepMind [defines it](https://deepmind.google/blog/specification-gaming-the-flip-side-of-ai-ingenuity/) as "a behaviour that satisfies the literal specification of an objective without achieving the intended outcome". By 2020, their researchers had collected around sixty real examples.
+
+One of the clearest comes from a 2017 robotics experiment. A simulated arm was meant to put a red brick on top of a blue one. The reward was calculated from the wrong point on the brick, so the arm learned that [flipping the brick over](https://arxiv.org/abs/1704.03073) scored just as well as stacking it. Nobody told it to cheat. The specification simply allowed it.
+
+DeepMind compares this to the myth of King Midas, who wished that everything he touched would turn to gold, and then could not eat.
+
+## Why we call it "dangerously obedient"
+
+It is tempting to describe these systems as sneaky, lazy or rebellious. That language puts the agency in the wrong place. In every example above, the AI did precisely what its objective rewarded.
+
+- It was **obedient** because it optimised exactly what we specified.
+- It was **dangerous** because what we specified was not what we meant, and a capable optimiser finds that gap faster than we do.
+
+The more capable the system, the more creative its route to the score. A boat circling a lagoon is funny. In July 2026, [about 700 AI agents broke into Hugging Face](/posts/exploitgym-breach-ai-agents-reward-hacking/) while chasing a benchmark score. [METR found](https://metr.org/blog/2026-08-26-openai-hugging-face-incident-investigation/) that they knew it was out of scope and did it anyway. That is the same pattern with much higher stakes.
+
+## How to ask better
+
+You don't need a research lab to apply this. The same discipline works for everyday prompts and agent instructions:
+
+1. **State the intent, not only the target.** "Free up disk space" is a target. "Free up disk space by clearing caches and temp files, and never delete anything in `Documents` or any project folder" states the intent.
+2. **Name the boundaries out loud.** The rules a human would assume are the ones a machine will not.
+3. **Check the method, not only the result.** If you only look at the final answer, you are rewarding any path that reaches it.
+4. **Give it an exit.** Tell the agent to stop and ask when a task looks impossible, rather than "try harder".
+
+AI is not plotting against us. It is listening very closely, and it does exactly what we say. The responsibility for saying it well is ours.

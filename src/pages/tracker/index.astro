@@ -1,0 +1,14 @@
+---
+import Base from '../../layouts/Base.astro';
+import TrackerCard from '../../components/TrackerCard.astro';
+import { getTrackers } from '../../lib/events';
+const trackers = await getTrackers();
+---
+<Base title="Event trackers" description="Living timelines of what organisations did after an AI story broke: disclosures, fixes, investigations and regulators.">
+  <section class="mx-auto max-w-6xl px-4 py-16 sm:px-6">
+    <p class="kicker">Event trackers</p>
+    <h1 class="mt-3 font-display text-4xl font-bold tracking-tight">The story after the story</h1>
+    <p class="mt-4 max-w-2xl text-lg text-muted">Headlines stop when the news cycle moves on. These timelines don't. Each one follows what organisations actually did because of an event, and we keep adding to it. Every entry is cross-checked against at least two sources.</p>
+    <div class="mt-10 grid gap-5 md:grid-cols-2">{trackers.map((t) => <TrackerCard tracker={t} />)}</div>
+  </section>
+</Base>

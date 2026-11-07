@@ -1,0 +1,36 @@
+---
+import Base from '../layouts/Base.astro';
+---
+<Base title="Search" description="Search every Obedience ART post.">
+  <section class="mx-auto max-w-3xl px-4 py-16 sm:px-6">
+    <p class="kicker">Search</p>
+    <h1 class="mt-3 font-display text-4xl font-bold tracking-tight">Find a post</h1>
+    <div id="search" class="mt-8"></div>
+    <noscript><p class="mt-6 text-muted">Search needs JavaScript. Browse <a class="text-cyan" href="/posts/">all posts</a> instead.</p></noscript>
+    <p id="search-dev-note" class="mt-6 hidden text-sm text-muted">The search index is built by <code>npm run build</code>. Use <code>npm run preview</code> to try it.</p>
+  </section>
+  <link href="/pagefind/pagefind-ui.css" rel="stylesheet" />
+  <script is:inline>
+    const s = document.createElement('script');
+    s.src = '/pagefind/pagefind-ui.js';
+    s.onload = () => new PagefindUI({ element: '#search', showSubResults: true, showImages: false, resetStyles: false });
+    s.onerror = () => document.getElementById('search-dev-note').classList.remove('hidden');
+    document.body.appendChild(s);
+  </script>
+  <style is:global>
+    #search {
+      --pagefind-ui-primary: var(--cyan);
+      --pagefind-ui-text: var(--text);
+      --pagefind-ui-background: var(--surface);
+      --pagefind-ui-border: var(--border);
+      --pagefind-ui-tag: var(--surface-2);
+      --pagefind-ui-font: var(--font-sans);
+      --pagefind-ui-border-radius: 10px;
+    }
+    #search mark {
+      background: color-mix(in srgb, var(--cyan) 25%, transparent);
+      color: var(--text);
+      border-radius: 3px;
+    }
+  </style>
+</Base>

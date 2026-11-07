@@ -1,0 +1,27 @@
+---
+import VerdictBadge from './VerdictBadge.astro';
+import type { VerdictKey } from '../lib/site';
+interface Claim { text: string; verdict: VerdictKey; note?: string; sources: string[] }
+interface Props { claims: Claim[] }
+const { claims } = Astro.props;
+const host = (u: string) => new URL(u).hostname.replace(/^www\./, '');
+---
+{claims.length > 0 && (
+  <section data-art="sceptical" data-art-say="Now the claims. Let's see which ones hold up." aria-labelledby="claims-h" class="my-12 rounded-2xl border border-line bg-surface">
+    <h2 id="claims-h" class="border-b border-line px-5 py-4 font-display text-lg font-semibold">Claims we checked</h2>
+    <ol class="divide-y divide-line">
+      {claims.map((c) => (
+        <li class="grid gap-3 px-5 py-4 sm:grid-cols-[1fr_auto]">
+          <div>
+            <p class="leading-relaxed">{c.text}</p>
+            {c.note && <p class="mt-1.5 text-sm text-muted">{c.note}</p>}
+            <p class="mt-2 flex flex-wrap gap-x-3 gap-y-1 font-mono text-xs">
+              {c.sources.map((s) => <a class="text-cyan hover:underline" href={s} rel="noopener">{host(s)}</a>)}
+            </p>
+          </div>
+          <div class="sm:pt-0.5"><VerdictBadge verdict={c.verdict} /></div>
+        </li>
+      ))}
+    </ol>
+  </section>
+)}

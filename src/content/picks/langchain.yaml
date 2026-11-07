@@ -1,0 +1,44 @@
+name: LangChain
+repo: langchain-ai/langchain
+tagline: The most used framework for wiring language models to your own data, tools and apps.
+category: build-apps
+license: MIT
+stars: 149123
+statsCheckedOn: 2026-11-06
+addedOn: 2026-11-06
+whatItDoes: >-
+  LangChain gives Python and JavaScript developers one standard way to talk to many model providers (OpenAI,
+  Anthropic, Google, local Ollama models and more), plus ready-made parts for chatbots, searching your own
+  documents and building agents that call tools. Its sister project LangGraph handles agents that need memory
+  and multiple steps.
+howToUse:
+  shell: PowerShell (Windows 11, Python 3.10+, Ollama installed for a free local model)
+  steps:
+    - text: Install LangChain and the Ollama integration.
+      code: pip install -U langchain langchain-ollama
+    - text: "Save this as hello.py: it sends a prompt to a local model, so no API key or cost."
+      code: |-
+        from langchain.chat_models import init_chat_model
+        model = init_chat_model("ollama:llama3.2")
+        print(model.invoke("Explain a VPC in one sentence").content)
+    - text: Run it.
+      code: python hello.py
+bestPractices:
+  - Pin package versions in requirements.txt. LangChain moves fast and minor releases can change APIs.
+  - Keep API keys in environment variables (for example $env:OPENAI_API_KEY), never in your code or Git.
+  - Start with a plain model call and add chains or agents only when you need them; extra layers make bugs
+    harder to find.
+  - Turn on tracing (LangSmith or your own logging) so you can see every prompt and tool call when an answer
+    goes wrong.
+coverage:
+  - publisher: TechCrunch
+    title: Open source agentic startup LangChain hits $1.25B valuation
+    date: 2025-10-21
+    url: https://techcrunch.com/2025/10/21/open-source-agentic-startup-langchain-hits-1-25b-valuation/
+  - publisher: Fortune
+    title: "Exclusive: Early AI darling LangChain is now a unicorn with a fresh $125 million in funding"
+    date: 2025-10-20
+    url: https://fortune.com/2025/10/20/exclusive-early-ai-darling-langchain-is-now-a-unicorn-with-a-fresh-125-million-in-funding/
+starHistory:
+  - date: 2026-11-06
+    stars: 149123

@@ -1,0 +1,28 @@
+---
+import Base from '../../layouts/Base.astro';
+import PostCard from '../../components/PostCard.astro';
+import { getPosts } from '../../lib/posts';
+import { PILLARS, type PillarKey } from '../../lib/site';
+
+export async function getStaticPaths() {
+  const posts = await getPosts();
+  return (Object.keys(PILLARS) as PillarKey[]).map((pillar) => ({
+    params: { pillar },
+    props: { pillar, posts: posts.filter((p) => p.data.pillar === pillar) },
+  }));
+}
+const { pillar, posts } = Astro.props;
+const p = PILLARS[pillar as PillarKey];
+---
+<Base title={p.label} description={p.blurb}>
+  <section class="mx-auto max-w-6xl px-4 py-16 sm:px-6">
+    <p class="kicker">Pillar</p>
+    <h1 class="mt-3 font-display text-4xl font-bold tracking-tight">{p.label}</h1>
+    <p class="mt-4 max-w-2xl text-lg text-muted">{p.blurb}</p>
+    {posts.length ? (
+      <div class="mt-10 grid gap-5 md:grid-cols-2">{posts.map((post) => <PostCard post={post} />)}</div>
+    ) : (
+      <p class="mt-10 text-muted">The first post in this pillar is on its way.</p>
+    )}
+  </section>
+</Base>

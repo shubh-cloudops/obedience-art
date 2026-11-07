@@ -1,0 +1,5 @@
+# Link checker settings used by CI.
+max_retries = 3
+timeout = 30
+accept = ["200..=299", "403", "429"]   # some publishers block bots with 403/429; a real 404 still fails
+exclude = ["^http://localhost", "giscus.app", "cloudflareinsights.com"]

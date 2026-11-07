@@ -1,0 +1,16 @@
+{
+  "_comment": "Organisations that can appear on logo covers. Logo lookup order: src/assets/logos/<file> (official file from the organisation's brand page) -> simple-icons (CC0 package) -> the name as a wordmark. Logos are trademarks of their owners and are shown only to identify who is in the story.",
+  "openai":       { "name": "OpenAI",             "file": "openai-mark.svg", "source": "https://openai.com/brand" },
+  "huggingface":  { "name": "Hugging Face",       "simpleIcon": "huggingface" },
+  "metr":         { "name": "METR",               "file": "metr.svg", "source": "https://metr.org" },
+  "deepmind":     { "name": "Google DeepMind",    "simpleIcon": "deepmind" },
+  "google":       { "name": "Google",             "simpleIcon": "google" },
+  "anthropic":    { "name": "Anthropic",          "simpleIcon": "anthropic" },
+  "jfrog":        { "name": "JFrog",              "simpleIcon": "jfrog" },
+  "modal":        { "name": "Modal",              "simpleIcon": "modal" },
+  "eu":           { "name": "European Commission", "simpleIcon": "europeanunion" },
+  "techcrunch":   { "name": "TechCrunch",         "simpleIcon": "techcrunch" },
+  "meta":         { "name": "Meta",               "simpleIcon": "meta" },
+  "nvidia":       { "name": "NVIDIA",             "simpleIcon": "nvidia" },
+  "github":       { "name": "GitHub",             "simpleIcon": "github" }
+}

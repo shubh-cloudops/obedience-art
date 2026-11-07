@@ -1,0 +1,50 @@
+# Runs on every pull request: the automated half of the review gate.
+name: CI
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install
+        run: npm ci
+
+      - name: Type check
+        run: npm run check
+
+      # Fails if any post breaks the editorial schema:
+      # fewer than 2 sources, a claim with fewer than 2 sources, or a claim not cross-checked.
+      - name: Build (enforces the cross-check rules)
+        run: npm run build
+
+      # Fails if a key page drops below: performance 90, accessibility 95, best practices 90, SEO 95.
+      # Config: lighthouserc.json. The full HTML reports are attached to the run as "lighthouse-reports".
+      - name: Lighthouse budgets
+        run: npx --yes @lhci/cli@0.16.0 autorun
+
+      - name: Save Lighthouse reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lighthouse-reports
+          path: lhci-report/
+          retention-days: 14
+
+      - name: Check every source link in posts
+        uses: lycheeverse/lychee-action@v2
+        with:
+          args: --config lychee.toml --no-progress "src/content/posts/**/*.mdx" "src/content/posts/**/*.md"
+          fail: true

@@ -1,0 +1,53 @@
+# Refreshes GitHub star counts for the Open-Source AI Picks every day at 08:00 IST (02:30 UTC).
+# The page ranks picks by stars and shows the top 9, so the lowest-starred pick drops off automatically.
+name: Refresh pick stars
+
+on:
+  schedule:
+    - cron: '30 2 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write # commit the updated YAML files
+  actions: write # start the deploy workflow afterwards
+
+concurrency:
+  group: pick-stars
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      - name: Fetch star counts from GitHub
+        run: node scripts/update-pick-stars.mjs
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # Same schema checks as every PR: never commit data that breaks the build.
+      - run: npm run build
+
+      - name: Commit and redeploy if anything changed
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          if git diff --quiet -- src/content/picks; then
+            echo "No star changes."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add src/content/picks
+          git commit -m "chore(picks): refresh GitHub stars"
+          git push
+          # Pushes made with GITHUB_TOKEN don't trigger other workflows, so start the deploy explicitly.
+          gh workflow run deploy.yml --ref main

@@ -1,0 +1,25 @@
+---
+import { Image } from 'astro:assets';
+import { getPortrait } from '../lib/ambassador';
+
+interface Props {
+  expression: string;
+  size?: number;
+  class?: string;
+  eager?: boolean;
+}
+const { expression, size = 320, class: className, eager = false } = Astro.props;
+const portrait = getPortrait(expression);
+---
+{portrait && (
+  <Image
+    src={portrait.src}
+    alt={portrait.alt}
+    width={size}
+    height={size}
+    widths={[size, size * 2]}
+    sizes={`${size}px`}
+    loading={eager ? 'eager' : 'lazy'}
+    class:list={['aspect-square rounded-2xl border border-line object-cover', className]}
+  />
+)}

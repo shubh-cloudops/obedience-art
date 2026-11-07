@@ -1,0 +1,91 @@
+---
+import Base from '../layouts/Base.astro';
+import PostCard from '../components/PostCard.astro';
+import { getPosts } from '../lib/posts';
+import { PILLARS } from '../lib/site';
+import TrackerCard from '../components/TrackerCard.astro';
+import { getTrackers } from '../lib/events';
+import Ambassador from '../components/Ambassador.astro';
+import { AMBASSADOR, type PillarKey } from '../lib/site';
+import Newsletter from '../components/Newsletter.astro';
+const posts = await getPosts();
+const trackers = (await getTrackers()).filter((t) => t.data.status === 'ongoing');
+const [lead, ...rest] = posts;
+// Homepage rows, one per series, newest series first (like a magazine's sections).
+const rows = (Object.keys(PILLARS) as PillarKey[])
+  .map((k) => ({ key: k, posts: rest.filter((p) => p.data.pillar === k).slice(0, 3) }))
+  .filter((r) => r.posts.length > 0)
+  .sort((a, b) => b.posts[0].data.pubDate.valueOf() - a.posts[0].data.pubDate.valueOf());
+---
+<Base>
+  <section class="relative isolate overflow-hidden border-b border-line">
+    <div class="signal-field" aria-hidden="true"></div>
+    <div class="relative mx-auto grid max-w-6xl items-center gap-10 px-4 pb-20 pt-20 sm:px-6 md:grid-cols-[1fr_auto] md:pb-28 md:pt-28">
+      <div>
+      <p class="kicker">The Art of Articulation</p>
+      <h1 class="mt-5 max-w-4xl font-display text-4xl font-bold leading-[1.05] tracking-tight sm:text-6xl md:text-7xl">
+        AI isn't rebelling.<br />It's <span class="brand-gradient">dangerously obedient.</span>
+      </h1>
+      <p class="mt-7 max-w-2xl text-lg leading-relaxed text-muted">
+        We take apart viral AI stories and check every claim against its sources. Whether AI is conscious is an open question. What we can show is that it does exactly what it is asked. The danger lies in how humans ask, and in who is doing the asking.
+      </p>
+      <div class="mt-9 flex flex-wrap gap-3">
+        {lead && <a href={`/posts/${lead.id}/`} class="rounded-lg bg-cyan px-5 py-2.5 font-medium text-bg transition hover:opacity-90">Read the latest autopsy</a>}
+        <a href="/about/" class="rounded-lg border border-line px-5 py-2.5 font-medium transition hover:border-cyan hover:text-cyan">How we check facts</a>
+      </div>
+      </div>
+      <a href="/about/#ambassador" class="group hidden md:block" aria-label={`Meet ${AMBASSADOR.name}, ${AMBASSADOR.role}`}>
+        <Ambassador expression="explaining" size={300} eager class="shadow-2xl shadow-cyan/10 transition group-hover:border-cyan" />
+        <span class="mt-3 block text-center font-mono text-xs text-muted group-hover:text-cyan">Meet {AMBASSADOR.name}, {AMBASSADOR.short} →</span>
+      </a>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-6xl px-4 py-16 sm:px-6">
+    <div class="flex items-end justify-between gap-4">
+      <h2 class="font-display text-3xl font-semibold tracking-tight">Latest</h2>
+      <a href="/posts/" class="text-sm text-muted hover:text-cyan">All posts →</a>
+    </div>
+    {lead && <div class="mt-8"><PostCard post={lead} featured /></div>}
+  </section>
+
+  {rows.map((r) => (
+    <section class="mx-auto max-w-6xl border-t border-line px-4 py-12 sm:px-6">
+      <div class="grid gap-8 md:grid-cols-[15rem_1fr]">
+        <div>
+          <a href={`/pillars/${r.key}/`} class="kicker hover:underline">Series</a>
+          <h2 class="mt-2 font-display text-2xl font-semibold tracking-tight"><a href={`/pillars/${r.key}/`} class="hover:text-cyan">{PILLARS[r.key].label}</a></h2>
+          <p class="mt-2 text-sm leading-relaxed text-muted">{PILLARS[r.key].blurb}</p>
+          <a href={`/pillars/${r.key}/`} class="mt-3 inline-block text-sm text-cyan hover:underline">More {PILLARS[r.key].label} →</a>
+        </div>
+        <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">{r.posts.map((p) => <PostCard post={p} />)}</div>
+      </div>
+    </section>
+  ))}
+
+  <section class="mx-auto max-w-6xl px-4 py-12 sm:px-6"><Newsletter /></section>
+
+  {trackers.length > 0 && (
+    <section class="mx-auto max-w-6xl px-4 pb-16 sm:px-6">
+      <div class="flex items-end justify-between gap-4">
+        <h2 class="font-display text-2xl font-semibold tracking-tight">The story after the story</h2>
+        <a href="/tracker/" class="text-sm text-muted hover:text-cyan">All trackers →</a>
+      </div>
+      <p class="mt-2 max-w-2xl text-muted">Live timelines of what organisations did after the headlines. We keep adding to them.</p>
+      <div class="mt-8 grid gap-5 md:grid-cols-2">{trackers.slice(0, 2).map((t) => <TrackerCard tracker={t} />)}</div>
+    </section>
+  )}
+
+  <section class="mx-auto max-w-6xl px-4 py-8 sm:px-6">
+    <h2 class="font-display text-3xl font-semibold tracking-tight">Our series</h2>
+    <div class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      {Object.entries(PILLARS).map(([k, p], i) => (
+        <a href={`/pillars/${k}/`} class="card flex flex-col p-5">
+          <span class="font-mono text-xs text-muted">0{i + 1}{['obedience-test', 'build-log'].includes(k) && <span class="ml-2 text-cyan">NEW</span>}</span>
+          <span class="mt-2 font-display font-semibold">{p.label}</span>
+          <span class="mt-2 text-sm leading-relaxed text-muted">{p.blurb}</span>
+        </a>
+      ))}
+    </div>
+  </section>
+</Base>

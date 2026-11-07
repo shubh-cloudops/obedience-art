@@ -1,0 +1,62 @@
+{
+  "_comment": "Cover rules (Shub, 3 Nov 2026): every cover shows the brand ambassador, an original warm AI butler, with an expression that suits the story. 'expressions' is his expression library (scripts/generate-ambassador.mjs). No seed: Workers AI FLUX schnell rejects it, so each render is a fresh face and the 'character' text is what keeps him consistent. Each expression's 'alt' is completed by src/lib/ambassador.ts as 'AI illustration: our butler, <alt>.'",
+  "active": "personified",
+  "styles": {
+    "abstract": "Abstract symbolic digital art, dark navy background (#0b0f1a), flowing geometric forms and particle fields in glowing cyan (#22d3ee) and violet (#a78bfa), a single amber (#fbbf24) accent that draws the eye, minimal, elegant, sense of tension, editorial cover art, generous empty space at the top",
+    "gritty": "Dark gritty editorial illustration, heavy shadows, cold harsh lighting, smoke and grain, ominous mood, deep navy and black palette with sickly cyan glow and a warning amber light, sense of threat and unease, dramatic low angle",
+    "cinematic": "Cinematic sci-fi digital illustration, dark navy background (#0b0f1a), glowing cyan (#22d3ee) and violet (#a78bfa) light, amber (#fbbf24) warning accents, volumetric light, high contrast, sense of scale and awe, editorial magazine cover art, clean composition with empty space at the top",
+    "personified": "Elegant stylised digital painting, premium graphic-novel cover art, soft cinematic lighting with gentle cyan and violet (#a78bfa) accents and a small amber (#fbbf24) highlight, dark navy background (#0b0f1a), appealing and approachable, not horror, not creepy, high detail on the face, clean magazine cover composition",
+    "personified-gritty": "Gritty cyberpunk digital painting, heavy shadows, grime and grain, harsh cold light, ominous mood, sickly cyan glow and a warning amber light, intense close-up"
+  },
+  "rules": "stylised digital painting, clearly an illustration and not a photograph; an original fictional character who must not resemble any real person, actor or celebrity and must not depict any film or comic character; friendly and appealing, never creepy, horror or uncanny; no text, no letters, no numbers, no logos, no brand marks, no watermark or signature, no news-photo realism; no signs, no shop signs, no billboards, no screens with writing, plain softly blurred background",
+  "character": "The recurring main character is the blog's brand ambassador, an ORIGINAL fictional AI butler: a warm, dignified East Asian man in his 40s, black hair neatly slicked back with a side part, thick dark eyebrows, warm brown eyes, clean-shaven, a calm kind face; he wears a black mandarin high-collar suit jacket over a pale grey shirt and a black tie; a single thin glowing cyan (#22d3ee) line at his right temple near the hairline; his right hand is a sleek smooth silver robotic hand, the only other machine detail. Head-and-shoulders portrait against a plain dark navy background, the face is the focus, looking towards the viewer",
+  "expressions": {
+    "explaining": {
+      "prompt": "Expression: a friendly confident smile, his silver robotic hand raised with one finger pointing up as if making a helpful point",
+      "alt": "a friendly, confident smile as he raises one silver robotic finger to make a point"
+    },
+    "proud": {
+      "prompt": "Expression: beaming with pride, a wide confident smile showing teeth, chin lifted high, shoulders back, eyes bright, his silver robotic hand pressed flat over his heart",
+      "alt": "a quiet, proud smile with his silver robotic hand at his chest"
+    },
+    "eager": {
+      "prompt": "Expression: a wide eager smile showing teeth, eyebrows lifted high, his silver robotic hand held out with an open palm as if offering help",
+      "alt": "a wide, eager smile, his open silver robotic hand raised"
+    },
+    "concerned": {
+      "prompt": "Expression: softly concerned and caring, eyebrows gently raised and drawn together, eyes kind and worried, lips closed in a small downturned line, his silver robotic hand (chrome metal, not a human hand) resting on his chest, wearing the same BLACK dress. Natural, subtle and likeable expression, relaxed face muscles, no squinting, no wrinkled nose, no grimace, no exaggerated cartoon face",
+      "alt": "a worried frown, his silver robotic hand at his chin"
+    },
+    "sceptical": {
+      "prompt": "Expression: politely sceptical and unconvinced, one eyebrow raised slightly higher than the other, eyes calm and open, a small knowing closed-mouth half-smile, head tilted a little, his silver robotic hand resting lightly under his chin. Natural, subtle and likeable expression, relaxed face muscles, no squinting, no wrinkled nose, no grimace, no exaggerated cartoon face",
+      "alt": "a sly, knowing half-smile with narrowed eyes, unconvinced, his silver robotic hand raised"
+    },
+    "surprised": {
+      "prompt": "Expression: genuinely astonished, eyes opened very wide, eyebrows raised very high on the forehead, lips parted in a startled gasp, head tilted back slightly, his silver robotic hand raised beside his cheek with fingers spread",
+      "alt": "wide-eyed surprise, his silver robotic hand beside his cheek"
+    },
+    "apologetic": {
+      "prompt": "Expression: gently apologetic, a soft small closed-mouth smile, eyebrows lifted a little in the middle, eyes warm and sorry, head tilted slightly to one side, his silver robotic hand resting on her collarbone. Natural, subtle and likeable expression, relaxed face muscles, no squinting, no wrinkled nose, no grimace, no exaggerated cartoon face",
+      "alt": "a sheepish, apologetic smile, his silver robotic hand at his collar"
+    },
+    "thinking": {
+      "prompt": "Expression: thoughtful and curious, gaze turned up and to the side away from the viewer, lips gently pressed together, one eyebrow slightly raised, the chrome index finger of his silver robotic hand resting against his chin. Natural, subtle and likeable expression, relaxed face muscles, no squinting, no wrinkled nose, no grimace, no exaggerated cartoon face",
+      "alt": "looking up deep in thought, one silver robotic finger raised"
+    },
+    "alert": {
+      "prompt": "Expression: attentive and alert, eyes wide open and focused straight at the viewer, eyebrows slightly raised, lips closed, chin up, his silver robotic hand raised palm-out at shoulder height in a calm 'heads-up' gesture. Natural, subtle and likeable expression, relaxed face muscles, no squinting, no wrinkled nose, no grimace, no exaggerated cartoon face",
+      "alt": "a serious, focused look, his silver robotic hand raised in a calm stop gesture"
+    },
+    "amused": {
+      "prompt": "Expression: laughing warmly with eyes crinkled, his silver robotic hand partly covering his smile",
+      "alt": "laughing warmly, his silver robotic hand raised near his chin"
+    }
+  },
+  "modelSheet": "Full-body character reference for 3D modelling of an ORIGINAL fictional AI butler: a warm, dignified East Asian man in his 40s, black hair neatly slicked back with a side part, thick dark eyebrows, warm brown eyes, clean-shaven, calm kind face, gentle closed-mouth smile; black mandarin high-collar suit jacket over a pale grey shirt and a black tie, black trousers, black polished shoes; a single thin glowing cyan line at his right temple; his right hand is a sleek smooth silver robotic hand. Standing straight in a relaxed A-pose, arms held slightly away from the body, palms facing inward, feet shoulder-width apart, whole body visible from head to shoes and centred, facing the camera directly, front view, neutral even studio lighting, no cast shadows, plain flat light grey background, nothing else in the frame. Semi-realistic digital painting, soft brush strokes, clean silhouette",
+  "characterFemale": "Art, the blog's ORIGINAL fictional AI host: a confident woman in her early 30s; long straight-to-wavy dark brunette hair with a natural side part and no fringe or bangs falling past her shoulders; hazel-green eyes; faint freckles; defined brows; understated polished makeup in neutral tones; a small matte carbon-fibre plate with a thin glowing cyan line at her right temple. She wears a sleek long-sleeved black ribbed stretch-jersey mini dress with a high mock neck and a vertical lace-up placket with silver grommets down the front, laced fully closed and tied at the waist; fully covered high neckline with no cutouts, no keyhole, no buttons. Her left hand, emerging from the sleeve, is a polished chrome and matte-black robotic hand. Confident, relaxed, elegant pose; tasteful fashion-editorial portrait, non-sexualised. Three-quarter length framing from head to mid-thigh, face clearly visible, plain dark navy background",
+  "styleFemale": "One consistent art style in every image: semi-realistic digital oil painting, visible soft painterly brushwork, gently stylised but realistic proportions, soft cinematic lighting with subtle cyan and violet rim light; NOT a photograph, NOT photorealistic, NOT a cartoon, NOT anime, NOT 3D render",
+  "heroFemale": "Full-length framing from head to toe, standing upright facing the viewer with a calm confident smile, arms relaxed at her sides, minimalist black strappy stiletto heels with thin ankle straps, the whole figure visible and centred with space above her head",
+  "characterFemaleV2": "Art, the blog's ORIGINAL fictional AI host: a confident woman in her early 30s; long straight-to-wavy dark brunette hair with a natural side part, no fringe, falling past her shoulders; hazel-green eyes; faint freckles; defined brows; understated polished makeup in neutral tones; a small matte carbon-fibre plate with a thin glowing cyan line at her right temple. She wears a sleek long-sleeved form-fitting black ribbed mini dress with a high mock-neck collar. Down the centre front, from the collar to the waist, thin black cord laces cross diagonally from side to side, forming a continuous row of X shapes between two rows of small silver grommets, like the lacing in image 0, with a narrow, modest open V between the laces from the collar down to the upper chest, showing a little skin like a tasteful fashion-catalogue dress, the lower front laced closed; the cords cinch the waist and are tied in a small bow, the two drawstring ends hanging down the front of the skirt. Her left hand is an elegant polished chrome robotic hand emerging from the sleeve, with human proportions: a palm, a thumb and four slim jointed fingers of normal length, anatomically correct, never black claws, never extra or missing fingers. Bold, modern, striking but tasteful fashion-editorial look, non-sexualised",
+  "framingPortraitV2": "Portrait framing from the top of her head to just below the chest, face clearly visible, plain soft muted lilac studio background exactly like image 0",
+  "heroFemaleV2": "Full-length fashion-editorial framing from head to toe, standing in a relaxed three-quarter turn with one hand resting on her hip, minimalist black strappy stiletto heels with thin ankle straps, the whole figure visible and centred with space above her head and below her feet, plain soft grey studio wall and floor"
+}

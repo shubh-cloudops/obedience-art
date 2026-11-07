@@ -1,0 +1,24 @@
+---
+// The signature component: what was asked vs what was measured vs what happened.
+interface Props { asked: string; measured: string; happened: string; title?: string }
+const { asked, measured, happened, title = 'The Spec Gap' } = Astro.props;
+const cols = [
+  { k: 'What was asked', v: asked, c: 'var(--cyan)' },
+  { k: 'What was measured', v: measured, c: 'var(--amber)' },
+  { k: 'What happened', v: happened, c: 'var(--magenta)' },
+];
+---
+<figure data-art="concerned" data-art-say="Here's the gap: what was asked versus what was measured." class="not-prose my-10 overflow-hidden rounded-2xl border border-line bg-surface">
+  <figcaption class="flex items-center gap-2 border-b border-line px-5 py-3 font-mono text-xs uppercase tracking-widest text-muted">
+    <span class="h-2 w-2 rounded-full bg-amber" aria-hidden="true"></span>{title}
+  </figcaption>
+  <div class="grid md:grid-cols-3">
+    {cols.map((col, i) => (
+      <div class:list={['relative p-5', i > 0 && 'border-t border-line md:border-l md:border-t-0']}>
+        <p class="font-mono text-[0.7rem] uppercase tracking-widest" style={`color:${col.c}`}>{col.k}</p>
+        <p class="mt-2 text-[0.97rem] leading-relaxed">{col.v}</p>
+        {i < 2 && <span class="absolute -right-2.5 top-1/2 z-10 hidden h-5 w-5 -translate-y-1/2 items-center justify-center rounded-full border border-line bg-bg text-xs text-muted md:flex" aria-hidden="true">→</span>}
+      </div>
+    ))}
+  </div>
+</figure>

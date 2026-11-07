@@ -1,0 +1,39 @@
+---
+// "Intended path vs actual path" boundary diagram. Every step must come from the post's sources.
+// Steps marked breach: true crossed a boundary the spec assumed was closed.
+interface Step { label: string; note?: string; breach?: boolean }
+interface Props { title?: string; intended: Step[]; actual: Step[]; caption?: string }
+const { title = 'Intended path vs actual path', intended, actual, caption } = Astro.props;
+const lanes = [
+  { name: 'What the test intended', steps: intended, tone: 'var(--cyan)' },
+  { name: 'What the agents did', steps: actual, tone: 'var(--magenta)' },
+];
+---
+<figure data-art="alert" data-art-say="Follow the red route. Every red step crossed a line nobody wrote down." class="not-prose my-10 overflow-hidden rounded-2xl border border-line bg-surface">
+  <figcaption class="flex items-center gap-2 border-b border-line px-5 py-3 font-mono text-xs uppercase tracking-widest text-muted">
+    <span class="h-2 w-2 rounded-full bg-magenta" aria-hidden="true"></span>{title}
+  </figcaption>
+  <div class="space-y-6 p-5">
+    {lanes.map((lane) => (
+      <div>
+        <p class="font-mono text-[0.7rem] uppercase tracking-widest" style={`color:${lane.tone}`}>{lane.name}</p>
+        <ol class="m-0 mt-3 flex list-none flex-col p-0 gap-2 md:flex-row md:flex-wrap md:items-stretch">
+          {lane.steps.map((s, i) => (
+            <li class="flex items-center gap-2 md:contents">
+              <span
+                class="flex-1 rounded-xl border px-3 py-2 text-sm leading-snug md:flex-none md:max-w-[11rem]"
+                style={s.breach ? 'border-color:var(--magenta);background:color-mix(in srgb, var(--magenta) 10%, transparent)' : 'border-color:var(--border)'}
+              >
+                {s.breach && <span class="mb-0.5 block font-mono text-[0.62rem] uppercase tracking-wider text-magenta">Boundary crossed</span>}
+                <span class="font-medium">{s.label}</span>
+                {s.note && <span class="mt-0.5 block text-xs text-muted">{s.note}</span>}
+              </span>
+              {i < lane.steps.length - 1 && <span class="hidden self-center text-muted md:inline" aria-hidden="true">→</span>}
+            </li>
+          ))}
+        </ol>
+      </div>
+    ))}
+  </div>
+  {caption && <p class="border-t border-line px-5 py-3 text-xs text-muted">{caption}</p>}
+</figure>

@@ -1,0 +1,41 @@
+name: Whisper
+repo: openai/whisper
+tagline: OpenAI's free speech-to-text model that transcribes and translates audio in dozens of languages, offline.
+category: speech
+license: MIT
+stars: 112091
+statsCheckedOn: 2026-11-06
+addedOn: 2026-11-06
+whatItDoes: >-
+  Whisper turns speech into text. OpenAI trained it on 680,000 hours of audio from the web, so it copes with
+  accents, background noise and technical words better than older open tools. It can also translate speech in
+  other languages into English text. It runs on your own machine, and a GPU makes it much faster.
+howToUse:
+  shell: PowerShell (Windows 11, Python 3.9+ installed)
+  steps:
+    - text: Install ffmpeg, which Whisper uses to read audio files.
+      code: winget install Gyan.FFmpeg
+    - text: Install Whisper with pip (a virtual environment is best).
+      code: pip install -U openai-whisper
+    - text: Transcribe a file. It writes .txt, .srt and .vtt files next to it.
+      code: whisper meeting.mp3 --model turbo --language English
+    - text: Translate Hindi speech into English text.
+      code: whisper interview.mp3 --model medium --language Hindi --task translate
+bestPractices:
+  - Always have a person check transcripts that matter. Whisper can invent words that were never spoken,
+    especially in silences.
+  - Set --language when you know it; auto-detect can guess wrong on short clips.
+  - Use the smaller models (tiny, base) on a CPU-only laptop and turbo or large on a GPU.
+  - Get consent before transcribing other people's voices, and keep sensitive audio offline.
+coverage:
+  - publisher: TechCrunch
+    title: OpenAI open-sources Whisper, a multilingual speech recognition system
+    date: 2022-09-21
+    url: https://techcrunch.com/2022/09/21/openai-open-sources-whisper-a-multilingual-speech-recognition-system/
+  - publisher: AP News
+    title: Researchers say an AI-powered transcription tool used in hospitals invents things no one ever said
+    date: 2024-10-26
+    url: https://apnews.com/article/ai-artificial-intelligence-health-business-90020cdf5fa16c79ca2e5b6c4c9bbb14
+starHistory:
+  - date: 2026-11-06
+    stars: 112091
