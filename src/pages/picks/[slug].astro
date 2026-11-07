@@ -16,7 +16,7 @@ const d = pick.data;
     <a href="/picks/" class="font-mono text-sm text-muted hover:text-cyan" data-pagefind-ignore>← All Open-Source AI Picks</a>
     <div class="card mt-6 overflow-hidden">
       <a href={`https://github.com/${d.repo}`} rel="noopener" class="block border-b border-line bg-surface-2">
-        <img src={repoCard(d.repo)} alt={`GitHub preview card for ${d.repo}`} width="1200" height="600" decoding="async" referrerpolicy="no-referrer" class="aspect-[2/1] h-auto w-full" />
+        <img src={repoCard(pick.id, d.repo)} alt={`GitHub preview card for ${d.repo}`} width="1200" height="600" decoding="async" referrerpolicy="no-referrer" class="aspect-[2/1] h-auto w-full" />
       </a>
       <div class="p-6 sm:p-8">
               <p class="kicker">{PICK_CATEGORY[d.category]}</p>

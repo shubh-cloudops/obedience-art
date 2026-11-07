@@ -28,6 +28,10 @@ jobs:
 
       - run: npm ci
 
+      # Saves GitHub's social card for each AI pick into public/picks/cards/ so the site serves it itself.
+      - name: Fetch AI pick card images
+        run: node scripts/fetch-pick-cards.mjs
+
       - name: Build
         run: npm run build
         env:
