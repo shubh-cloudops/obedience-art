@@ -1,4 +1,6 @@
 import { getCollection } from 'astro:content';
+import { existsSync } from 'node:fs';
+import path from 'node:path';
 
 /**
  * The page shows only the top MAX_PICKS repos by GitHub stars. Stars are refreshed daily by
@@ -42,5 +44,12 @@ export const weeklyChange = (p: Pick): number | null => {
 export const fmtStars = (n: number) => (n >= 1000 ? `${(n / 1000).toFixed(n >= 100000 ? 0 : 1)}k` : `${n}`);
 export const fmtChange = (n: number) => `${n >= 0 ? '+' : '−'}${fmtStars(Math.abs(n))}`;
 
-/** GitHub's auto-generated social card. The first path segment is a cache key GitHub ignores. */
-export const repoCard = (repo: string) => `https://opengraph.githubassets.com/obedience-art/${repo}`;
+/**
+ * GitHub's auto-generated social card for a pick. The deploy workflow downloads it to
+ * public/picks/cards/<slug>.png (scripts/fetch-pick-cards.mjs) so the site serves it itself;
+ * if that download failed, fall back to GitHub's URL (its first path segment is a cache key GitHub ignores).
+ */
+export const repoCard = (slug: string, repo: string) =>
+  existsSync(path.resolve('public/picks/cards', `${slug}.png`))
+    ? `/picks/cards/${slug}.png`
+    : `https://opengraph.githubassets.com/obedience-art/${repo}`;

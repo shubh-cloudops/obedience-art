@@ -27,7 +27,7 @@ Obedience ART is a static Astro blog that demystifies AI news and AI misinformat
 - One popular AI GitHub repo per file. A pick needs coverage from at least 2 known tech outlets, each linked; the build enforces 2+.
 - Ranked by GitHub stars. `/picks/` shows only the top 9 (`MAX_PICKS` in `src/lib/picks.ts`) as clickable tiles with rank, stars and 7-day change; lower picks keep their own `/picks/<slug>/` page.
 - Stars are refreshed daily by `.github/workflows/pick-stars.yml` running `scripts/update-pick-stars.mjs` (updates `stars`, `statsCheckedOn`, `starHistory`). Never edit star numbers by hand.
-- Image is GitHub's own social card (`repoCard()` in `src/lib/picks.ts`), built from `repo`. Never upload or AI-generate repo images.
+- Image is GitHub's own social card (`repoCard()` in `src/lib/picks.ts`), built from `repo`. The deploy workflow downloads it to `public/picks/cards/` (`scripts/fetch-pick-cards.mjs`, git-ignored) so the site serves it itself; hotlinking failed for most tiles. Never upload or AI-generate repo images.
 - How-to steps target Windows 11, name the shell, and use commands from the repo's README. Best practices put security and cost first.
 - The routine adds one pick a week (Tuesday runs) as a draft PR, only if it beats the current #9 on stars; Shub approves.
 
