@@ -48,7 +48,7 @@ Skip any story already covered in `src/content/posts/`. Pick the ONE story with 
 Open and read every source in full. Collect the original statement or paper first, then at least one independent source.
 
 ## 3. Draft
-Write `src/content/posts/<slug>.mdx` in the right pillar (autopsy = "The Post-Mortem", spec-gap, mirror, open-question, claim-check; obedience-test and build-log are written by Shub from hands-on work, so never draft those).
+Write `src/content/posts/<slug>.mdx` in the right pillar (autopsy = "The Breakdown", spec-gap, mirror, open-question, claim-check; obedience-test and build-log are written by Shub from hands-on work, so never draft those).
 600–1,000 words. Fill `sources:` and `claims:` (every checkable claim the post makes or debunks).
 
 ## 4. Internet cross-check (separate pass; do not skip)

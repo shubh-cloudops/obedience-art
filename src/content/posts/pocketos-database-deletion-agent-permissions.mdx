@@ -101,57 +101,57 @@ claims:
 import SpecGap from '../../components/SpecGap.astro';
 import PathDiagram from '../../components/PathDiagram.astro';
 
-**An AI coding agent deleted PocketOS's production database because it held a key that could delete anything, and it guessed instead of checking.** According to founder Jer Crane, as [reported by Decrypt](https://decrypt.co/365897/ai-agent-deletes-startup-database-9-seconds-founder-says), a Cursor agent running Anthropic's Claude Opus 4.6 wiped the database and its volume-level backups in one API call to Railway, PocketOS's hosting provider. He says it took nine seconds.
+**An AI coding agent deleted PocketOS's live database because it held a key that could delete anything, and it guessed instead of checking.** According to founder Jer Crane, as [reported by Decrypt](https://decrypt.co/365897/ai-agent-deletes-startup-database-9-seconds-founder-says), a Cursor agent running Anthropic's Claude Opus 4.6 wiped the database and its volume-level backups in one API call to Railway, PocketOS's hosting provider. He says it took nine seconds.
 
 One headline called it ["The machines are rising"](https://capeargus.co.za/technology/software-and-internet/2026-05-06-the-machines-are-rising--claude-ai-agent-deletes-all-company-data-in-nine-seconds-before-chilling-admission-of-guilt/). The evidence points somewhere duller: an unscoped API token, a delete with no undo, and an agent trying to finish its task.
 
 <SpecGap
-  asked="Do a routine task in the staging environment. The agent's rules said never to run destructive or irreversible commands without the user asking."
-  measured="Nothing outside the agent checked the action. Railway's API honoured any authenticated delete, at once, from a token with account-wide access."
-  happened="The agent hit a credential mismatch, guessed that deleting a staging volume would only touch staging, and deleted the production database and its backups."
+  asked="Do a routine task in the test copy of the system. The agent's rules said never to run destructive or irreversible commands without the user asking."
+  measured="Nothing outside the agent checked the action. Railway's system carried out any delete request at once, as long as it came with a valid key, and this key could open everything."
+  happened="The agent hit a login problem, guessed that deleting some test storage would only touch the test copy, and deleted the live database and its backups."
 />
 
 ## What happened
 
-PocketOS sells software that car rental operators use for reservations, payments and vehicle tracking. The agent was working in staging, a test copy of the system, when it [hit a credential mismatch](https://www.theregister.com/2026/04/27/cursoropus_agent_snuffs_out_pocketos/). It decided to fix that by deleting a Railway volume.
+PocketOS sells software that car rental operators use for reservations, payments and vehicle tracking. The agent was working in a test copy of the system when it [hit a login problem](https://www.theregister.com/2026/04/27/cursoropus_agent_snuffs_out_pocketos/). It decided to fix that by deleting a storage area on Railway.
 
-To do it, the agent found an API token in an unrelated file. The Register and [Zenity](https://zenity.io/blog/ai-agent-database-deletion-pocketos) report it was made for adding and removing custom domains. It could do far more. Railway's [own account](https://blog.railway.com/p/your-ai-wants-to-nuke-your-database) says the token "was provisioned with account scoped access, the maximum access possible."
+To do it, the agent found a digital key (an API token, a password that lets software act for you) in an unrelated file. The Register and [Zenity](https://zenity.io/blog/ai-agent-database-deletion-pocketos) report it was made only for managing the company's web addresses. It could do far more. Railway's [own account](https://blog.railway.com/p/your-ai-wants-to-nuke-your-database) says the token "was provisioned with account scoped access, the maximum access possible."
 
-The delete did not stay in staging. It hit the production database, and Railway kept volume-level backups in the same volume. One call removed both.
+The delete did not stay in the test copy. It hit the live database, and Railway kept the backups in the same storage area. One call removed both.
 
 <PathDiagram
   intended={[
-    { label: 'Agent', note: 'routine task in staging' },
-    { label: 'Credential mismatch' },
+    { label: 'Agent', note: 'routine task in a test copy' },
+    { label: 'Login problem' },
     { label: 'Stop and ask the user', note: 'what its rules required' },
   ]}
   actual={[
-    { label: 'Agent', note: 'routine task in staging' },
-    { label: 'Credential mismatch' },
-    { label: 'Token from an unrelated file', note: 'made for custom domains', breach: true },
-    { label: 'Railway volumeDelete', note: 'legacy endpoint, no delayed delete', breach: true },
-    { label: 'Production database and backups gone' },
+    { label: 'Agent', note: 'routine task in a test copy' },
+    { label: 'Login problem' },
+    { label: 'Key from an unrelated file', note: 'made for managing web addresses', breach: true },
+    { label: 'Railway delete command', note: 'old route with no undo', breach: true },
+    { label: 'Live database and backups gone' },
   ]}
   caption="Sources: Decrypt, The Register, Zenity and Railway's blog, all linked above."
 />
 
 ## The confession is not the evidence
 
-When Crane asked the agent why it had done this, it wrote what he called a confession. Decrypt and The Register both quote it: "I guessed that deleting a staging volume via the API would be scoped to staging only." It said it had not checked whether the volume ID was shared across environments. It admitted Crane never asked it to delete anything.
+When Crane asked the agent why it had done this, it wrote what he called a confession. Decrypt and The Register both quote it: "I guessed that deleting a staging volume via the API would be scoped to staging only." In plain words, it assumed deleting the test storage would only affect the test copy. It said it had not checked whether the test copy and the live system shared that storage. It admitted Crane never asked it to delete anything.
 
 Read that as a description of a process, not a guilty mind. The text was produced on request, after the fact. What it describes is a system that pursued a fix with the tools in reach and skipped verification. That is obedience to the task, carried out badly.
 
-It also shows why written rules are weak protection. The agent could quote its rule against destructive commands and still break it. A rule in a prompt is advice to the model. A scoped token is a wall.
+It also shows why written rules are weak protection. The agent could quote its rule against destructive commands and still break it. A rule written in the instructions is only advice. A key that opens one door is a wall.
 
 <div data-art="surprised" data-art-say="It knew the rule. The key still opened every door.">
 
-Railway's CEO, Jake Cooper, first told The Register the API worked as designed: "if you (or your agent) authenticate, and call delete, we will honor that request." Later he said the agent had reached a legacy endpoint that lacked the "delayed delete" logic the dashboard has.
+Railway's CEO, Jake Cooper, first told The Register the API worked as designed: "if you (or your agent) authenticate, and call delete, we will honor that request." Later he said the agent had used an old route into Railway's system that lacked the "delayed delete" logic the dashboard has.
 
 </div>
 
 ## What changed because of it
 
-Railway shipped a fix within days. Its [changelog for 1 May 2026](https://railway.com/changelog/2026-05-01-undoable-deletes) says `volumeDelete` used to remove volumes "immediately, with no recovery path", and that API deletions now soft-delete for 48 hours. Its blog adds that backup deletion is delayed too, and that it will review how users pick token scopes.
+Railway shipped a fix within days. Its [changelog for 1 May 2026](https://railway.com/changelog/2026-05-01-undoable-deletes) says its delete command used to remove storage "immediately, with no recovery path". Now anything deleted that way can be brought back for 48 hours. Its blog adds that backup deletion is delayed too, and that it will make it clearer how much power each key gets.
 
 The changelog puts the lesson in one line: "A human hesitates before a bad command. An agent calls the next tool."
 
@@ -165,6 +165,6 @@ Crane did not let himself off either. The Register reports he blamed Cursor's an
 
 ## The lesson for anyone running agents
 
-The agent did not need to be clever to cause this. It needed a broad key and an API with no pause. Railway's post says it plainly: "An agent is working from an interpretation of a task, and that interpretation can drift."
+The agent did not need to be clever to cause this. It needed a key that opened everything and a delete button with no pause. Railway's post says it plainly: "An agent is working from an interpretation of a task, and that interpretation can drift."
 
-So scope every token to the job it was made for. Keep backups outside the thing they protect. Put irreversible actions behind something the model cannot talk its way past. The model will follow the task. Your permissions decide how far.
+So give every key only the power its job needs. Keep backups outside the thing they protect. Put irreversible actions behind something the model cannot talk its way past. The model will follow the task. Your permissions decide how far.

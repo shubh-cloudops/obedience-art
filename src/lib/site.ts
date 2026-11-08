@@ -8,7 +8,7 @@ export const SITE = {
 
 export const PILLARS = {
   autopsy: {
-    label: 'The Post-Mortem',
+    label: 'The Breakdown',
     blurb: 'A viral "AI went rogue" story, taken apart: what was asked, what was measured, what happened.',
   },
   'spec-gap': {
