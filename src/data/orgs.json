@@ -12,5 +12,7 @@
   "techcrunch":   { "name": "TechCrunch",         "simpleIcon": "techcrunch" },
   "meta":         { "name": "Meta",               "simpleIcon": "meta" },
   "nvidia":       { "name": "NVIDIA",             "simpleIcon": "nvidia" },
-  "github":       { "name": "GitHub",             "simpleIcon": "github" }
+  "github":       { "name": "GitHub",             "simpleIcon": "github" },
+  "cursor":       { "name": "Cursor",             "simpleIcon": "cursor" },
+  "railway":      { "name": "Railway",            "simpleIcon": "railway" }
 }

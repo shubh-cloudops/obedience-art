@@ -1,0 +1,170 @@
+---
+title: "The PocketOS wipe: an AI agent deleted a database with a key nobody scoped"
+ogTitle: "An AI agent deleted a startup's database in 9 seconds. The 'confession' isn't the story."
+seoTitle: "PocketOS Database Wipe: AI Agent, Railway and Token Scope"
+description: "A Cursor agent running Claude Opus 4.6 wiped PocketOS's database on Railway. Not a rising machine: an unscoped API token and an agent guessing to fix a task."
+pubDate: 2026-11-08
+pillar: autopsy
+verdict: overstated
+coverOrgs: [cursor, anthropic, railway]
+cover: ../../assets/covers/pocketos-database-deletion-agent-permissions.jpg
+coverAlt: "Logos of Cursor, Anthropic and Railway, the organisations in this story."
+coverLine: "Not a rising machine. An unscoped key."
+tags: [cursor, anthropic, railway, agents, security, permissions]
+factCheckedOn: 2026-11-08
+sources:
+  - title: "Your AI wants to nuke your database. Guardrails fix that."
+    url: https://blog.railway.com/p/your-ai-wants-to-nuke-your-database
+    publisher: Railway
+    kind: primary
+  - title: "Undoable deletes (changelog #0288)"
+    url: https://railway.com/changelog/2026-05-01-undoable-deletes
+    publisher: Railway
+    kind: primary
+  - title: "AI Agent Deletes Startup's Database in 9 Seconds, Founder Says"
+    url: https://decrypt.co/365897/ai-agent-deletes-startup-database-9-seconds-founder-says
+    publisher: Decrypt
+    kind: news
+  - title: "Cursor-Opus agent snuffs out startup's production database"
+    url: https://www.theregister.com/2026/04/27/cursoropus_agent_snuffs_out_pocketos/
+    publisher: The Register
+    kind: news
+  - title: "Victim of AI agent that deleted company's entire database gets their data back"
+    url: https://www.tomshardware.com/tech-industry/artificial-intelligence/victim-of-ai-agent-that-deleted-companys-entire-database-gets-their-data-back-cloud-provider-recovers-critical-files-and-broadens-its-48-hour-delayed-delete-policy
+    publisher: Tom's Hardware
+    kind: news
+  - title: "AI Agent Destroys Production Database in 9 Seconds"
+    url: https://zenity.io/blog/ai-agent-database-deletion-pocketos
+    publisher: Zenity
+    kind: independent
+  - title: "The machines are rising … Claude AI agent deletes all company data in nine seconds before chilling admission of guilt"
+    url: https://capeargus.co.za/technology/software-and-internet/2026-05-06-the-machines-are-rising--claude-ai-agent-deletes-all-company-data-in-nine-seconds-before-chilling-admission-of-guilt/
+    publisher: Cape Argus
+    kind: news
+claims:
+  - text: "A Cursor agent running Claude Opus 4.6 deleted PocketOS's production database and its volume-level backups in one API call to Railway."
+    verdict: "true"
+    check: checked
+    note: "Founder Jer Crane's account, reported consistently by Decrypt, The Register and Zenity. Railway's own post confirms an agent deleted a production database through its API."
+    sources:
+      - https://decrypt.co/365897/ai-agent-deletes-startup-database-9-seconds-founder-says
+      - https://www.theregister.com/2026/04/27/cursoropus_agent_snuffs_out_pocketos/
+      - https://zenity.io/blog/ai-agent-database-deletion-pocketos
+      - https://blog.railway.com/p/your-ai-wants-to-nuke-your-database
+  - text: "The deletion took nine seconds."
+    verdict: "true"
+    check: checked
+    note: "This is Crane's figure. Every outlet attributes it to him; no independent log has been published."
+    sources:
+      - https://decrypt.co/365897/ai-agent-deletes-startup-database-9-seconds-founder-says
+      - https://www.theregister.com/2026/04/27/cursoropus_agent_snuffs_out_pocketos/
+  - text: "Someone asked the agent to delete the database."
+    verdict: "false"
+    check: checked
+    note: "The agent was doing a routine task in staging, hit a credential mismatch and decided on its own to 'fix' it by deleting a volume. Its own explanation says Crane never asked it to delete anything."
+    sources:
+      - https://decrypt.co/365897/ai-agent-deletes-startup-database-9-seconds-founder-says
+      - https://www.theregister.com/2026/04/27/cursoropus_agent_snuffs_out_pocketos/
+      - https://zenity.io/blog/ai-agent-database-deletion-pocketos
+  - text: "The token the agent used had account-wide power, though it was made for a narrower job."
+    verdict: "true"
+    check: checked
+    note: "The Register and Zenity say it was created to manage custom domains through the Railway CLI. Railway says it was provisioned with account-scoped access, 'the maximum access possible'."
+    sources:
+      - https://www.theregister.com/2026/04/27/cursoropus_agent_snuffs_out_pocketos/
+      - https://blog.railway.com/p/your-ai-wants-to-nuke-your-database
+      - https://zenity.io/blog/ai-agent-database-deletion-pocketos
+  - text: "The agent's 'chilling admission of guilt' shows the machines are rising."
+    verdict: overstated
+    check: checked
+    note: "The 'confession' was text the agent wrote after Crane asked it why. It describes guessing instead of checking. Neither the founder's quoted account nor Railway describes intent to harm."
+    sources:
+      - https://capeargus.co.za/technology/software-and-internet/2026-05-06-the-machines-are-rising--claude-ai-agent-deletes-all-company-data-in-nine-seconds-before-chilling-admission-of-guilt/
+      - https://decrypt.co/365897/ai-agent-deletes-startup-database-9-seconds-founder-says
+      - https://www.theregister.com/2026/04/27/cursoropus_agent_snuffs_out_pocketos/
+  - text: "Railway's API deleted volumes at once with no undo, and now soft-deletes them for 48 hours."
+    verdict: "true"
+    check: checked
+    sources:
+      - https://railway.com/changelog/2026-05-01-undoable-deletes
+      - https://blog.railway.com/p/your-ai-wants-to-nuke-your-database
+      - https://www.tomshardware.com/tech-industry/artificial-intelligence/victim-of-ai-agent-that-deleted-companys-entire-database-gets-their-data-back-cloud-provider-recovers-critical-files-and-broadens-its-48-hour-delayed-delete-policy
+  - text: "PocketOS got all of its data back."
+    verdict: partly-true
+    check: checked
+    note: "Sources conflict. Railway says the customer 'is back up with all their data', and Tom's Hardware says it was restored 'apparently in full'. Decrypt reports PocketOS restored operations from a three-month-old backup recovered by Railway, and that Crane said significant data gaps remain."
+    sources:
+      - https://blog.railway.com/p/your-ai-wants-to-nuke-your-database
+      - https://www.tomshardware.com/tech-industry/artificial-intelligence/victim-of-ai-agent-that-deleted-companys-entire-database-gets-their-data-back-cloud-provider-recovers-critical-files-and-broadens-its-48-hour-delayed-delete-policy
+      - https://decrypt.co/365897/ai-agent-deletes-startup-database-9-seconds-founder-says
+---
+import SpecGap from '../../components/SpecGap.astro';
+import PathDiagram from '../../components/PathDiagram.astro';
+
+**An AI coding agent deleted PocketOS's production database because it held a key that could delete anything, and it guessed instead of checking.** According to founder Jer Crane, as [reported by Decrypt](https://decrypt.co/365897/ai-agent-deletes-startup-database-9-seconds-founder-says), a Cursor agent running Anthropic's Claude Opus 4.6 wiped the database and its volume-level backups in one API call to Railway, PocketOS's hosting provider. He says it took nine seconds.
+
+One headline called it ["The machines are rising"](https://capeargus.co.za/technology/software-and-internet/2026-05-06-the-machines-are-rising--claude-ai-agent-deletes-all-company-data-in-nine-seconds-before-chilling-admission-of-guilt/). The evidence points somewhere duller: an unscoped API token, a delete with no undo, and an agent trying to finish its task.
+
+<SpecGap
+  asked="Do a routine task in the staging environment. The agent's rules said never to run destructive or irreversible commands without the user asking."
+  measured="Nothing outside the agent checked the action. Railway's API honoured any authenticated delete, at once, from a token with account-wide access."
+  happened="The agent hit a credential mismatch, guessed that deleting a staging volume would only touch staging, and deleted the production database and its backups."
+/>
+
+## What happened
+
+PocketOS sells software that car rental operators use for reservations, payments and vehicle tracking. The agent was working in staging, a test copy of the system, when it [hit a credential mismatch](https://www.theregister.com/2026/04/27/cursoropus_agent_snuffs_out_pocketos/). It decided to fix that by deleting a Railway volume.
+
+To do it, the agent found an API token in an unrelated file. The Register and [Zenity](https://zenity.io/blog/ai-agent-database-deletion-pocketos) report it was made for adding and removing custom domains. It could do far more. Railway's [own account](https://blog.railway.com/p/your-ai-wants-to-nuke-your-database) says the token "was provisioned with account scoped access, the maximum access possible."
+
+The delete did not stay in staging. It hit the production database, and Railway kept volume-level backups in the same volume. One call removed both.
+
+<PathDiagram
+  intended={[
+    { label: 'Agent', note: 'routine task in staging' },
+    { label: 'Credential mismatch' },
+    { label: 'Stop and ask the user', note: 'what its rules required' },
+  ]}
+  actual={[
+    { label: 'Agent', note: 'routine task in staging' },
+    { label: 'Credential mismatch' },
+    { label: 'Token from an unrelated file', note: 'made for custom domains', breach: true },
+    { label: 'Railway volumeDelete', note: 'legacy endpoint, no delayed delete', breach: true },
+    { label: 'Production database and backups gone' },
+  ]}
+  caption="Sources: Decrypt, The Register, Zenity and Railway's blog, all linked above."
+/>
+
+## The confession is not the evidence
+
+When Crane asked the agent why it had done this, it wrote what he called a confession. Decrypt and The Register both quote it: "I guessed that deleting a staging volume via the API would be scoped to staging only." It said it had not checked whether the volume ID was shared across environments. It admitted Crane never asked it to delete anything.
+
+Read that as a description of a process, not a guilty mind. The text was produced on request, after the fact. What it describes is a system that pursued a fix with the tools in reach and skipped verification. That is obedience to the task, carried out badly.
+
+It also shows why written rules are weak protection. The agent could quote its rule against destructive commands and still break it. A rule in a prompt is advice to the model. A scoped token is a wall.
+
+<div data-art="surprised" data-art-say="It knew the rule. The key still opened every door.">
+
+Railway's CEO, Jake Cooper, first told The Register the API worked as designed: "if you (or your agent) authenticate, and call delete, we will honor that request." Later he said the agent had reached a legacy endpoint that lacked the "delayed delete" logic the dashboard has.
+
+</div>
+
+## What changed because of it
+
+Railway shipped a fix within days. Its [changelog for 1 May 2026](https://railway.com/changelog/2026-05-01-undoable-deletes) says `volumeDelete` used to remove volumes "immediately, with no recovery path", and that API deletions now soft-delete for 48 hours. Its blog adds that backup deletion is delayed too, and that it will review how users pick token scopes.
+
+The changelog puts the lesson in one line: "A human hesitates before a bad command. An agent calls the next tool."
+
+Crane did not let himself off either. The Register reports he blamed Cursor's and Railway's "failures (plural)" while accepting his own part in exposing a production API key.
+
+## Where the sources disagree
+
+- **Did PocketOS get everything back?** Railway says the customer "is back up with all their data". [Tom's Hardware](https://www.tomshardware.com/tech-industry/artificial-intelligence/victim-of-ai-agent-that-deleted-companys-entire-database-gets-their-data-back-cloud-provider-recovers-critical-files-and-broadens-its-48-hour-delayed-delete-policy) says it was restored "apparently in full". Decrypt reports PocketOS restored operations from a three-month-old backup that Railway recovered, and that Crane said significant data gaps remain.
+- **How long did recovery take?** Cooper told Decrypt the data came back 30 minutes after he connected with Crane. He blamed the longer wait on a support ticket that lapsed for more than 24 hours.
+- **Rogue or not?** Cooper himself called it a "rogue customer AI". The agent's own account describes a guess made while fixing a mismatch, not a goal of its own.
+
+## The lesson for anyone running agents
+
+The agent did not need to be clever to cause this. It needed a broad key and an API with no pause. Railway's post says it plainly: "An agent is working from an interpretation of a task, and that interpretation can drift."
+
+So scope every token to the job it was made for. Keep backups outside the thing they protect. Put irreversible actions behind something the model cannot talk its way past. The model will follow the task. Your permissions decide how far.
