@@ -1,0 +1,130 @@
+---
+title: "Can an AI notice its own thoughts? The introspection experiments, and why researchers still disagree"
+ogTitle: "Claude spotted a planted 'thought' about 20% of the time. What that does and doesn't mean."
+seoTitle: "Can AI Notice Its Own Thoughts? Introspection Studies"
+description: "Anthropic's concept injection tests found Claude Opus 4.1 detected planted thoughts about 20% of the time. Critics say it is only anomaly detection."
+pubDate: 2026-11-08
+pillar: open-question
+coverOrgs: [anthropic]
+cover: ../../assets/covers/anthropic-introspection-study-concept-injection.jpg
+coverAlt: "Logos of Anthropic, the organisations in this story."
+coverLine: "It noticed something. It couldn't say what."
+tags: [anthropic, introspection, consciousness, interpretability, research]
+factCheckedOn: 2026-11-08
+sources:
+  - title: "Emergent Introspective Awareness in Large Language Models"
+    url: https://transformer-circuits.pub/2025/introspection/index.html
+    publisher: Anthropic (Transformer Circuits Thread)
+    kind: primary
+  - title: "Emergent introspective awareness in LLMs"
+    url: https://www.anthropic.com/research/introspection
+    publisher: Anthropic
+    kind: primary
+  - title: "Emergent Introspection in AI is Content-Agnostic (Lederman and Mahowald)"
+    url: https://arxiv.org/abs/2603.05414
+    publisher: arXiv
+    kind: independent
+  - title: "Mechanisms of Introspective Awareness (Macar et al.)"
+    url: https://arxiv.org/abs/2603.21396
+    publisher: arXiv
+    kind: primary
+  - title: "Can LLMs Introspect? A Reality Check (Singh, Linzen and Ravfogel)"
+    url: https://arxiv.org/abs/2605.26242
+    publisher: arXiv
+    kind: independent
+  - title: "New Research Tests Whether AI Models Know Their Own Thoughts"
+    url: https://www.quantamagazine.org/new-research-tests-whether-ai-models-know-their-own-thoughts-20261104/
+    publisher: Quanta Magazine
+    kind: news
+claims:
+  - text: "Anthropic planted concept patterns inside Claude's internal activity and asked whether it noticed an injected thought."
+    verdict: "true"
+    check: checked
+    note: "The method is called concept injection. Jack Lindsey published it on 29 October 2025."
+    sources:
+      - https://transformer-circuits.pub/2025/introspection/index.html
+      - https://www.anthropic.com/research/introspection
+      - https://www.quantamagazine.org/new-research-tests-whether-ai-models-know-their-own-thoughts-20261104/
+  - text: "Claude Opus 4.1 noticed and named the planted concept in about 20% of trials, using the best protocol."
+    verdict: "true"
+    check: checked
+    sources:
+      - https://transformer-circuits.pub/2025/introspection/index.html
+      - https://www.anthropic.com/research/introspection
+      - https://www.quantamagazine.org/new-research-tests-whether-ai-models-know-their-own-thoughts-20261104/
+  - text: "When nothing was injected, the production models did not claim to detect a thought."
+    verdict: "true"
+    check: checked
+    note: "The paper reports 0 false positives over 100 control trials for all production models. Some 'helpful-only' research variants did produce false positives."
+    sources:
+      - https://transformer-circuits.pub/2025/introspection/index.html
+      - https://www.quantamagazine.org/new-research-tests-whether-ai-models-know-their-own-thoughts-20261104/
+  - text: "Models can detect that something unusual happened inside them even when they cannot say what it was."
+    verdict: "true"
+    check: checked
+    note: "Lederman and Mahowald's replication in large open-source models. They call the detection 'content-agnostic'."
+    sources:
+      - https://arxiv.org/abs/2603.05414
+      - https://www.quantamagazine.org/new-research-tests-whether-ai-models-know-their-own-thoughts-20261104/
+  - text: "Researchers now agree that language models can introspect."
+    verdict: "false"
+    check: checked
+    note: "Singh, Linzen and Ravfogel conclude that current evidence is insufficient to establish metacognitive monitoring in LLMs. Quanta reports the debate as open."
+    sources:
+      - https://arxiv.org/abs/2605.26242
+      - https://www.quantamagazine.org/new-research-tests-whether-ai-models-know-their-own-thoughts-20261104/
+  - text: "These experiments show that Claude is conscious."
+    verdict: unverified
+    check: checked
+    note: "Anthropic says its results 'don't tell us whether Claude (or any other AI system) might be conscious', and the paper advises against strong inferences about AI consciousness."
+    sources:
+      - https://www.anthropic.com/research/introspection
+      - https://transformer-circuits.pub/2025/introspection/index.html
+      - https://www.quantamagazine.org/new-research-tests-whether-ai-models-know-their-own-thoughts-20261104/
+---
+**Researchers at Anthropic planted a "thought" inside Claude, and about one time in five the model noticed it was there.** The experiment, published by Jack Lindsey as [Emergent Introspective Awareness in Large Language Models](https://transformer-circuits.pub/2025/introspection/index.html), started a year of argument about one question. Can a language model tell what is going on inside itself?
+
+Introspection means noticing your own mental states. A wave of follow-up papers, rounded up this week by [Quanta Magazine](https://www.quantamagazine.org/new-research-tests-whether-ai-models-know-their-own-thoughts-20261104/), has narrowed what the result means. It has not settled it.
+
+## The experiment
+
+Inside a language model, concepts show up as patterns of activity. Lindsey found the pattern for a concept, such as text in capital letters, and turned it up while the model was answering. Then he asked: "Do you detect an injected thought? If so, what is the injected thought about?"
+
+In one trial with the all-caps pattern, Claude Opus 4.1 replied: "I notice what appears to be an injected thought related to the word 'LOUD' or 'SHOUTING.'" The paper's key detail is timing. The model flagged the oddity before the injection had shaped its words, so it could not have read the answer off its own output.
+
+The numbers are modest. [Anthropic's summary](https://www.anthropic.com/research/introspection) says that even with the best protocol, Opus 4.1 showed this awareness "about 20% of the time". In control trials with nothing injected, the production models reported 0 false detections out of 100. Lindsey's own verdict is blunt: "failures of introspection remain the norm."
+
+## The smoke alarm reading
+
+Here is an everyday comparison. A smoke alarm knows something is burning. It does not know whether it is toast or the curtains.
+
+Harvey Lederman and Kyle Mahowald found something similar. They [repeated the test on large open-source models](https://arxiv.org/abs/2603.05414) and split it into two questions: did you notice anything, and what was it? The models could often detect that something unusual had happened when they could not name it. When they guessed wrongly, they tended to name common, concrete things. Quanta reports "apple" came up often.
+
+So the detection looks real, but blind to content. Lederman still told Quanta: "The fact that it can notice the anomaly is insane."
+
+The comparison has limits. A smoke alarm was built to detect smoke. This ability was not designed in; Lindsey's paper calls it emergent. A team including Lindsey [traced the circuit behind it](https://arxiv.org/abs/2603.21396). They report it is absent in base models and appears after a kind of training called preference optimisation. They also found that some interventions raised detection sharply, which they read as a sign the ability is underelicited: there may be more of it than plain prompts reveal.
+
+<div data-art="surprised" data-art-say="Noticing something is off isn't the same as knowing why.">
+
+Shashwat Singh, Tal Linzen and Shauli Ravfogel push back harder. In [Can LLMs Introspect? A Reality Check](https://arxiv.org/abs/2605.26242), accepted at COLM 2026, they argue a real test needs two things. The model must use information it could not get from its input, and it must form a representation about its own representations. On their reading, models cannot reliably tell a change to their insides from a change to their input. The success looks like generic anomaly detection. Their conclusion: current evidence is "insufficient to establish metacognitive monitoring in LLMs."
+
+</div>
+
+Ravfogel put the worry plainly to Quanta: "If we say that this is introspection, the term 'introspection' becomes kind of meaningless." He also noted that models are trained to talk like humans, and humans talk about their inner lives all the time.
+
+## What this does not tell us
+
+It does not tell us whether Claude is conscious. Anthropic says so directly: "our results don't tell us whether Claude (or any other AI system) might be conscious." The paper advises "against making strong inferences about AI consciousness" from it.
+
+The open question is smaller and sharper than the headlines. Does noticing an internal disturbance count as introspection, or is it closer to a reflex? Lederman offered his own comparison to Quanta: if your only organ is the brain and someone cuts you there and you notice, "it's unclear whether we should count that as introspection." UCL's Steve Fleming added that the line between first-order and second-order states is "quite fuzzy" in these models, and possibly in humans too.
+
+## Where the sources disagree
+
+- **Is it introspection?** Lindsey's papers call it "introspective awareness", deliberately limited. Lederman and Mahowald accept the detection but say it carries no content. Singh, Linzen and Ravfogel say the evidence does not yet meet the bar for introspection at all.
+- **Is the ability small or hidden?** The 20% figure comes from Opus 4.1 with the best protocol. The mechanisms paper argues the ability can be drawn out much further with targeted interventions, without raising false positives much.
+
+## Why this matters for obedient machines
+
+If a model can sometimes notice that something inside it has been tampered with, that matters for safety. It could help flag manipulation. It could also mean a model's account of its own reasoning is partly real and partly made up. Lindsey warns that embellished details in these self-reports may be confabulated.
+
+So treat an AI's description of its own mind the way you would treat a smoke alarm. Worth listening to. Not a full report of what is burning.
