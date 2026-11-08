@@ -37,9 +37,10 @@ export const PILLARS = {
   },
 } as const;
 
-/** The person behind the site, shown on every post (readers and search engines trust named practitioners). */
+/** Shub, the human behind the site. Writes the hands-on series and reviews every article before it goes live. */
 export const AUTHOR = {
   name: 'Shub',
+  kind: 'person' as const,
   initials: 'S',
   bio: 'Cloud technician. I build with AI on Azure and AWS, test what it actually does, and check every claim against its sources.',
   links: [
@@ -47,6 +48,23 @@ export const AUTHOR = {
     { label: 'RSS', href: '/rss.xml' },
   ],
 };
+
+/** Art, our AI writer (set by Shub on 2026-11-08). Shown on every post except Shub's own series. */
+export const ART_WRITER = {
+  name: 'Art',
+  kind: 'ai' as const,
+  initials: 'A',
+  bio: "Art is Obedience ART's AI writer. She reads the original sources behind an AI headline and explains what really happened in plain English. Every claim is checked against at least two sources, and Shub, a cloud technician, reviews each article before it goes live.",
+  links: [
+    { label: 'RSS', href: '/rss.xml' },
+  ],
+};
+
+/** Shub writes these series from their own hands-on work; Art writes the rest. */
+const SHUB_PILLARS = ['obedience-test', 'build-log'];
+export function writerFor(pillar: string) {
+  return SHUB_PILLARS.includes(pillar) ? AUTHOR : ART_WRITER;
+}
 
 /** Buttondown username for the email signup (free up to 100 subscribers). Set PUBLIC_BUTTONDOWN_USER; empty hides the form. */
 export const NEWSLETTER_USER: string = import.meta.env.PUBLIC_BUTTONDOWN_USER ?? '';

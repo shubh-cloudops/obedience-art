@@ -1,14 +1,20 @@
 ---
-// Who wrote this: a named practitioner, not an anonymous site. Edit the details in src/lib/site.ts (AUTHOR).
+// Who wrote this post: Art, our AI writer, or Shub for his own series. Details live in src/lib/site.ts.
+import { Image } from 'astro:assets';
 import { AUTHOR } from '../lib/site';
+import artFace from '../assets/ambassador-female/explaining.jpg';
+interface Props { writer?: { name: string; kind: 'person' | 'ai'; initials: string; bio: string; links: { label: string; href: string }[] } }
+const { writer = AUTHOR } = Astro.props;
 ---
-<aside class="mt-14 flex gap-4 rounded-2xl border border-line bg-surface p-5" aria-label="About the author" data-pagefind-ignore>
-  <span class="grid size-12 shrink-0 place-items-center rounded-full bg-gradient-to-br from-cyan to-violet font-brand text-lg font-bold text-bg" aria-hidden="true">{AUTHOR.initials}</span>
+<aside class="mt-14 flex gap-4 rounded-2xl border border-line bg-surface p-5" aria-label="About the writer" data-pagefind-ignore data-art={writer.kind === 'ai' ? 'proud' : undefined} data-art-say={writer.kind === 'ai' ? "That's me! Shub checks my work before it goes live." : undefined}>
+  {writer.kind === 'ai'
+    ? <span class="size-12 shrink-0 overflow-hidden rounded-full border border-line"><Image src={artFace} alt="" width={160} class="size-full origin-top scale-[1.8] object-cover object-top" /></span>
+    : <span class="grid size-12 shrink-0 place-items-center rounded-full bg-gradient-to-br from-cyan to-violet font-brand text-lg font-bold text-bg" aria-hidden="true">{writer.initials}</span>}
   <div>
-    <p class="font-display text-lg font-semibold">Written by {AUTHOR.name}</p>
-    <p class="mt-1 text-sm leading-relaxed text-muted">{AUTHOR.bio}</p>
+    <p class="font-display text-lg font-semibold">Written by {writer.name}{writer.kind === 'ai' && <span class="ml-2 rounded-full border border-line px-2 py-0.5 align-middle font-mono text-[0.65rem] uppercase tracking-wider text-muted">AI writer</span>}</p>
+    <p class="mt-1 text-sm leading-relaxed text-muted">{writer.bio}</p>
     <p class="mt-2 flex flex-wrap gap-x-4 gap-y-1 font-mono text-xs">
-      {AUTHOR.links.map((l) => <a href={l.href} class="text-cyan hover:underline">{l.label}</a>)}
+      {writer.links.map((l) => <a href={l.href} class="text-cyan hover:underline">{l.label}</a>)}
       <a href="/about/" class="text-cyan hover:underline">How we check facts</a>
     </p>
   </div>

@@ -11,7 +11,7 @@ import AuthorCard from '../../components/AuthorCard.astro';
 import Newsletter from '../../components/Newsletter.astro';
 import { trackersForPost } from '../../lib/events';
 import { getPosts } from '../../lib/posts';
-import { PILLARS, AUTHOR } from '../../lib/site';
+import { PILLARS, writerFor } from '../../lib/site';
 import { formatDate, readingMinutes } from '../../lib/format';
 
 export async function getStaticPaths() {
@@ -29,10 +29,11 @@ const VERDICT_MOOD = {
   false: ['alert', 'Verdict: false. The sources say otherwise.'],
   unverified: ['concerned', "Verdict: unverified. Nobody can confirm it yet."],
 } as const;
+const writer = writerFor(d.pillar);
 const verdictMood = d.verdict ? VERDICT_MOOD[d.verdict] : undefined;
 const og = d.cover ? (await getImage({ src: d.cover, width: 1200, height: 630, fit: 'cover', format: 'jpeg' })).src : undefined;
 ---
-<Base title={d.title} seoTitle={d.seoTitle} ogTitle={d.ogTitle} description={d.description} image={og} article={{ published: d.pubDate, updated: d.updatedDate, section: PILLARS[d.pillar].label, tags: d.tags }}>
+<Base title={d.title} seoTitle={d.seoTitle} ogTitle={d.ogTitle} description={d.description} image={og} article={{ published: d.pubDate, updated: d.updatedDate, section: PILLARS[d.pillar].label, tags: d.tags, aiWritten: writer.kind === 'ai' }}>
   <article class="mx-auto max-w-3xl px-4 py-14 sm:px-6" data-pagefind-body>
     <header>
       <div class="flex flex-wrap items-center gap-3">
@@ -43,7 +44,7 @@ const og = d.cover ? (await getImage({ src: d.cover, width: 1200, height: 630, f
       <h1 class="mt-4 font-display text-3xl font-bold leading-tight tracking-tight sm:text-5xl">{d.title}</h1>
       <p class="mt-5 text-lg leading-relaxed text-muted">{d.description}</p>
       <p class="mt-6 font-mono text-xs text-muted" data-pagefind-ignore>
-        By <a href="#author" class="text-ink underline underline-offset-2 hover:text-cyan">{AUTHOR.name}</a>{' · '}
+        By <a href="#author" class="text-ink underline underline-offset-2 hover:text-cyan">{writer.name}</a>{writer.kind === 'ai' && ' (AI writer, reviewed by Shub)'}{' · '}
         <time datetime={d.pubDate.toISOString()}>{formatDate(d.pubDate)}</time>
         {d.updatedDate && <>{' · updated '}{formatDate(d.updatedDate)}</>}
         {` · ${readingMinutes(post.body ?? '')} min read · ${d.sources.length} sources`}
@@ -65,7 +66,7 @@ const og = d.cover ? (await getImage({ src: d.cover, width: 1200, height: 630, f
     </div>
     <ClaimTable claims={d.claims} />
     <SourceList sources={d.sources} checked={d.factCheckedOn} />
-    <div id="author"><AuthorCard /></div>
+    <div id="author"><AuthorCard writer={writer} /></div>
     <Newsletter compact />
     <Giscus />
   </article>
