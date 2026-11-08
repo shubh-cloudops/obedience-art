@@ -5,6 +5,7 @@ category: images
 license: GPL-3.0
 stars: 145666
 statsCheckedOn: 2026-11-08
+createdOn: 2023-01-17
 addedOn: 2026-11-06
 whatItDoes: >-
   ComfyUI runs image and video models such as Stable Diffusion and Flux locally. Instead of one prompt box,

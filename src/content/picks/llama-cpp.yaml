@@ -5,6 +5,7 @@ category: run-models
 license: MIT
 stars: 133695
 statsCheckedOn: 2026-11-08
+createdOn: 2023-03-10
 addedOn: 2026-11-06
 whatItDoes: >-
   llama.cpp runs language models stored in the GGUF format on CPUs and GPUs, using quantisation (storing the

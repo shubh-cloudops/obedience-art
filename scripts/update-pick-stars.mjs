@@ -5,7 +5,8 @@
  *   node scripts/update-pick-stars.mjs            # update all picks in src/content/picks/
  *   node scripts/update-pick-stars.mjs --dry-run  # print the counts, change nothing
  *
- * For each pick it sets `stars` and `statsCheckedOn` to today, and appends today's count to
+ * For each pick it sets `stars`, `createdOn` (the repo's GitHub creation date, used by the Rising row)
+ * and `statsCheckedOn` to today, and appends today's count to
  * `starHistory` (one point per day, last 90 kept). The page uses that history for the weekly change
  * and ranks picks by stars; only the top MAX_PICKS show as tiles (src/lib/picks.ts).
  *
@@ -34,14 +35,14 @@ async function viaApi(repo) {
   });
   if (!res.ok) throw new Error(`GitHub API ${res.status} for ${repo}`);
   const j = await res.json();
-  return { stars: j.stargazers_count, fullName: j.full_name, archived: j.archived };
+  return { stars: j.stargazers_count, fullName: j.full_name, archived: j.archived, createdOn: j.created_at?.slice(0, 10) };
 }
 
 function viaGh(repo) {
   const out = execFileSync('gh', ['api', '-X', 'GET', 'search/repositories', '-f', `q=repo:${repo}`, '--jq', '.items[0]'], { encoding: 'utf8' });
   const j = JSON.parse(out);
   if (!j?.stargazers_count) throw new Error(`gh found nothing for ${repo}`);
-  return { stars: j.stargazers_count, fullName: j.full_name, archived: j.archived };
+  return { stars: j.stargazers_count, fullName: j.full_name, archived: j.archived, createdOn: j.created_at?.slice(0, 10) };
 }
 
 async function lookup(repo) {
@@ -63,7 +64,7 @@ for (const f of files) {
   const doc = YAML.parseDocument(await readFile(file, 'utf8'));
   const repo = doc.get('repo');
   try {
-    const { stars, fullName, archived } = await lookup(repo);
+    const { stars, fullName, archived, createdOn } = await lookup(repo);
     const before = doc.get('stars');
     const note = [
       fullName !== repo ? `renamed to ${fullName}` : '',
@@ -74,6 +75,7 @@ for (const f of files) {
 
     if (fullName !== repo) doc.set('repo', fullName); // GitHub renames (e.g. comfyanonymous -> Comfy-Org)
     doc.set('stars', stars);
+    if (createdOn && !doc.get('createdOn')) doc.set('createdOn', createdOn);
     doc.set('statsCheckedOn', today);
     const history = (doc.get('starHistory')?.toJSON?.() ?? []).filter((p) => String(p.date).slice(0, 10) !== today);
     history.push({ date: today, stars });

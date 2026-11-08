@@ -25,11 +25,14 @@ Obedience ART is a static Astro blog that demystifies AI news and AI misinformat
 
 ## Open-Source AI Picks (`src/content/picks/*.yaml`, page `/picks/`)
 - One popular AI GitHub repo per file. A pick needs coverage from at least 2 known tech outlets, each linked; the build enforces 2+.
-- Ranked by GitHub stars. `/picks/` shows only the top 9 (`MAX_PICKS` in `src/lib/picks.ts`) as clickable tiles with rank, stars and 7-day change; lower picks keep their own `/picks/<slug>/` page.
-- Stars are refreshed daily by `.github/workflows/pick-stars.yml` running `scripts/update-pick-stars.mjs` (updates `stars`, `statsCheckedOn`, `starHistory`). Never edit star numbers by hand.
+- Ranked by GitHub stars. `/picks/` has two rows of clickable tiles with rank, stars and 7-day change (Shub, 2026-11-08):
+  - **Top 6 of all time** (`MAX_PICKS` in `src/lib/picks.ts`).
+  - **Rising**: up to 6 repos (`RISING_PICKS`) created on GitHub in the last 60 days (`RISING_MAX_AGE_DAYS`, from `createdOn`) with at least 2,000 stars (`RISING_MIN_STARS`). A repo leaves the row on its own when it ages out.
+  - Picks on neither row keep their own `/picks/<slug>/` page.
+- Stars are refreshed daily by `.github/workflows/pick-stars.yml` running `scripts/update-pick-stars.mjs` (updates `stars`, `statsCheckedOn`, `starHistory`, and fills `createdOn` if missing). Never edit star numbers by hand.
 - Image is GitHub's own social card (`repoCard()` in `src/lib/picks.ts`), built from `repo`. The deploy workflow downloads it to `public/picks/cards/` (`scripts/fetch-pick-cards.mjs`, git-ignored) so the site serves it itself; hotlinking failed for most tiles. Never upload or AI-generate repo images.
 - How-to steps target Windows 11, name the shell, and use commands from the repo's README. Best practices put security and cost first.
-- The routine adds one pick a week (Tuesday runs) as a draft PR, only if it beats the current #9 on stars; Shub approves.
+- The routine adds one pick a week (Tuesday runs) as a draft PR: a rising repo while the Rising row has a free slot (or beats its lowest), otherwise one that beats the current #6 on stars; Shub approves.
 
 ## Images (cover rules set by Shub; follow them for every article)
 - **Default cover = logo cover**, news style. List the 1–4 organisations the story is about in `coverOrgs: [openai, huggingface]` (ids from `src/data/orgs.json`), plus a punchy `coverLine:` (under 50 characters, different from the title, no clickbait, nothing the sources don't support), then run `node scripts/make-logo-cover.mjs <slug>`. The editorial layout puts big logos lit in brand colours on top and the pillar, verdict and coverLine below. It writes the JPG, `cover:` and `coverAlt:`. No AI and no keys.

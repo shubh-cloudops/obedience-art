@@ -1,0 +1,49 @@
+name: DeepSeek Super-Agent
+repo: deepseek-ai/dsh-superagent-prototype
+tagline: DeepSeek's test version of a coding helper that watches a GitHub project and does the work a team asks it for.
+category: coding
+license: MIT
+stars: 21109
+statsCheckedOn: 2026-11-08
+createdOn: 2026-10-31
+addedOn: 2026-11-08
+whatItDoes: >-
+  Super-Agent is a research prototype from DeepSeek's Harness team. It plugs into DeepSeek Harness, DeepSeek's
+  own coding assistant, and looks after one GitHub repository. When an allowed person asks it for something on
+  GitHub (or, optionally, in the Feishu chat app), it opens a work item, does the job in its own folder and
+  replies in the same conversation, for example with a pull request. A small web panel shows what needs a human.
+  Its stated aim is to "take as little human attention as possible, and give as much value as possible." DeepSeek
+  says it is not an official product and may still contain bugs.
+howToUse:
+  shell: PowerShell (Windows 11)
+  steps:
+    - text: Install DeepSeek Harness or another coding agent first, then download the project.
+      code: |-
+        git clone https://github.com/deepseek-ai/dsh-superagent-prototype.git
+        cd dsh-superagent-prototype
+    - text: >-
+        Setup has many steps, so the README asks you to let your coding agent walk you through it. Start your agent
+        in this folder and paste this request. It asks one short question at a time and shows the full plan first.
+      code: Read SETUP.md in this repository and set up dsh-superagent with me.
+    - text: If you change the code, run the project's own checks (types, tests and build).
+      code: pnpm check
+bestPractices:
+  - Try it on a test repository first. It can open pull requests and reply in your chats, so give its GitHub
+    access only the one repository it needs.
+  - Keep the list of people allowed to give it work short. Anyone on that list can make it spend model credits.
+  - Read the plan it shows before you approve setup, and keep tokens in environment variables, never in files you
+    commit.
+  - Every job runs on a paid model. Watch your DeepSeek usage page for the first few days to see what a typical
+    request costs.
+coverage:
+  - publisher: Techzine
+    title: DeepSeek Super-Agent is an open-source alternative to Claude Code
+    date: 2026-11-02
+    url: https://www.techzine.eu/news/applications/145461/deepseek-super-agent-is-an-open-source-alternative-to-claude-code/
+  - publisher: Entrepreneur India
+    title: DeepSeek Releases Open-Source Coding Agent to Rival Claude Code
+    date: 2026-11-02
+    url: https://india.entrepreneur.com/business-news/deepseek-releases-open-source-coding-agent-to-rival-claude-code
+starHistory:
+  - date: 2026-11-08
+    stars: 21109

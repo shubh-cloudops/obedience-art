@@ -5,6 +5,7 @@ category: run-models
 license: MIT
 stars: 186320
 statsCheckedOn: 2026-11-08
+createdOn: 2023-06-26
 addedOn: 2026-11-06
 whatItDoes: >-
   Ollama is a small app that downloads open-weight language models (Llama, Gemma, Mistral, Qwen and others)
