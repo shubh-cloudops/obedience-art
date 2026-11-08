@@ -40,13 +40,14 @@ Obedience ART is a static Astro blog that demystifies AI news and AI misinformat
 
 ## Writing style
 - British spelling. Plain words. Explain jargon once.
-- Every Post-Mortem post (pillar id `autopsy`) uses the `<SpecGap asked measured happened />` component.
+- **Everyday language, not scientific or technical terms (Shub, 2026-11-08).** Series names, headings, cover lines and body text use words a non-technical reader knows. If a technical term is unavoidable (a product name, or the thing the story is about), explain it in plain words in the same sentence.
+- Every Breakdown post (pillar id `autopsy`) uses the `<SpecGap asked measured happened />` component.
 - When an incident has a clear route, add `<PathDiagram intended={[...]} actual={[...]} />` (intended path vs what the AI did; mark `breach: true` on steps that crossed a boundary). Every step must come from `sources:`.
 - Link the first mention of every source inline.
 
 ### Voice per series (house style, set by Shub on 2026-11-04)
 Use these as rhythms. Never imitate a named writer's sentences or signature phrases.
-- **The Post-Mortem, Claim Check: lab log.** The first sentence states the mechanism or the verdict. Evidence before interpretation. No warm-up, no scene-setting.
+- **The Breakdown, Claim Check: lab log.** The first sentence states the mechanism or the verdict. Evidence before interpretation. No warm-up, no scene-setting.
 - **The Spec Gap, The Mirror: first-principles minimalist.** Open with one counterintuitive claim in plain words, e.g. "it was a communication problem, not a smarter-model problem". Short declarative sentences, zero jargon.
 - **The Open Question: empirical analogist.** Pair a concrete research finding with a careful, everyday metaphor. Never declare a verdict on consciousness or moral status.
 - **The Obedience Test, Build Log (Shub's own): practitioner.** Open with a real moment from Shub's work, then switch to lab-log detail: exact prompts, outputs, numbers, costs and the fix.

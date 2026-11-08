@@ -25,7 +25,7 @@ const W = 1600;
 const H = 900;
 const C = { bg: '#0b0f1a', tile: '#121829', line: '#2a3652', text: '#e6eaf2', muted: '#94a3b8', cyan: '#22d3ee', violet: '#a78bfa' };
 const PILLARS = {
-  autopsy: 'THE POST-MORTEM',
+  autopsy: 'THE BREAKDOWN',
   'spec-gap': 'THE SPEC GAP',
   mirror: 'THE MIRROR',
   'open-question': 'THE OPEN QUESTION',
