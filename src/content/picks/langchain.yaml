@@ -5,6 +5,7 @@ category: build-apps
 license: MIT
 stars: 149190
 statsCheckedOn: 2026-11-08
+createdOn: 2022-10-17
 addedOn: 2026-11-06
 whatItDoes: >-
   LangChain gives Python and JavaScript developers one standard way to talk to many model providers (OpenAI,

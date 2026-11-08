@@ -1,66 +1,46 @@
 ---
 import Base from '../../layouts/Base.astro';
+import PickTile from '../../components/PickTile.astro';
 import { formatDate } from '../../lib/format';
-import { getRankedPicks, MAX_PICKS, PICK_CATEGORY, fmtStars, fmtChange, repoCard, weeklyChange } from '../../lib/picks';
-const { shown } = await getRankedPicks();
-const checked = shown.reduce((m, p) => (p.data.statsCheckedOn > m ? p.data.statsCheckedOn : m), new Date(0));
+import { getRankedPicks, MAX_PICKS, RISING_MAX_AGE_DAYS, RISING_MIN_STARS } from '../../lib/picks';
+const { top, rising } = await getRankedPicks();
+const checked = [...top, ...rising].reduce((m, p) => (p.data.statsCheckedOn > m ? p.data.statsCheckedOn : m), new Date(0));
 ---
 <Base
   title="Open-Source AI Picks"
   seoTitle="Open-Source AI Picks: top AI GitHub repos explained"
-  description="The most-starred open-source AI projects on GitHub, each covered by at least two major tech outlets: what they do, how to use them, and best practices."
+  description="The most-starred and the fastest-rising open-source AI projects on GitHub, each covered by two tech outlets: what they do and how to use them."
 >
   <section class="mx-auto max-w-6xl px-4 py-16 sm:px-6">
     <p class="kicker">Open-Source AI Picks</p>
     <h1 class="mt-3 font-display text-4xl font-bold tracking-tight">AI you can download, read and run yourself</h1>
     <p class="mt-4 max-w-2xl text-lg text-muted">
-      The top {MAX_PICKS} open-source AI projects we cover, ranked by GitHub stars and explained in plain words. A project
-      only makes this list after at least two well-known tech outlets have covered it. We track the stars every day, so
-      when a new pick arrives, the one with the fewest stars makes way.
+      Open-source AI projects explained in plain words, in two rows: the {MAX_PICKS} most-starred of all time, and new
+      projects that are taking off fast. A project only makes this list after at least two well-known tech outlets have
+      covered it. We track the stars every day, so the rows update on their own.
     </p>
     <p class="mt-3 font-mono text-xs text-muted">Stars from GitHub · updated {formatDate(checked)}</p>
 
-    <ol class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-      {shown.map((p, i) => {
-        const d = p.data;
-        const change = weeklyChange(p);
-        return (
-          <li>
-            <a href={`/picks/${p.id}/`} class="card group flex h-full flex-col overflow-hidden">
-              <div class="relative border-b border-line bg-surface-2">
-                <span class="absolute inset-0 grid place-items-center px-6 text-center font-mono text-sm text-muted" aria-hidden="true">{d.repo}</span>
-                <img
-                  src={repoCard(p.id, d.repo)}
-                  alt=""
-                  width="1200"
-                  height="600"
-                  loading={i < 3 ? 'eager' : 'lazy'}
-                  decoding="async"
-                  referrerpolicy="no-referrer"
-                  class="relative aspect-[2/1] h-auto w-full"
-                />
-                <span class="absolute left-3 top-3 rounded-full bg-bg/85 px-2.5 py-1 font-mono text-xs font-semibold text-cyan backdrop-blur" aria-label={`Rank ${i + 1}`}>#{i + 1}</span>
-                <span class="absolute right-3 top-3 flex items-center gap-2 rounded-full bg-bg/85 px-2.5 py-1 font-mono text-xs text-ink backdrop-blur">
-                  <span><span class="text-amber" aria-hidden="true">★</span> {fmtStars(d.stars)}<span class="sr-only"> GitHub stars</span></span>
-                  {change !== null && (
-                    <span class={change >= 0 ? 'text-green' : 'text-magenta'} title="Change in the last 7 days">{fmtChange(change)}/wk</span>
-                  )}
-                </span>
-              </div>
-              <div class="flex flex-1 flex-col p-5">
-                <p class="kicker">{PICK_CATEGORY[d.category]}</p>
-                <h2 class="mt-2 font-display text-2xl font-bold tracking-tight group-hover:text-cyan">{d.name}</h2>
-                <p class="mt-2 flex-1 text-sm leading-relaxed text-muted">{d.tagline}</p>
-                <p class="mt-4 flex items-center justify-between font-mono text-xs text-muted">
-                  <span>{d.license}</span>
-                  <span class="text-cyan" aria-hidden="true">Read →</span>
-                </p>
-              </div>
-            </a>
-          </li>
-        );
-      })}
-    </ol>
+    <section class="mt-12" aria-labelledby="top-picks">
+      <h2 id="top-picks" class="font-display text-2xl font-bold tracking-tight">Top {MAX_PICKS} of all time</h2>
+      <p class="mt-1 text-sm text-muted">The most-starred projects on our list.</p>
+      <ol class="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        {top.map((p, i) => <PickTile pick={p} rank={i + 1} eager={i < 3} />)}
+      </ol>
+    </section>
+
+    {rising.length > 0 && (
+      <section class="mt-16" aria-labelledby="rising-picks">
+        <h2 id="rising-picks" class="font-display text-2xl font-bold tracking-tight">Rising: new and already popular</h2>
+        <p class="mt-1 max-w-2xl text-sm text-muted">
+          Projects first published on GitHub in the last {RISING_MAX_AGE_DAYS} days that already have more than
+          {' '}{RISING_MIN_STARS.toLocaleString('en-GB')} stars. Each one leaves this row once it is older than {RISING_MAX_AGE_DAYS} days.
+        </p>
+        <ol class="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {rising.map((p, i) => <PickTile pick={p} rank={i + 1} showAge />)}
+        </ol>
+      </section>
+    )}
 
     <p class="mt-14 rounded-xl border border-dashed border-line p-4 text-sm text-muted">
       Ranking uses GitHub stars only; it is not a quality score. Always read a project's licence and security notes

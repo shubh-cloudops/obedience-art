@@ -1,0 +1,48 @@
+---
+/** One clickable tile on /picks/: GitHub card image, rank, stars, 7-day change, and (for rising picks) age. */
+import { PICK_CATEGORY, ageInDays, fmtStars, fmtChange, repoCard, weeklyChange, type Pick } from '../lib/picks';
+interface Props {
+  pick: Pick;
+  rank: number;
+  /** Show "N days old" instead of the licence; used on the Rising row. */
+  showAge?: boolean;
+  eager?: boolean;
+}
+const { pick, rank, showAge = false, eager = false } = Astro.props;
+const d = pick.data;
+const change = weeklyChange(pick);
+const age = ageInDays(pick);
+---
+<li>
+  <a href={`/picks/${pick.id}/`} class="card group flex h-full flex-col overflow-hidden">
+    <div class="relative border-b border-line bg-surface-2">
+      <span class="absolute inset-0 grid place-items-center px-6 text-center font-mono text-sm text-muted" aria-hidden="true">{d.repo}</span>
+      <img
+        src={repoCard(pick.id, d.repo)}
+        alt=""
+        width="1200"
+        height="600"
+        loading={eager ? 'eager' : 'lazy'}
+        decoding="async"
+        referrerpolicy="no-referrer"
+        class="relative aspect-[2/1] h-auto w-full"
+      />
+      <span class="absolute left-3 top-3 rounded-full bg-bg/85 px-2.5 py-1 font-mono text-xs font-semibold text-cyan backdrop-blur" aria-label={`Rank ${rank}`}>#{rank}</span>
+      <span class="absolute right-3 top-3 flex items-center gap-2 rounded-full bg-bg/85 px-2.5 py-1 font-mono text-xs text-ink backdrop-blur">
+        <span><span class="text-amber" aria-hidden="true">★</span> {fmtStars(d.stars)}<span class="sr-only"> GitHub stars</span></span>
+        {change !== null && (
+          <span class={change >= 0 ? 'text-green' : 'text-magenta'} title="Change in the last 7 days">{fmtChange(change)}/wk</span>
+        )}
+      </span>
+    </div>
+    <div class="flex flex-1 flex-col p-5">
+      <p class="kicker">{PICK_CATEGORY[d.category]}</p>
+      <h3 class="mt-2 font-display text-2xl font-bold tracking-tight group-hover:text-cyan">{d.name}</h3>
+      <p class="mt-2 flex-1 text-sm leading-relaxed text-muted">{d.tagline}</p>
+      <p class="mt-4 flex items-center justify-between font-mono text-xs text-muted">
+        <span>{showAge && age !== null ? `On GitHub for ${age} day${age === 1 ? '' : 's'}` : d.license}</span>
+        <span class="text-cyan" aria-hidden="true">Read →</span>
+      </p>
+    </div>
+  </a>
+</li>

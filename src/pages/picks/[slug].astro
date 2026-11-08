@@ -1,13 +1,14 @@
 ---
 import Base from '../../layouts/Base.astro';
 import { formatDate } from '../../lib/format';
-import { getRankedPicks, MAX_PICKS, PICK_CATEGORY, fmtStars, fmtChange, repoCard, weeklyChange } from '../../lib/picks';
+import { getRankedPicks, PICK_CATEGORY, ageInDays, fmtStars, fmtChange, placeOf, repoCard, weeklyChange } from '../../lib/picks';
 
 export async function getStaticPaths() {
-  const { all } = await getRankedPicks();
-  return all.map((p, i) => ({ params: { slug: p.id }, props: { pick: p, rank: i + 1 } }));
+  const ranked = await getRankedPicks();
+  return ranked.all.map((p) => ({ params: { slug: p.id }, props: { pick: p, place: placeOf(p, ranked) } }));
 }
-const { pick, rank } = Astro.props;
+const { pick, place } = Astro.props;
+const age = ageInDays(pick);
 const change = weeklyChange(pick);
 const d = pick.data;
 ---
@@ -23,9 +24,10 @@ const d = pick.data;
               <h1 class="mt-2 font-display text-3xl font-bold tracking-tight sm:text-5xl">{d.name}</h1>
               <p class="mt-2 text-lg text-muted">{d.tagline}</p>
               <dl class="mt-5 flex flex-wrap gap-x-6 gap-y-2 font-mono text-xs text-muted" data-pagefind-ignore>
-                <div><dt class="inline">Rank </dt><dd class="inline text-ink">#{rank}{rank > MAX_PICKS ? ' (not in the top ' + MAX_PICKS + ')' : ''}</dd></div>
+                <div><dt class="inline">Rank </dt><dd class="inline text-ink">{place}</dd></div>
                 <div><dt class="inline">Stars </dt><dd class="inline text-ink">{fmtStars(d.stars)}</dd></div>
                 {change !== null && <div><dt class="inline">Last 7 days </dt><dd class={change >= 0 ? 'inline text-green' : 'inline text-magenta'}>{fmtChange(change)}</dd></div>}
+                {age !== null && <div><dt class="inline">On GitHub since </dt><dd class="inline text-ink">{formatDate(d.createdOn!)}</dd></div>}
                 <div><dt class="inline">Licence </dt><dd class="inline text-ink">{d.license}</dd></div>
                 <div><dt class="inline">Checked </dt><dd class="inline text-ink">{formatDate(d.statsCheckedOn)}</dd></div>
               </dl>

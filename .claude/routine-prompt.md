@@ -23,19 +23,23 @@ For each file in `src/content/events/` with `status: ongoing`:
 
 ## 0b. Open-Source AI Pick (Tuesday runs only, one per week)
 1. Run `node scripts/update-pick-stars.mjs` so every pick has today's star count.
-   The page shows only the top 9 picks by stars (`MAX_PICKS` in `src/lib/picks.ts`).
-2. Find one popular AI repository on GitHub that is not already in `src/content/picks/`, has a commit in the
-   last 90 days, and has **more stars than the current #9 pick** (otherwise it would not appear; skip this week).
-   Get stars, licence and last push from `gh api -X GET search/repositories -f q="repo:<owner>/<name>"`.
+   The page has two rows (`src/lib/picks.ts`): the top 6 by stars (`MAX_PICKS`), and **Rising**: up to 6 repos
+   created on GitHub in the last 60 days with 2,000+ stars.
+2. Rising first: if the Rising row has fewer than 6 picks (picks age out after 60 days), or a new repo beats its
+   lowest, find one AI repository created in the last 60 days with 2,000+ stars:
+   `gh api -X GET search/repositories -f q='created:>=<today-60d> stars:>=2000' -f sort=stars`.
+   Otherwise find one with **more stars than the current #6 pick**. If neither exists, skip this week.
+   It must not already be in `src/content/picks/` and must have a commit in the last 90 days.
+   Get stars, licence, `created_at` and last push from `gh api -X GET search/repositories -f q="repo:<owner>/<name>"`.
 3. It qualifies only if at least 2 known outlets wrote about it (TechCrunch, The Verge, Wired, Ars Technica,
    VentureBeat, The Register, Tom's Hardware, ZDNet, Fortune, AP, Reuters, The New Stack, 404 Media and similar).
    Open every article and record its exact headline, date and URL. No press release, vendor blog or SEO listicle counts.
 4. Copy the structure of an existing file in `src/content/picks/` and write `<slug>.yaml`: plain-English
    `whatItDoes`, Windows 11 `howToUse` steps with the shell named and commands taken from the repo's own README,
-   3-4 `bestPractices` (security and cost first), and the `coverage` list. Set `statsCheckedOn` and `addedOn` to today.
-   Do not delete the pick that drops to #10: it leaves the tiles automatically and its own page stays online.
+   3-4 `bestPractices` (security and cost first), and the `coverage` list. Set `statsCheckedOn` and `addedOn` to today and `createdOn` to the repo's `created_at` date.
+   Do not delete a pick that drops off a row: it leaves the tiles automatically and its own page stays online.
 5. Run `npm run build`, then commit on branch `pick/<slug>` and open a **draft** PR titled `Pick: <name>`,
-   listing the coverage links and which pick it pushes out of the top 9. Do not merge; Shub approves.
+   listing the coverage links, which row it joins, and which pick it pushes out. Do not merge; Shub approves.
 
 ## 1. Scout
 Find AI news from the last 7 days where coverage is likely wrong, exaggerated, or missing context

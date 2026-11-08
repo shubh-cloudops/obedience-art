@@ -5,6 +5,7 @@ category: speech
 license: MIT
 stars: 112215
 statsCheckedOn: 2026-11-08
+createdOn: 2022-09-16
 addedOn: 2026-11-06
 whatItDoes: >-
   Whisper turns speech into text. OpenAI trained it on 680,000 hours of audio from the web, so it copes with

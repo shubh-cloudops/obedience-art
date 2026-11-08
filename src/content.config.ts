@@ -118,10 +118,12 @@ const picks = defineCollection({
     /** owner/name exactly as on GitHub */
     repo: z.string().regex(/^[\w.-]+\/[\w.-]+$/),
     tagline: z.string().min(20).max(140),
-    category: z.enum(['run-models', 'build-apps', 'agents', 'speech', 'images']),
+    category: z.enum(['run-models', 'build-apps', 'agents', 'coding', 'speech', 'images']),
     license: z.string().min(2),
     stars: z.number().int().positive(),
     statsCheckedOn: z.coerce.date(),
+    /** When the repo was created on GitHub (written by scripts/update-pick-stars.mjs). Drives the Rising row. */
+    createdOn: z.coerce.date().optional(),
     /** Daily star counts written by scripts/update-pick-stars.mjs (oldest first). */
     starHistory: z.array(z.object({ date: z.coerce.date(), stars: z.number().int().nonnegative() })).default([]),
     addedOn: z.coerce.date(),

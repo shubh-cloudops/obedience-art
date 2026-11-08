@@ -5,6 +5,7 @@ category: agents
 license: Mixed (see LICENSE)
 stars: 187936
 statsCheckedOn: 2026-11-08
+createdOn: 2023-03-16
 addedOn: 2026-11-06
 whatItDoes: >-
   AutoGPT connects a language model to tools such as web search and files, then loops: it plans a step, runs
