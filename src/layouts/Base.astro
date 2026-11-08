@@ -13,7 +13,7 @@ interface Props {
   ogTitle?: string;
   description?: string;
   image?: string;
-  article?: { published: Date; updated?: Date; section?: string; tags?: string[] };
+  article?: { published: Date; updated?: Date; section?: string; tags?: string[]; aiWritten?: boolean };
 }
 const { title, seoTitle, ogTitle, description = SITE.description, image: imageProp, article } = Astro.props;
 const image = imageProp ?? '/og-default.png';
@@ -64,7 +64,9 @@ const beacon = import.meta.env.PUBLIC_CF_BEACON_TOKEN;
             ...(article.section && { articleSection: article.section }),
             ...(article.tags?.length && { keywords: article.tags.join(', ') }),
             mainEntityOfPage: canonical.href,
-            author: { '@type': 'Person', name: SITE.author },
+            // AI-written posts credit the publication (Art is not a person); Shub's own series credit him.
+            author: article.aiWritten ? { '@type': 'Organization', name: SITE.name, url: new URL('/', Astro.site).href } : { '@type': 'Person', name: SITE.author },
+            ...(article.aiWritten && { editor: { '@type': 'Person', name: SITE.author } }),
             publisher: { '@type': 'Organization', name: SITE.name, url: new URL('/', Astro.site).href },
           })}
         />
