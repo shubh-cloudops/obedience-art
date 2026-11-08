@@ -3,8 +3,8 @@ repo: Significant-Gravitas/AutoGPT
 tagline: "The project that kicked off the AI-agent craze: give it a goal and it plans and runs the steps itself."
 category: agents
 license: Mixed (see LICENSE)
-stars: 187923
-statsCheckedOn: 2026-11-06
+stars: 187936
+statsCheckedOn: 2026-11-08
 addedOn: 2026-11-06
 whatItDoes: >-
   AutoGPT connects a language model to tools such as web search and files, then loops: it plans a step, runs
@@ -41,3 +41,5 @@ coverage:
 starHistory:
   - date: 2026-11-06
     stars: 187923
+  - date: 2026-11-08
+    stars: 187936

@@ -3,8 +3,8 @@ repo: Comfy-Org/ComfyUI
 tagline: A node-based studio for making AI images and video on your own GPU, where you see and control every step.
 category: images
 license: GPL-3.0
-stars: 145392
-statsCheckedOn: 2026-11-06
+stars: 145666
+statsCheckedOn: 2026-11-08
 addedOn: 2026-11-06
 whatItDoes: >-
   ComfyUI runs image and video models such as Stable Diffusion and Flux locally. Instead of one prompt box,
@@ -37,3 +37,5 @@ coverage:
 starHistory:
   - date: 2026-11-06
     stars: 145392
+  - date: 2026-11-08
+    stars: 145666

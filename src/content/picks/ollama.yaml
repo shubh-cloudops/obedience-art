@@ -3,8 +3,8 @@ repo: ollama/ollama
 tagline: Download and chat with open AI models on your own PC with one command, no cloud account needed.
 category: run-models
 license: MIT
-stars: 186115
-statsCheckedOn: 2026-11-06
+stars: 186320
+statsCheckedOn: 2026-11-08
 addedOn: 2026-11-06
 whatItDoes: >-
   Ollama is a small app that downloads open-weight language models (Llama, Gemma, Mistral, Qwen and others)
@@ -42,3 +42,5 @@ coverage:
 starHistory:
   - date: 2026-11-06
     stars: 186115
+  - date: 2026-11-08
+    stars: 186320
