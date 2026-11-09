@@ -1,0 +1,50 @@
+# Weekly traffic report for obedienceart.com, every Monday 09:00 IST (03:30 UTC).
+# Reads Cloudflare Web Analytics and posts the numbers as a comment on the "Traffic reports" issue,
+# so GitHub emails Shub and Claude can read the history. Read-only: it never changes the site.
+name: Traffic report
+
+on:
+  schedule:
+    - cron: '30 3 * * 1'
+  workflow_dispatch:
+    inputs:
+      days:
+        description: 'Days to cover'
+        default: '7'
+
+permissions:
+  contents: read
+  issues: write # comment on the report issue
+
+jobs:
+  report:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Fetch numbers from Cloudflare
+        env:
+          CF_ANALYTICS_TOKEN: ${{ secrets.CF_ANALYTICS_TOKEN }}
+          CF_ACCOUNT_ID: ${{ vars.CF_ACCOUNT_ID }}
+          CF_SITE_TAG: ${{ vars.CF_SITE_TAG }}
+        run: node scripts/traffic-report.mjs --days "${{ inputs.days || '7' }}"
+
+      - name: Show in the run summary
+        run: cat traffic-report.md >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Post to the "Traffic reports" issue
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          num=$(gh issue list --label traffic-report --state open --json number --jq '.[0].number')
+          if [ -z "$num" ]; then
+            gh label create traffic-report --color 0E8A16 --description "Weekly site traffic" 2>/dev/null || true
+            num=$(gh issue create --title "Traffic reports" --label traffic-report \
+              --body "Weekly visits and page views for obedienceart.com from Cloudflare Web Analytics. One comment per report." \
+              | grep -o '[0-9]*$')
+          fi
+          gh issue comment "$num" --body-file traffic-report.md

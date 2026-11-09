@@ -5,8 +5,7 @@
  *   node scripts/traffic-report.mjs            # last 7 full days, compared with the 7 days before
  *   node scripts/traffic-report.mjs --days 30  # any window length
  *
- * Writes Markdown to stdout and to traffic-report.md (git-ignored). Read-only and private: run it locally,
- * never in a public workflow, because Actions logs on this public repo are visible to anyone.
+ * Writes Markdown to stdout and to traffic-report.md. Read-only: it never changes the site.
  *
  * Needs (never hard-code them):
  *   CF_ANALYTICS_TOKEN  API token with one permission: Account > Account Analytics > Read
