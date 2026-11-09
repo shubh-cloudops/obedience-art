@@ -110,7 +110,8 @@ Expected result: `https://YOUR-DOMAIN` serves the site with a padlock.
   ```powershell
   gh secret set CF_ANALYTICS_TOKEN          # paste a token with only Account > Account Analytics > Read
   gh variable set CF_ACCOUNT_ID --body "PASTE"
-  gh variable set CF_SITE_TAG --body "PASTE"   # Web Analytics > obedienceart.com > Manage site
+  # optional, only once the account has more than one Web Analytics site:
+  # gh variable set CF_SITE_TAG --body "PASTE"
   gh workflow run traffic-report.yml
   ```
   Teardown: delete the token in Cloudflare (My Profile, API Tokens) and run `gh secret delete CF_ANALYTICS_TOKEN`.

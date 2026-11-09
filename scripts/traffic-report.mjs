@@ -10,13 +10,16 @@
  * Needs (never hard-code them):
  *   CF_ANALYTICS_TOKEN  API token with one permission: Account > Account Analytics > Read
  *   CF_ACCOUNT_ID       Cloudflare account ID (dashboard URL or Account home > Account details)
- *   CF_SITE_TAG         Web Analytics site tag (Web Analytics > obedienceart.com > Manage site)
+ *   CF_SITE_TAG         optional: Web Analytics site tag. Leave unset while obedienceart.com is the
+ *                       account's only Web Analytics site; then every site in the account is counted.
  */
 import { writeFile } from 'node:fs/promises';
 
-const { CF_ANALYTICS_TOKEN: token, CF_ACCOUNT_ID: accountTag, CF_SITE_TAG: siteTag } = process.env;
-if (!token || !accountTag || !siteTag) {
-  console.error('Missing CF_ANALYTICS_TOKEN, CF_ACCOUNT_ID or CF_SITE_TAG. See the header of this file.');
+// Strip spaces and a byte-order mark: Windows PowerShell adds one when it pipes a value into `gh secret set`.
+const clean = (v) => (v ?? '').replace(/^\uFEFF/, '').trim();
+const [token, accountTag, siteTag] = ['CF_ANALYTICS_TOKEN', 'CF_ACCOUNT_ID', 'CF_SITE_TAG'].map((k) => clean(process.env[k]));
+if (!token || !accountTag) {
+  console.error('Missing CF_ANALYTICS_TOKEN or CF_ACCOUNT_ID. See the header of this file.');
   process.exit(1);
 }
 
@@ -52,7 +55,9 @@ query Traffic($account: String!, $filter: AccountRumPageloadEventsAdaptiveGroups
   }
 }`;
 
-const window = (from, to) => ({ AND: [{ datetime_geq: iso(from), datetime_lt: iso(to) }, { siteTag }] });
+const window = (from, to) => ({
+  AND: [{ datetime_geq: iso(from), datetime_lt: iso(to) }, ...(siteTag ? [{ siteTag }] : [])],
+});
 
 const res = await fetch('https://api.cloudflare.com/client/v4/graphql', {
   method: 'POST',
