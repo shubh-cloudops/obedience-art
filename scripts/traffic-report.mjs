@@ -15,7 +15,9 @@
  */
 import { writeFile } from 'node:fs/promises';
 
-const { CF_ANALYTICS_TOKEN: token, CF_ACCOUNT_ID: accountTag, CF_SITE_TAG: siteTag } = process.env;
+// Strip spaces and a byte-order mark: Windows PowerShell adds one when it pipes a value into `gh secret set`.
+const clean = (v) => (v ?? '').replace(/^\uFEFF/, '').trim();
+const [token, accountTag, siteTag] = ['CF_ANALYTICS_TOKEN', 'CF_ACCOUNT_ID', 'CF_SITE_TAG'].map((k) => clean(process.env[k]));
 if (!token || !accountTag) {
   console.error('Missing CF_ANALYTICS_TOKEN or CF_ACCOUNT_ID. See the header of this file.');
   process.exit(1);
