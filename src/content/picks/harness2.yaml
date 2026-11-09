@@ -1,17 +1,18 @@
 name: Harness²
 repo: google-research/harness2
-tagline: Google Research's tool that lets an AI helper rewrite its own instructions and tools to do a task better, without retraining.
+tagline: Google Research's tool that lets an AI helper rewrite its own instructions and tools to do a task
+  better, without retraining.
 category: agents
 license: Apache-2.0
-stars: 23112
-statsCheckedOn: 2026-11-08
+stars: 23213
+statsCheckedOn: 2026-11-09
 createdOn: 2026-10-06
 addedOn: 2026-11-08
 whatItDoes: >-
   An AI agent is more than its model. Around it sits a "harness": the instructions, tools, memory, skills and
   helpers that let it act. Harness² improves that harness and leaves the model untouched. For each task it
-  proposes changes, tries them side by side, and keeps only the changes that made a visible difference. It also
-  keeps notes so the next task starts from what worked. Google reports gains of up to 11.5 points on
+  proposes changes, tries them side by side, and keeps only the changes that made a visible difference. It
+  also keeps notes so the next task starts from what worked. Google reports gains of up to 11.5 points on
   WorkBuddy-Bench, 4.5 points on JobBench and 11.8 percentage points on the legal benchmark LAB. These are the
   authors' own figures. It is a research project, not an officially supported Google product.
 howToUse:
@@ -29,25 +30,26 @@ howToUse:
         source .venv/bin/activate
         uv pip install -e '.[render]'
     - text: >-
-        Run the free local demo. It tries both ways of improving a harness with real Python runs and needs no model
-        account.
+        Run the free local demo. It tries both ways of improving a harness with real Python runs and needs no
+        model account.
       code: harness2-demo --output runs/demo --k 2
     - text: >-
-        Before a real benchmark, install one (LAB, a set of legal tasks) and preview which tasks it would pick,
-        without calling any model.
+        Before a real benchmark, install one (LAB, a set of legal tasks) and preview which tasks it would
+        pick, without calling any model.
       code: |-
         harness2-setup lab
         harness2 --bench lab --k 1 --mode parallel --only-domains antitrust-competition --max-tasks 1 --dry-run
 bestPractices:
-  - Start with the demo. Real benchmark runs call paid models, and each round of improvement means more test runs
-    and more model calls.
-  - Limit network access before real runs. The README warns that the default agent has open internet access and
-    the Codex option turns its sandbox off.
+  - Start with the demo. Real benchmark runs call paid models, and each round of improvement means more test
+    runs and more model calls.
+  - Limit network access before real runs. The README warns that the default agent has open internet access
+    and the Codex option turns its sandbox off.
   - Keep model keys in the .env file the README describes, and never commit that file.
   - Treat the reported gains as the authors' claims until you reproduce them on your own tasks.
 coverage:
   - publisher: INSIDE
-    title: "Google 開源 Harness2！AI 代理不用重新訓練模型，也能自己改進工作流程 (Google open-sources Harness2: AI agents can improve their own workflows without retraining)"
+    title: "Google 開源 Harness2！AI 代理不用重新訓練模型，也能自己改進工作流程 (Google open-sources Harness2: AI agents can improve their
+      own workflows without retraining)"
     date: 2026-10-20
     url: https://www.inside.com.tw/article/42679-google-harness2-open-source-recursive-agent-harness-propose-probe-compose
   - publisher: 36Kr (from InfoQ China)
@@ -57,3 +59,5 @@ coverage:
 starHistory:
   - date: 2026-11-08
     stars: 23112
+  - date: 2026-11-09
+    stars: 23213

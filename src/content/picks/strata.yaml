@@ -1,39 +1,40 @@
 name: Strata
 repo: Niko1221/Strata
-tagline: Run a 125-billion-parameter Qwen model on a gaming PC, offline, with a one-click installer for Windows and Linux.
+tagline: Run a 125-billion-parameter Qwen model on a gaming PC, offline, with a one-click installer for
+  Windows and Linux.
 category: run-models
 license: MIT
-stars: 41869
-statsCheckedOn: 2026-11-08
+stars: 42231
+statsCheckedOn: 2026-11-09
 createdOn: 2026-09-24
 addedOn: 2026-11-08
 whatItDoes: >-
-  Strata is a free app that runs large open AI models on your own computer, with no account and no cloud. Its main
-  model is Alibaba's Qwen3.8-Flash-Next, which has 125 billion parameters (the numbers a model learns) but uses only
-  about 6 billion for each word piece, so Strata can split the work across your graphics card, memory and processor. The
-  developer's own tests on an RTX 5070 with 12 GB of video memory and 64 GB of RAM give 53 to 94 tokens (word
-  pieces) a second. It also offers a local API that tools such as Claude Code and Codex CLI can connect to. It is
-  built mainly by one developer, Niko Veit, with volunteer helpers.
+  Strata is a free app that runs large open AI models on your own computer, with no account and no cloud. Its
+  main model is Alibaba's Qwen3.8-Flash-Next, which has 125 billion parameters (the numbers a model learns)
+  but uses only about 6 billion for each word piece, so Strata can split the work across your graphics card,
+  memory and processor. The developer's own tests on an RTX 5070 with 12 GB of video memory and 64 GB of RAM
+  give 53 to 94 tokens (word pieces) a second. It also offers a local API that tools such as Claude Code and
+  Codex CLI can connect to. It is built mainly by one developer, Niko Veit, with volunteer helpers.
 howToUse:
   shell: PowerShell (Windows 11)
   steps:
     - text: >-
-        Easiest route: download the Windows installer from the project's Releases page on GitHub, install it, pick a
-        model and start chatting. Or install the terminal version with the README's one-line command.
+        Easiest route: download the Windows installer from the project's Releases page on GitHub, install it,
+        pick a model and start chatting. Or install the terminal version with the README's one-line command.
       code: irm https://github.com/Niko1221/Strata/releases/latest/download/install.ps1 | iex
     - text: Open a new PowerShell window, then start Strata and follow the prompts to download and run a model.
       code: strata launch
     - text: To use the model from a coding tool such as Claude Code or Codex CLI, ask Strata for setup steps.
       code: strata connect
 bestPractices:
-  - Check your hardware first. iMasters lists 12 GB or more of video memory, 32 GB or more of RAM and about 80 GB of
-    free disk as the baseline, and the first start can freeze the PC for 1 to 3 minutes while it loads.
-  - The one-line install runs a script straight from the internet. Download install.ps1 and read it before you run
-    it, or use the installer from the Releases page.
-  - Keep its API on your own machine. If you share it with others, update to 0.2.11 or later, which fixed a bug
-    where one person could get the answer meant for someone else's request.
-  - It costs nothing to run beyond electricity, but the model files are tens of gigabytes. Delete the sizes you
-    don't use to free disk space.
+  - Check your hardware first. iMasters lists 12 GB or more of video memory, 32 GB or more of RAM and about 80
+    GB of free disk as the baseline, and the first start can freeze the PC for 1 to 3 minutes while it loads.
+  - The one-line install runs a script straight from the internet. Download install.ps1 and read it before you
+    run it, or use the installer from the Releases page.
+  - Keep its API on your own machine. If you share it with others, update to 0.2.11 or later, which fixed a
+    bug where one person could get the answer meant for someone else's request.
+  - It costs nothing to run beyond electricity, but the model files are tens of gigabytes. Delete the sizes
+    you don't use to free disk space.
 coverage:
   - publisher: iMasters
     title: 125-billion-parameter model runs on a 12 GB GPU with Strata
@@ -46,3 +47,5 @@ coverage:
 starHistory:
   - date: 2026-11-08
     stars: 41869
+  - date: 2026-11-09
+    stars: 42231

@@ -3,8 +3,8 @@ repo: ollama/ollama
 tagline: Download and chat with open AI models on your own PC with one command, no cloud account needed.
 category: run-models
 license: MIT
-stars: 186320
-statsCheckedOn: 2026-11-08
+stars: 186423
+statsCheckedOn: 2026-11-09
 createdOn: 2023-06-26
 addedOn: 2026-11-06
 whatItDoes: >-
@@ -45,3 +45,5 @@ starHistory:
     stars: 186115
   - date: 2026-11-08
     stars: 186320
+  - date: 2026-11-09
+    stars: 186423

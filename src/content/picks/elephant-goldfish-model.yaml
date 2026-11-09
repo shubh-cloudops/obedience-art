@@ -1,19 +1,20 @@
 name: Elephant-Goldfish Model
 repo: google/elephant-goldfish-model
-tagline: Google's free add-on that makes your AI coding helper write a design first, then has fresh reviewers pick it apart.
+tagline: Google's free add-on that makes your AI coding helper write a design first, then has fresh reviewers
+  pick it apart.
 category: coding
 license: Apache-2.0
-stars: 14565
-statsCheckedOn: 2026-11-08
+stars: 15718
+statsCheckedOn: 2026-11-09
 createdOn: 2026-09-13
 addedOn: 2026-11-08
 whatItDoes: >-
   Elephant-Goldfish Model (EGM) is a plugin for AI coding assistants such as Claude Code, Codex and Google's
   Antigravity. The "elephant" remembers your project and helps you write a design document before any code is
-  written. "Goldfish" reviewers then read that document fresh, without the earlier chat, so they spot assumptions
-  you never wrote down. You make the trade-offs and approve the design. Google told Help Net Security that thousands
-  of its employees use it daily. It does not replace tests or human review, and it does not look for security
-  flaws unless you set up a reviewer for that.
+  written. "Goldfish" reviewers then read that document fresh, without the earlier chat, so they spot
+  assumptions you never wrote down. You make the trade-offs and approve the design. Google told Help Net
+  Security that thousands of its employees use it daily. It does not replace tests or human review, and it
+  does not look for security flaws unless you set up a reviewer for that.
 howToUse:
   shell: PowerShell (Windows 11), with Claude Code installed
   steps:
@@ -22,20 +23,20 @@ howToUse:
         claude plugin marketplace add google/elephant-goldfish-model
         claude plugin install egm@egm
     - text: >-
-        Start a new Claude Code session in your project and talk through a feature that needs design decisions. The
-        agent saves what you agree in concepts_brief.md.
+        Start a new Claude Code session in your project and talk through a feature that needs design
+        decisions. The agent saves what you agree in concepts_brief.md.
       code: /egm:egm-brainstorm Add webhook delivery to this project.
     - text: Turn the brief into a design document. It pauses after each section for your feedback.
       code: /egm:egm-draft
     - text: Have fresh reviewers check the draft, then choose which findings to fix before you build anything.
       code: /egm:egm-review design_draft.md
 bestPractices:
-  - Add a security reviewer if your design touches logins, payments or personal data. Help Net Security notes that
-    security is not a review target by default.
-  - Each review starts several fresh AI sessions, so it uses more of your plan or tokens than a normal chat. Save it
-    for features where a wrong design is expensive.
-  - Keep the approved design in your repo (the README suggests docs/designs/) so later work can be checked against
-    it.
+  - Add a security reviewer if your design touches logins, payments or personal data. Help Net Security notes
+    that security is not a review target by default.
+  - Each review starts several fresh AI sessions, so it uses more of your plan or tokens than a normal chat.
+    Save it for features where a wrong design is expensive.
+  - Keep the approved design in your repo (the README suggests docs/designs/) so later work can be checked
+    against it.
   - Still run your tests. The README says a review does not replace tests or human judgement.
 coverage:
   - publisher: Help Net Security
@@ -49,3 +50,5 @@ coverage:
 starHistory:
   - date: 2026-11-08
     stars: 14565
+  - date: 2026-11-09
+    stars: 15718

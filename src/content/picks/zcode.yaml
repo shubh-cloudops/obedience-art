@@ -1,18 +1,20 @@
 name: ZCode
 repo: zai-org/ZCode
-tagline: Z.ai's AI coding workspace, with a desktop app, a browser view and a terminal helper, now with its source code public.
+tagline: Z.ai's AI coding workspace, with a desktop app, a browser view and a terminal helper, now with its
+  source code public.
 category: coding
 license: Apache-2.0
-stars: 8555
-statsCheckedOn: 2026-11-08
+stars: 8575
+statsCheckedOn: 2026-11-09
 createdOn: 2026-09-20
 addedOn: 2026-11-08
 whatItDoes: >-
-  ZCode is an AI coding workspace from Z.ai (formerly Zhipu AI), built around its GLM models. Its agent plans a
-  task, edits files, runs checks and keeps going towards the goal you describe, and by default it asks before
-  sensitive actions. It can also use models from other companies, such as Anthropic and OpenAI, and you can steer
-  a running job from your phone through WeChat, Feishu or Telegram. The app launched in July 2026. This repository
-  holds the source code for the desktop app, the browser view, the server and the terminal agent.
+  ZCode is an AI coding workspace from Z.ai (formerly Zhipu AI), built around its GLM models. Its agent plans
+  a task, edits files, runs checks and keeps going towards the goal you describe, and by default it asks
+  before sensitive actions. It can also use models from other companies, such as Anthropic and OpenAI, and you
+  can steer a running job from your phone through WeChat, Feishu or Telegram. The app launched in July 2026.
+  This repository holds the source code for the desktop app, the browser view, the server and the terminal
+  agent.
 howToUse:
   shell: PowerShell (Windows 11)
   steps:
@@ -26,22 +28,24 @@ howToUse:
     - text: Start the desktop app from source.
       code: pnpm dev:desktop
     - text: >-
-        If you build the command-line version, its browser view listens only on your own PC (127.0.0.1) by default.
-        Check which zcode command Windows is using.
+        If you build the command-line version, its browser view listens only on your own PC (127.0.0.1) by
+        default. Check which zcode command Windows is using.
       code: |-
         zcode --web
         where.exe zcode
 bestPractices:
-  - Keep the browser view on 127.0.0.1. If you open it to your network with --host 0.0.0.0, keep the access token
-    switched on.
+  - Keep the browser view on 127.0.0.1. If you open it to your network with --host 0.0.0.0, keep the access
+    token switched on.
   - Keep the default that makes the agent ask before sensitive actions, so it can't delete or run risky things
     without you.
   - Know the cost before you connect a paid plan. Techzine reported in July 2026 that the GLM Coding Plan cost
     $16.20 to $144 a month; check current prices on Z.ai's site.
-  - Bring-your-own-key models bill to your account. Store keys in environment variables, never in project files.
+  - Bring-your-own-key models bill to your account. Store keys in environment variables, never in project
+    files.
 coverage:
   - publisher: GIGAZINE
-    title: ZCode, a Chinese-made AI agent app from the developers of GLM-5.2, can also utilize AI models from Anthropic and OpenAI.
+    title: ZCode, a Chinese-made AI agent app from the developers of GLM-5.2, can also utilize AI models from
+      Anthropic and OpenAI.
     date: 2026-07-02
     url: https://gigazine.net/gsc_news/en/20260702-zcode-ai-agent
   - publisher: Techzine
@@ -51,3 +55,5 @@ coverage:
 starHistory:
   - date: 2026-11-08
     stars: 8555
+  - date: 2026-11-09
+    stars: 8575

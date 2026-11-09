@@ -1,25 +1,26 @@
 name: DeepInfer
 repo: deepseek-ai/DeepInfer
-tagline: The engine DeepSeek uses to serve its own AI models at scale, now free to read, study and run on big GPU servers.
+tagline: The engine DeepSeek uses to serve its own AI models at scale, now free to read, study and run on big
+  GPU servers.
 category: run-models
 license: Apache-2.0
-stars: 25654
-statsCheckedOn: 2026-11-08
+stars: 25713
+statsCheckedOn: 2026-11-09
 createdOn: 2026-10-16
 addedOn: 2026-11-08
 whatItDoes: >-
   DeepInfer is the software DeepSeek uses to answer requests to its own models. "Inference" just means running
-  a trained model to get answers. This release runs the DeepSeek-V4.1-Flash model and includes the speed tricks
-  DeepSeek uses in production, such as guessing several words ahead and checking them, and giving the same
-  answer every time for the same input. It is built for data-centre hardware: Nvidia SM100 (Blackwell) GPUs or
-  Huawei Ascend 950 chips, on Linux. It is not yet a full service on its own: the README says the memory cache,
-  the split between reading and writing stages, and load balancing are not included.
+  a trained model to get answers. This release runs the DeepSeek-V4.1-Flash model and includes the speed
+  tricks DeepSeek uses in production, such as guessing several words ahead and checking them, and giving the
+  same answer every time for the same input. It is built for data-centre hardware: Nvidia SM100 (Blackwell)
+  GPUs or Huawei Ascend 950 chips, on Linux. It is not yet a full service on its own: the README says the
+  memory cache, the split between reading and writing stages, and load balancing are not included.
 howToUse:
   shell: PowerShell (Windows 11), then Linux (bash) on a GPU server
   steps:
     - text: >-
-        On Windows 11 you can download and read the code, but it will not run on a home PC. Clone it to see how a
-        large production engine is put together.
+        On Windows 11 you can download and read the code, but it will not run on a home PC. Clone it to see
+        how a large production engine is put together.
       code: git clone https://github.com/deepseek-ai/DeepInfer.git
     - text: >-
         On a Linux server with supported GPUs, Python 3.12, GCC 13+ and CUDA 13, create an empty Python 3.12
@@ -28,16 +29,16 @@ howToUse:
         export DEEPINFER_ACCELERATOR=nvidia
         ./build.sh
     - text: >-
-        Run the offline example. The first run downloads the DeepSeek-V4.1-Flash-1017 model into the Hugging Face
-        cache, which needs a lot of disk space.
+        Run the offline example. The first run downloads the DeepSeek-V4.1-Flash-1017 model into the Hugging
+        Face cache, which needs a lot of disk space.
       code: python examples/offline_inference.py
 bestPractices:
   - Check the hardware list before you rent anything. It supports only Nvidia SM100 and Huawei Ascend 950, and
     The New Stack notes that older Nvidia chips such as Hopper are not supported.
-  - Cloud GPUs of this class are billed by the hour. Set a budget alert and shut the machine down as soon as a test
-    ends.
-  - Treat it as a learning and building block, not a finished service. The release leaves out the memory cache,
-    the split of serving stages and the load balancing that a public service needs.
+  - Cloud GPUs of this class are billed by the hour. Set a budget alert and shut the machine down as soon as a
+    test ends.
+  - Treat it as a learning and building block, not a finished service. The release leaves out the memory
+    cache, the split of serving stages and the load balancing that a public service needs.
   - Pin the model folder with DEEPINFER_HF_MODEL_DIR so a re-run uses your checked local copy instead of
     downloading again.
 coverage:
@@ -52,3 +53,5 @@ coverage:
 starHistory:
   - date: 2026-11-08
     stars: 25654
+  - date: 2026-11-09
+    stars: 25713
