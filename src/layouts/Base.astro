@@ -22,8 +22,9 @@ const branded = base ? `${base} | ${SITE.name}` : '';
 const fullTitle = !base ? `${SITE.name}: ${SITE.tagline}` : branded.length <= 65 ? branded : base;
 const canonical = new URL(Astro.url.pathname, Astro.site);
 const ogImage = new URL(image, Astro.site);
-// Cloudflare Web Analytics: set PUBLIC_CF_BEACON_TOKEN in GitHub Actions. Omitted when empty.
-const beacon = import.meta.env.PUBLIC_CF_BEACON_TOKEN;
+// Cloudflare Web Analytics (free, cookieless). The beacon token is a public site ID that appears in
+// every page's HTML, so it lives in code; PUBLIC_CF_BEACON_TOKEN overrides it. Remove both to switch off.
+const beacon = import.meta.env.PUBLIC_CF_BEACON_TOKEN || 'd7787fbfb61e4b039b04565c9910c96e';
 ---
 <!doctype html>
 <html lang="en" data-theme="dark">
