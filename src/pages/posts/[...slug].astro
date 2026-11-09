@@ -44,7 +44,7 @@ const og = d.cover ? (await getImage({ src: d.cover, width: 1200, height: 630, f
       <h1 class="mt-4 font-display text-3xl font-bold leading-tight tracking-tight sm:text-5xl">{d.title}</h1>
       <p class="mt-5 text-lg leading-relaxed text-muted">{d.description}</p>
       <p class="mt-6 font-mono text-xs text-muted" data-pagefind-ignore>
-        By <a href="#author" class="text-ink underline underline-offset-2 hover:text-cyan">{writer.name}</a>{writer.kind === 'ai' && ' (AI writer, reviewed by Shub)'}{' · '}
+        By <a href="#author" class="text-ink underline underline-offset-2 hover:text-cyan">{writer.name}</a>{writer.kind === 'ai' && ' (AI writer)'}{' · '}
         <time datetime={d.pubDate.toISOString()}>{formatDate(d.pubDate)}</time>
         {d.updatedDate && <>{' · updated '}{formatDate(d.updatedDate)}</>}
         {` · ${readingMinutes(post.body ?? '')} min read · ${d.sources.length} sources`}
