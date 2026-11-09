@@ -16,3 +16,4 @@ lhci-report/
 
 # GitHub social cards for /picks/, downloaded at deploy time by scripts/fetch-pick-cards.mjs
 public/picks/cards/
+traffic-report.md

@@ -106,6 +106,14 @@ Expected result: `https://YOUR-DOMAIN` serves the site with a padlock.
   gh variable set PUBLIC_GISCUS_CATEGORY_ID --body "PASTE"
   ```
 - **Analytics:** in Cloudflare, go to Analytics & Logs, then Web Analytics, and add a site. Copy the token, then run `gh variable set PUBLIC_CF_BEACON_TOKEN --body "PASTE"`.
+- **Weekly traffic report:** `.github/workflows/traffic-report.yml` runs every Monday 09:00 IST and comments visits, page views, top pages, referrers and countries on the "Traffic reports" issue. It needs one secret and two variables:
+  ```powershell
+  gh secret set CF_ANALYTICS_TOKEN          # paste a token with only Account > Account Analytics > Read
+  gh variable set CF_ACCOUNT_ID --body "PASTE"
+  gh variable set CF_SITE_TAG --body "PASTE"   # Web Analytics > obedienceart.com > Manage site
+  gh workflow run traffic-report.yml
+  ```
+  Teardown: delete the token in Cloudflare (My Profile, API Tokens) and run `gh secret delete CF_ANALYTICS_TOKEN`.
 
 - **Email signup (free, Buttondown):** sign up at <https://buttondown.com> on the Free plan (free up to 100 subscribers, no card). Your username is the part after `buttondown.com/` on your newsletter page. Then run `gh variable set PUBLIC_BUTTONDOWN_USER --body "YOUR-USERNAME"`. Expected result: the "Get the next autopsy by email" boxes show an email field instead of "Follow by RSS". Fix: if subscribing shows a 404, the username is wrong.
 
