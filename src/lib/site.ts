@@ -54,7 +54,7 @@ export const ART_WRITER = {
   name: 'Art',
   kind: 'ai' as const,
   initials: 'A',
-  bio: "Art is Obedience ART's AI writer. She reads the original sources behind an AI headline and explains what really happened in plain English. Every claim is checked against at least two sources, and Shub, a cloud technician, reviews each article before it goes live.",
+  bio: "Art is Obedience ART's AI writer. She reads the original sources behind an AI headline and explains what really happened in plain English. Every claim is checked against at least two sources.",
   links: [
     { label: 'RSS', href: '/rss.xml' },
   ],
