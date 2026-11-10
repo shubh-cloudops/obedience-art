@@ -4,8 +4,8 @@ tagline: DeepSeek's test version of a coding helper that watches a GitHub projec
   asks it for.
 category: coding
 license: MIT
-stars: 21538
-statsCheckedOn: 2026-11-09
+stars: 22006
+statsCheckedOn: 2026-11-10
 createdOn: 2026-10-31
 addedOn: 2026-11-08
 whatItDoes: >-
@@ -51,3 +51,5 @@ starHistory:
     stars: 21109
   - date: 2026-11-09
     stars: 21538
+  - date: 2026-11-10
+    stars: 22006
