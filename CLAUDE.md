@@ -75,6 +75,14 @@ Use these as rhythms. Never imitate a named writer's sentences or signature phra
 - SEO copy follows the same fact rules as the body. Never add numbers or details from SEO tools or other AI tools unless two sources in `sources:` support them.
 - The post layout already emits BlogPosting JSON-LD, og:/twitter: tags and the canonical URL. Don't add FAQPage schema: Google limits FAQ rich results to government and health sites.
 
+### Search ranking rules (Shub, 2026-11-10)
+1. **Publish steadily.** Two posts a week (the Tue/Fri routine) beats bursts. Never skip a run to batch posts later.
+2. **Target a question people actually search.** Prefer stories that answer "is [AI story] true?" or "what happened with [incident]?" (Claim Check and The Breakdown). Put that exact phrase, in plain words, at the start of `seoTitle` and in the first paragraph.
+3. **Link posts to each other.** Every new post links 2 or 3 older posts in the body where they genuinely help the reader, with descriptive link text (never "click here"). A tracker lists every post about its event in `relatedPosts`, and every such post links its tracker.
+4. **Earn links, never buy them.** Each post PR suggests 2 or 3 places where the topic is already being discussed (for example Reddit r/artificial, Hacker News, LinkedIn), with a one-line plain reason to share. Shub shares by hand, and only where the post answers a real question there.
+5. **Monthly check (Shub).** In Search Console > Performance, find queries where a post sits at position 8–20 and improve that post first: answer the query more directly, add a missing sourced detail, or add internal links to it.
+- **Never:** paid SEO tools, bought backlinks, keyword stuffing, or AI-written filler. Every sentence still follows the fact rules and the four editing rules.
+
 ## Series written by Shub
 - `obedience-test`: hands-on tests of new models (instructions given, what the model did, where it over-obeyed, gamed the goal or skipped a rule). Include the exact prompts and outputs as evidence.
 - `build-log`: building with AI on Azure and AWS. Include real costs, mistakes and a teardown section.

@@ -47,6 +47,7 @@ Find AI news from the last 7 days where coverage is likely wrong, exaggerated, o
 Start from primary sources and reputable outlets: company blogs (OpenAI, Anthropic, Google DeepMind, Meta AI),
 arXiv, METR, the UK AI Security Institute, The Hacker News, TechCrunch, The Verge, Ars Technica.
 Skip any story already covered in `src/content/posts/`. Pick the ONE story with the biggest gap between headline and evidence.
+When two stories are close, prefer the one people are likely searching as a question ("is X true?", "what happened with X?"); see "Search ranking rules" in CLAUDE.md.
 
 ## 2. Research
 Open and read every source in full. Collect the original statement or paper first, then at least one independent source.
@@ -54,6 +55,7 @@ Open and read every source in full. Collect the original statement or paper firs
 ## 3. Draft
 Write `src/content/posts/<slug>.mdx` in the right pillar (autopsy = "The Breakdown", spec-gap, mirror, open-question, claim-check; obedience-test and build-log are written by Shub from hands-on work, so never draft those).
 600–1,000 words. Fill `sources:` and `claims:` (every checkable claim the post makes or debunks).
+Link 2 or 3 older posts from `src/content/posts/` where they genuinely help, with descriptive link text. If a tracker covers this event, link it and add this post to its `relatedPosts`.
 
 ## 4. Internet cross-check (separate pass; do not skip)
 For EACH claim:
@@ -72,6 +74,7 @@ organisation fits, fall back to an AI illustration (`coverPrompt:` + `scripts/ge
 - Run `npm ci && npm run build`. Fix any schema errors honestly (never by loosening the schema).
 - Create branch `post/<slug>`, commit, push, and open a pull request titled `Post: <title>`.
 - PR description: a table of every claim with its verdict and source domains, a list of anything you could not verify and cut, and any disagreements between sources.
+- Add a "Where to share" section: 2 or 3 places where this topic is already being discussed (subreddit, Hacker News thread, LinkedIn topic), each with a one-line reason. Do not post anything yourself; Shub shares by hand.
 
 If the new post is about a fresh event likely to have follow-ups, also create
 `src/content/events/<slug>.yaml` (copy the structure of an existing tracker) and list the post in `relatedPosts`.
