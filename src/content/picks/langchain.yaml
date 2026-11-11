@@ -3,8 +3,8 @@ repo: langchain-ai/langchain
 tagline: The most used framework for wiring language models to your own data, tools and apps.
 category: build-apps
 license: MIT
-stars: 149296
-statsCheckedOn: 2026-11-10
+stars: 149343
+statsCheckedOn: 2026-11-11
 createdOn: 2022-10-17
 addedOn: 2026-11-06
 whatItDoes: >-
@@ -49,3 +49,5 @@ starHistory:
     stars: 149253
   - date: 2026-11-10
     stars: 149296
+  - date: 2026-11-11
+    stars: 149343
