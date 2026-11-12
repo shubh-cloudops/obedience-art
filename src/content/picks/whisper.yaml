@@ -3,8 +3,8 @@ repo: openai/whisper
 tagline: OpenAI's free speech-to-text model that transcribes and translates audio in dozens of languages, offline.
 category: speech
 license: MIT
-stars: 112426
-statsCheckedOn: 2026-11-11
+stars: 112543
+statsCheckedOn: 2026-11-12
 createdOn: 2022-09-16
 addedOn: 2026-11-06
 whatItDoes: >-
@@ -48,3 +48,5 @@ starHistory:
     stars: 112331
   - date: 2026-11-11
     stars: 112426
+  - date: 2026-11-12
+    stars: 112543
