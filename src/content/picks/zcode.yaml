@@ -4,8 +4,8 @@ tagline: Z.ai's AI coding workspace, with a desktop app, a browser view and a te
   source code public.
 category: coding
 license: Apache-2.0
-stars: 8653
-statsCheckedOn: 2026-11-13
+stars: 8679
+statsCheckedOn: 2026-11-14
 createdOn: 2026-09-20
 addedOn: 2026-11-08
 whatItDoes: >-
@@ -65,3 +65,5 @@ starHistory:
     stars: 8632
   - date: 2026-11-13
     stars: 8653
+  - date: 2026-11-14
+    stars: 8679

@@ -3,8 +3,8 @@ repo: Significant-Gravitas/AutoGPT
 tagline: "The project that kicked off the AI-agent craze: give it a goal and it plans and runs the steps itself."
 category: agents
 license: Mixed (see LICENSE)
-stars: 188006
-statsCheckedOn: 2026-11-13
+stars: 188023
+statsCheckedOn: 2026-11-14
 createdOn: 2023-03-16
 addedOn: 2026-11-06
 whatItDoes: >-
@@ -54,3 +54,5 @@ starHistory:
     stars: 187997
   - date: 2026-11-13
     stars: 188006
+  - date: 2026-11-14
+    stars: 188023
