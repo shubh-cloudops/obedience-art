@@ -4,8 +4,8 @@ tagline: Google Research's tool that lets an AI helper rewrite its own instructi
   better, without retraining.
 category: agents
 license: Apache-2.0
-stars: 23918
-statsCheckedOn: 2026-11-15
+stars: 24052
+statsCheckedOn: 2026-11-16
 createdOn: 2026-10-06
 addedOn: 2026-11-08
 whatItDoes: >-
@@ -73,3 +73,5 @@ starHistory:
     stars: 23815
   - date: 2026-11-15
     stars: 23918
+  - date: 2026-11-16
+    stars: 24052
