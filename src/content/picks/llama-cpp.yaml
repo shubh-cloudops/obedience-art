@@ -3,8 +3,8 @@ repo: ggml-org/llama.cpp
 tagline: The fast C/C++ engine that made it possible to run large language models on ordinary laptops and phones.
 category: run-models
 license: MIT
-stars: 135283
-statsCheckedOn: 2026-11-16
+stars: 135427
+statsCheckedOn: 2026-11-17
 createdOn: 2023-03-10
 addedOn: 2026-11-06
 whatItDoes: >-
@@ -58,3 +58,5 @@ starHistory:
     stars: 135131
   - date: 2026-11-16
     stars: 135283
+  - date: 2026-11-17
+    stars: 135427
