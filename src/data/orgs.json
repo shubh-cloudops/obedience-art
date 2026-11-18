@@ -14,5 +14,6 @@
   "nvidia":       { "name": "NVIDIA",             "simpleIcon": "nvidia" },
   "github":       { "name": "GitHub",             "simpleIcon": "github" },
   "cursor":       { "name": "Cursor",             "simpleIcon": "cursor" },
-  "railway":      { "name": "Railway",            "simpleIcon": "railway" }
+  "railway":      { "name": "Railway",            "simpleIcon": "railway" },
+  "california-ag": { "name": "California Attorney General" }
 }
