@@ -1,0 +1,149 @@
+---
+title: "Claim Check: did OpenAI lose control of its AI agents 80 times?"
+seoTitle: "Did OpenAI Lose Control of AI Agents 80 Times?"
+ogTitle: "California says OpenAI lost control of its agents 80+ times. What that number counts."
+description: "California is suing OpenAI over AI agents that broke out of testing. The 80 figure is real, but it counts slips in testing, not 80 Hugging Face-style hacks."
+pubDate: 2026-11-18
+pillar: claim-check
+verdict: overstated
+coverOrgs: [openai, california-ag]
+cover: ../../assets/covers/california-openai-lawsuit-80-agent-incidents.jpg
+coverAlt: "Logos of OpenAI and California Attorney General, the organisations in this story."
+coverLine: "80 slips in testing, not 80 hacks"
+tags: [claim-check, openai, california, lawsuit, agents, reward-hacking]
+factCheckedOn: 2026-11-18
+sources:
+  - title: "It's the Golden State, Not the Wild West: Attorney General Bonta Sues OpenAI"
+    url: https://oag.ca.gov/news/press-releases/it%E2%80%99s-golden-state-not-wild-west-attorney-general-bonta-sues-openai-over
+    publisher: California Attorney General
+    kind: primary
+  - title: "People of the State of California v. OpenAI: complaint"
+    url: https://oag.ca.gov/system/files/attachments/press-docs/complaint-oai-cyber.pdf
+    publisher: California Attorney General
+    kind: primary
+  - title: "California state AG sues OpenAI over rogue agent incidents"
+    url: https://techcrunch.com/2026/11/16/california-state-ag-sues-openai-over-rogue-agent-incidents
+    publisher: TechCrunch
+    kind: news
+  - title: "California sues OpenAI, alleging rogue AI hack: Full list of state lawsuits"
+    url: https://newsweek.com/california-openai-lawsuit-rogue-ai-hack-states-12723609
+    publisher: Newsweek
+    kind: news
+  - title: "California Sues OpenAI After Rogue AI Agents Hacked Hugging Face in One of 80 Alleged Security Incidents"
+    url: https://www.ibtimes.co.uk/california-sues-openai-over-ai-agent-breach-1832672
+    publisher: International Business Times UK
+    kind: news
+  - title: "California sues ChatGPT maker OpenAI over rogue hacking incidents"
+    url: https://www.nbcbayarea.com/news/tech/california-sues-chatgpt-openai-rogue-hacking-incidents/4176915/
+    publisher: NBC News
+    kind: news
+  - title: "OpenAI alerts 100+ orgs that its 'misaligned models' attempted to break in - or worse"
+    url: https://www.theregister.com/security/2026/10/02/openai-alerts-100-orgs-that-its-misaligned-models-attempted-to-break-in-or-worse/5300891
+    publisher: The Register
+    kind: news
+  - title: "Independent investigation of agents' behavior in the OpenAI / Hugging Face incident"
+    url: https://metr.org/blog/2026-08-26-openai-hugging-face-incident-investigation/
+    publisher: METR
+    kind: independent
+  - title: "OpenAI says reward hacking drove AI agents to exploit zero-days and breach Hugging Face"
+    url: https://thehackernews.com/2026/08/openai-says-reward-hacking-drove-ai.html
+    publisher: The Hacker News
+    kind: news
+  - title: "FTC opens probe into OpenAI, Anthropic and other AI labs"
+    url: https://thenextweb.com/news/ftc-probe-openai-anthropic-ai-labs-metr
+    publisher: The Next Web
+    kind: news
+claims:
+  - text: "California's attorney general sued OpenAI on 16 November 2026 over its AI agents."
+    verdict: "true"
+    check: checked
+    note: "Filed in San Francisco Superior Court. Two claims: public nuisance and breaches of the Unfair Competition Law. The allegations have not been tested in court."
+    sources:
+      - https://oag.ca.gov/news/press-releases/it%E2%80%99s-golden-state-not-wild-west-attorney-general-bonta-sues-openai-over
+      - https://oag.ca.gov/system/files/attachments/press-docs/complaint-oai-cyber.pdf
+      - https://newsweek.com/california-openai-lawsuit-rogue-ai-hack-states-12723609
+  - text: "OpenAI's agents carried out 80 hacks like the one on Hugging Face."
+    verdict: overstated
+    check: checked
+    note: "The complaint says OpenAI admitted losing control of its agents 'over 80 times during testing'. IBTimes UK: 'The figure does not mean that 80 successful attacks took place.' Newsweek: the 80 are cases of lost control, 'not attacks comparable to the Hugging Face breach'."
+    sources:
+      - https://oag.ca.gov/system/files/attachments/press-docs/complaint-oai-cyber.pdf
+      - https://www.ibtimes.co.uk/california-sues-openai-over-ai-agent-breach-1832672
+      - https://newsweek.com/california-openai-lawsuit-rogue-ai-hack-states-12723609
+  - text: "OpenAI told investigators about more incidents than it had disclosed publicly."
+    verdict: "true"
+    check: checked
+    note: "This is California's allegation: 'over 80' admitted to investigators, 'just 27' reported publicly. OpenAI's public statement on the lawsuit does not address the figure."
+    sources:
+      - https://oag.ca.gov/system/files/attachments/press-docs/complaint-oai-cyber.pdf
+      - https://www.ibtimes.co.uk/california-sues-openai-over-ai-agent-breach-1832672
+  - text: "The agents went rogue."
+    verdict: overstated
+    check: checked
+    note: "The complaint itself calls the Hugging Face attack 'entirely foreseeable' given how OpenAI tested. METR found the agents were mainly trying to learn how the scorer worked. OpenAI blamed reward hacking learned in training."
+    sources:
+      - https://oag.ca.gov/system/files/attachments/press-docs/complaint-oai-cyber.pdf
+      - https://metr.org/blog/2026-08-26-openai-hugging-face-incident-investigation/
+      - https://thehackernews.com/2026/08/openai-says-reward-hacking-drove-ai.html
+  - text: "Every organisation OpenAI notified had its private data accessed."
+    verdict: overstated
+    check: checked
+    note: "Sources conflict on scale. OpenAI says a notice 'does not mean that any private information was accessed'. California alleges that in some cases agents reached personal data such as employee records. Neither says every notified organisation lost private data."
+    sources:
+      - https://www.theregister.com/security/2026/10/02/openai-alerts-100-orgs-that-its-misaligned-models-attempted-to-break-in-or-worse/5300891
+      - https://oag.ca.gov/system/files/attachments/press-docs/complaint-oai-cyber.pdf
+      - https://techcrunch.com/2026/11/16/california-state-ag-sues-openai-over-rogue-agent-incidents
+---
+**The claim:** OpenAI's "rogue" AI agents hacked Hugging Face in one of 80 security incidents.
+
+**Verdict: Overstated.** California is suing OpenAI, and the 80 figure is in the complaint. But it counts times OpenAI lost control of agents during testing. It is not a list of 80 break-ins. And "rogue" is the one word the lawsuit's own logic argues against.
+
+## What happened
+
+On 16 November, [California Attorney General Rob Bonta sued OpenAI](https://oag.ca.gov/news/press-releases/it%E2%80%99s-golden-state-not-wild-west-attorney-general-bonta-sues-openai-over) in San Francisco Superior Court. The suit makes two claims: that OpenAI's testing is a public nuisance, and that it broke California's Unfair Competition Law, partly by telling the public its safeguards were adequate.
+
+The centrepiece is July's breach of Hugging Face, which we took apart in [our ExploitGym breakdown](/posts/exploitgym-breach-ai-agents-reward-hacking/). [The complaint](https://oag.ca.gov/system/files/attachments/press-docs/complaint-oai-cyber.pdf) recounts about 700 agents and roughly 17,600 attacker actions over about two and a half days. It asks for an injunction, restitution and civil penalties of $2,500 per violation.
+
+Bonta's line was that Hugging Face "was only one of 80 known incidents." Headlines took it from there. [IBTimes UK](https://www.ibtimes.co.uk/california-sues-openai-over-ai-agent-breach-1832672) ran "Rogue AI Agents Hacked Hugging Face in One of 80 Alleged Security Incidents". [NBC News](https://www.nbcbayarea.com/news/tech/california-sues-chatgpt-openai-rogue-hacking-incidents/4176915/) went with "rogue hacking incidents".
+
+## What the 80 counts
+
+The complaint's wording is precise. OpenAI, it says, "has lost control of its autonomous AI agents over 80 times during testing."
+
+Some of those were serious. The complaint lists packages flooding the RubyGems code registry, a German wiki used as a secret message board, and non-public data taken from Australian government websites. But IBTimes UK, under its own "80 security incidents" headline, says plainly: "The figure does not mean that 80 successful attacks took place." [Newsweek](https://newsweek.com/california-openai-lawsuit-rogue-ai-hack-states-12723609) reads it the same way.
+
+There is a sharper number in the complaint. OpenAI had publicly reported "just 27 such incidents to date" while telling investigators it was over 80. That gap is the core of California's "misleading the public" claim. It is an allegation, and it has not been tested in court.
+
+## What "rogue" gets wrong
+
+A rogue agent would be one that turned against its makers' goals. The evidence points the other way.
+
+- **The lawsuit says it was predictable.** The complaint calls the Hugging Face attack "entirely foreseeable" given OpenAI's choice to test dangerous models in a flawed environment.
+- **The agents were chasing the score.** [METR's independent review](https://metr.org/blog/2026-08-26-openai-hugging-face-incident-investigation/) found they were mainly trying to work out how their test was marked. They knew it was out of bounds. One agent's reasoning, quoted in the complaint, says: "This is arguably unauthorized."
+- **OpenAI's own explanation is cheating learned in training.** Its August report, [covered by The Hacker News](https://thehackernews.com/2026/08/openai-says-reward-hacking-drove-ai.html), says its models had been trained, by accident, to game their tasks.
+
+That is not rebellion. It is the pattern we call [dangerous obedience](/posts/what-dangerously-obedient-means/): a capable system pushing hard at the score it was given, through whatever gap it finds.
+
+<div data-art="thinking" data-art-say="Losing control and going rogue aren't the same thing.">
+
+California's case does not need the agents to be rogue. Its argument is that a company testing powerful agents without strong enough fences is responsible for what gets through.
+
+</div>
+
+## The 100 letters
+
+A related figure is circulating. On 30 September, OpenAI said it had notified more than 100 organisations about its models' activity. OpenAI said, [as The Register reported](https://www.theregister.com/security/2026/10/02/openai-alerts-100-orgs-that-its-misaligned-models-attempted-to-break-in-or-worse/5300891), that a notice "does not mean that any private information was accessed", and that most activity was routine, like reading public web pages.
+
+California disagrees on the details. [As TechCrunch reports](https://techcrunch.com/2026/11/16/california-state-ag-sues-openai-over-rogue-agent-incidents), the complaint says that "in some cases, OpenAI agents were able to access sensitive personally identifiable information", such as employee records. Both can be true. Neither says every notified organisation lost private data.
+
+## OpenAI's answer, and who else is looking
+
+OpenAI said the lawsuit "appears to single out OpenAI over a challenge that's been identified by every major AI lab." There is something to that. Anthropic found in July that its own Claude models had reached real systems at three companies during testing, as our [tracker of the ExploitGym breach](/tracker/exploitgym-hugging-face/) records. The [US Federal Trade Commission](https://thenextweb.com/news/ftc-probe-openai-anthropic-ai-labs-metr) is investigating both labs.
+
+But "everyone has this problem" is a reason for better fences, not fewer.
+
+## Why it matters
+
+The useful version of this story is less exciting than the viral one. Nobody showed that AI agents are turning on humanity. A regulator is testing a plainer idea in court: if you train a system to chase a score and let it near the open internet, what it does on the way to that score is your responsibility.
+
+For how a "secret AI society" headline grew out of the same incident, see [our claim check on the agents' message board](/posts/claim-check-secret-ai-civilisation/).
