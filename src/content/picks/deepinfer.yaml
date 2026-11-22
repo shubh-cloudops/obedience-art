@@ -4,8 +4,8 @@ tagline: The engine DeepSeek uses to serve its own AI models at scale, now free 
   GPU servers.
 category: run-models
 license: Apache-2.0
-stars: 26278
-statsCheckedOn: 2026-11-21
+stars: 26308
+statsCheckedOn: 2026-11-22
 createdOn: 2026-10-16
 addedOn: 2026-11-08
 whatItDoes: >-
@@ -79,3 +79,5 @@ starHistory:
     stars: 26245
   - date: 2026-11-21
     stars: 26278
+  - date: 2026-11-22
+    stars: 26308
