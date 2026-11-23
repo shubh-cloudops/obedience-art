@@ -4,8 +4,8 @@ tagline: Run a 125-billion-parameter Qwen model on a gaming PC, offline, with a 
   Windows and Linux.
 category: run-models
 license: MIT
-stars: 46671
-statsCheckedOn: 2026-11-22
+stars: 47268
+statsCheckedOn: 2026-11-23
 createdOn: 2026-09-24
 addedOn: 2026-11-08
 whatItDoes: >-
@@ -75,3 +75,5 @@ starHistory:
     stars: 46392
   - date: 2026-11-22
     stars: 46671
+  - date: 2026-11-23
+    stars: 47268
