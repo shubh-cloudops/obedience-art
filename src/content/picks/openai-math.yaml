@@ -14,7 +14,7 @@ whatItDoes: >-
   given about 4,000 problems and spent about three hours of thinking per result. Some proofs come with a Lean
   version: Lean is a programming language that lets a computer check every step of a proof. Many results have
   no such check yet, and OpenAI itself warns that some of them "could have issues". OpenAI calls the papers
-  "raw research data, rather than polished academic papers". Within two days it withdrew three manuscripts
+  "raw research data, rather than polished academic papers". A day after release it withdrew three manuscripts
   over a sign error and revised 14 more. Mathematicians quoted in the coverage say the claims should be
   treated as unverified until checked, and some criticise how the papers are written.
 howToUse:
