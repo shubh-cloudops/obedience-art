@@ -1,0 +1,67 @@
+name: OpenAI Math
+repo: openai/math
+tagline: 722 maths papers written by an unreleased OpenAI model, published as raw research data with partial
+  computer-checked proofs.
+category: research
+license: Apache-2.0
+stars: 17693
+statsCheckedOn: 2026-11-24
+createdOn: 2026-10-06
+addedOn: 2026-11-24
+whatItDoes: >-
+  This is not a tool you run. It is a public folder of 722 maths manuscripts that OpenAI says an unnamed
+  internal model produced while it was being tested on open research problems. The README says the model was
+  given about 4,000 problems and spent about three hours of thinking per result. Some proofs come with a Lean
+  version: Lean is a programming language that lets a computer check every step of a proof. Many results have
+  no such check yet, and OpenAI itself warns that some of them "could have issues". OpenAI calls the papers
+  "raw research data, rather than polished academic papers". Within two days it withdrew three manuscripts
+  over a sign error and revised 14 more. Mathematicians quoted in the coverage say the claims should be
+  treated as unverified until checked, and some criticise how the papers are written.
+howToUse:
+  shell: PowerShell on Windows 11 (reading); Ubuntu (bash) in WSL for the proof checks
+  steps:
+    - text: >-
+        Install Git for Windows, then download the collection in PowerShell. It is large, so a shallow copy
+        saves time and disk space.
+      code: |-
+        git clone --depth 1 https://github.com/openai/math.git
+        cd math
+    - text: >-
+        Start with the overview PDF and the manuscript map, as the README suggests. Each paper's PDF, source
+        files and citation sit in the preprints folder.
+      code: |-
+        start overview.pdf
+        start CONTENTS.md
+    - text: >-
+        To check a proof yourself, use Ubuntu in WSL. Install Lean, plus the comparator, landrun and
+        lean4export tools named in the repo's Comparator instructions, then run one check from the lean
+        folder. The README recommends compiling only small parts of the library at a time.
+      code: |-
+        cd lean
+        lake update
+        lake exe cache get
+        lake env comparator ComparatorChallenges/QuasiRiemannHypothesis.json
+bestPractices:
+  - Treat every result without a Lean proof as unchecked. OpenAI's own README says some unformalised results
+    could have issues, and it has already withdrawn three papers.
+  - Read the repo's history file before citing a paper. Corrections are released as new versions.
+  - Run proof checks inside WSL, not on your main Windows setup. The full library is heavy, so build only the
+    part you need to save time and disk space.
+  - Credit carefully. OpenAI says it defers to mathematicians on credit and on earlier or parallel work.
+coverage:
+  - publisher: Decrypt
+    title: "OpenAI Says a Secret AI Model Cracked Hundreds of Open Math Problems in One Prompt—Mathematicians Want
+      Receipts"
+    date: 2026-10-07
+    url: https://decrypt.co/380366/openai-secret-ai-model-cracked-hundreds-math-problems-one-prompt
+  - publisher: Retraction Watch
+    title: "OpenAI withdraws three preprints a day after releasing 722 manuscripts on unsolved math problems"
+    date: 2026-10-08
+    url: https://retractionwatch.com/2026/10/08/openai-withdraws-preprints-722-manuscripts-unsolved-math-problems/
+  - publisher: Quanta Magazine
+    title: "AI Proved the Quasi-Riemann Hypothesis. What Happens Now?"
+    date: 2026-10-19
+    url: https://www.quantamagazine.org/ai-proved-the-quasi-riemann-hypothesis-what-happens-now-20261019/
+starHistory:
+  - date: 2026-11-24
+    stars: 17693

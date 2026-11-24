@@ -118,7 +118,7 @@ const picks = defineCollection({
     /** owner/name exactly as on GitHub */
     repo: z.string().regex(/^[\w.-]+\/[\w.-]+$/),
     tagline: z.string().min(20).max(140),
-    category: z.enum(['run-models', 'build-apps', 'agents', 'coding', 'speech', 'images']),
+    category: z.enum(['run-models', 'build-apps', 'agents', 'coding', 'speech', 'images', 'research']),
     license: z.string().min(2),
     stars: z.number().int().positive(),
     statsCheckedOn: z.coerce.date(),

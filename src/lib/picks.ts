@@ -23,6 +23,7 @@ export const PICK_CATEGORY: Record<string, string> = {
   coding: 'AI coding tools',
   speech: 'Speech',
   images: 'Images and video',
+  research: 'AI research results',
 };
 
 const DAY = 86_400_000;
