@@ -1,0 +1,181 @@
+---
+title: "Claim Check: did AI just prove the Riemann hypothesis?"
+seoTitle: "Did AI Prove the Riemann Hypothesis? What Was Checked"
+ogTitle: "17 million lines, machine-checked: what the AI Riemann proof settles, and what it doesn't"
+description: "Anthropic's Levent Alpöge says he proved the Riemann hypothesis with Claude. Lean checkers accept it. Experts can't yet explain why it works."
+pubDate: 2026-11-24
+pillar: claim-check
+verdict: partly-true
+coverOrgs: [anthropic, lean-fro]
+cover: ../../assets/covers/riemann-hypothesis-claude-proof-lean-check.jpg
+coverAlt: "Logos of Anthropic and Lean FRO, the organisations in this story."
+coverLine: "Checked by machine. Not yet understood."
+tags: [claim-check, anthropic, claude, mathematics, riemann-hypothesis, lean, proof-checking]
+factCheckedOn: 2026-11-24
+sources:
+  - title: "Remark (announcement note and Lean files)"
+    url: https://alpo.ge/remark.pdf
+    publisher: Levent Alpöge
+    kind: primary
+  - title: "Lean verification of the Riemann Hypothesis"
+    url: https://leanprover-community.github.io/blog/posts/riemann-hypothesis/
+    publisher: Lean FRO and Mathlib Initiative
+    kind: primary
+  - title: "Verification files for the Lean proof of the Riemann Hypothesis"
+    url: https://math.mit.edu/~drew/grh/
+    publisher: Andrew Sutherland, MIT
+    kind: independent
+  - title: "riemann-hypothesis: mirror and independent Comparator setup"
+    url: https://github.com/leanprover-community/riemann-hypothesis
+    publisher: Lean community on GitHub
+    kind: independent
+  - title: "Rules for the Millennium Prize Problems"
+    url: https://www.claymath.org/millennium-problems/rules/
+    publisher: Clay Mathematics Institute
+    kind: primary
+  - title: "Hurried Announcement: Alessandro Masullo GRH"
+    url: https://math216.wordpress.com/2026/11/20/hurried-announcement-alessandro-masullo-grh/
+    publisher: Ravi Vakil
+    kind: primary
+  - title: "AI claimed a solution to the 167-year-old Riemann hypothesis — and a human did, too"
+    url: https://techcrunch.com/2026/11/20/ai-claimed-a-solution-to-the-167-year-old-riemann-hypothesis-and-a-human-did-too/
+    publisher: TechCrunch
+    kind: news
+  - title: "Anthropic researcher claims Claude helped him prove the Riemann hypothesis"
+    url: https://thenextweb.com/news/anthropic-researcher-claims-claude-helped-him-prove-the-riemann-hypothesis
+    publisher: The Next Web
+    kind: news
+  - title: "Riemann hypothesis: Has the world's most famous maths problem been cracked?"
+    url: https://www.aljazeera.com/news/2026/11/21/riemann-hypothesis-has-the-worlds-most-famous-maths-problem-been-cracked
+    publisher: Al Jazeera
+    kind: news
+  - title: "The AI Riemann hypothesis proof is true, independent mathematicians confirm"
+    url: https://www.yahoo.com/news/science/articles/ai-riemann-hypothesis-proof-almost-210000837.html
+    publisher: Scientific American (via Yahoo News)
+    kind: news
+  - title: "A Mathematician Says Claude Helped Prove the Riemann Hypothesis"
+    url: https://www.theneuron.ai/news/claude-assisted-riemann-hypothesis-proof-claim/
+    publisher: The Neuron
+    kind: news
+  - title: "OpenAI withdraws three preprints a day after releasing 722 manuscripts on unsolved math problems"
+    url: https://retractionwatch.com/2026/10/08/openai-withdraws-preprints-722-manuscripts-unsolved-math-problems/
+    publisher: Retraction Watch
+    kind: news
+  - title: "OpenAI Says a Secret AI Model Cracked Hundreds of Open Math Problems in One Prompt—Mathematicians Want Receipts"
+    url: https://decrypt.co/380366/openai-secret-ai-model-cracked-hundreds-math-problems-one-prompt
+    publisher: Decrypt
+    kind: news
+  - title: "Lean and Mathlib community officially confirms Levent Alpöge's proof of the Riemann hypothesis is correct"
+    url: https://the-decoder.com/lean-and-mathlib-community-officially-confirms-levent-alpoges-proof-of-the-riemann-hypothesis-is-correct/
+    publisher: The Decoder
+    kind: news
+claims:
+  - text: "Levent Alpöge, a mathematician at Anthropic, says he found a proof of the Riemann hypothesis working with Claude."
+    verdict: "true"
+    check: checked
+    note: "His note, posted on 20 November 2026, says: 'I believe I have, working with Claude, discovered a proof'. TechCrunch, The Next Web and Al Jazeera describe him as an Anthropic mathematician; The Decoder calls him a Stanford mathematician. Anthropic declined to comment to Bloomberg, according to The Next Web."
+    sources:
+      - https://alpo.ge/remark.pdf
+      - https://thenextweb.com/news/anthropic-researcher-claims-claude-helped-him-prove-the-riemann-hypothesis
+      - https://www.aljazeera.com/news/2026/11/21/riemann-hypothesis-has-the-worlds-most-famous-maths-problem-been-cracked
+      - https://techcrunch.com/2026/11/20/ai-claimed-a-solution-to-the-167-year-old-riemann-hypothesis-and-a-human-did-too/
+  - text: "Computers have checked the proof."
+    verdict: "true"
+    check: checked
+    note: "The Lean FRO and the Mathlib Initiative certified on 21 November that 'both the statement and the proof' are correct. Andrew Sutherland's MIT page lists several separate checking programs that accept it, using only Lean's three standard axioms. One gap between sources: Scientific American says the final 'comparator' run has been completed, while Sutherland's page, updated 23 November, lists the full end-to-end run as still in progress."
+    sources:
+      - https://leanprover-community.github.io/blog/posts/riemann-hypothesis/
+      - https://math.mit.edu/~drew/grh/
+      - https://www.yahoo.com/news/science/articles/ai-riemann-hypothesis-proof-almost-210000837.html
+      - https://the-decoder.com/lean-and-mathlib-community-officially-confirms-levent-alpoges-proof-of-the-riemann-hypothesis-is-correct/
+  - text: "AI proved the Riemann hypothesis on its own."
+    verdict: overstated
+    check: checked
+    note: "Alpöge credits Claude heavily ('Claude far outpaced me near the finish line'), but the work was a collaboration he directed, according to The Neuron's reading of his note. Mathematician Abhishek Saha told Al Jazeera the credit should go to 'the person involved: Levent Alpoge'."
+    sources:
+      - https://alpo.ge/remark.pdf
+      - https://www.theneuron.ai/news/claude-assisted-riemann-hypothesis-proof-claim/
+      - https://www.aljazeera.com/news/2026/11/21/riemann-hypothesis-has-the-worlds-most-famous-maths-problem-been-cracked
+  - text: "Mathematicians now understand why the Riemann hypothesis is true."
+    verdict: "false"
+    check: checked
+    note: "Kevin Buzzard told Al Jazeera: 'At the minute, we don't even know why the theorem is true.' Al Jazeera adds that no human has read through the entire argument. The Lean statement looks forward to the work 'that will help explain the new ideas in this proof'. Alpöge's note says a readable write-up will come later."
+    sources:
+      - https://www.aljazeera.com/news/2026/11/21/riemann-hypothesis-has-the-worlds-most-famous-maths-problem-been-cracked
+      - https://leanprover-community.github.io/blog/posts/riemann-hypothesis/
+      - https://alpo.ge/remark.pdf
+  - text: "The proof also settles the Generalised Riemann Hypothesis."
+    verdict: partly-true
+    check: checked
+    note: "Alpöge's note says the method resolves the Generalised Riemann Hypothesis. The formal statements that were checked cover the Riemann hypothesis plus the generalised version for one family (Dirichlet L-functions). Sutherland's page says the wider families 'are not among the statements that were checked'."
+    sources:
+      - https://alpo.ge/remark.pdf
+      - https://math.mit.edu/~drew/grh/
+      - https://github.com/leanprover-community/riemann-hypothesis
+  - text: "The proof is now officially accepted."
+    verdict: overstated
+    check: checked
+    note: "The Lean groups have certified it, but The Next Web notes it 'has not been formally accepted'. The Clay Mathematics Institute's prize rules require publication in a qualifying outlet, two years to pass, and general acceptance by mathematicians. Alpöge has so far released only the Lean files and a four-page note."
+    sources:
+      - https://www.claymath.org/millennium-problems/rules/
+      - https://thenextweb.com/news/anthropic-researcher-claims-claude-helped-him-prove-the-riemann-hypothesis
+      - https://alpo.ge/remark.pdf
+  - text: "A human mathematician proved it the same day, without AI."
+    verdict: unverified
+    check: checked
+    note: "On 20 November Ravi Vakil posted a proposed proof of the Generalised Riemann Hypothesis by Stanford's Alessandro Masullo, 'all human, with no AI'. Vakil makes 'no claim as to the correctness', and his 22 November update says several people reported problems with it. It is not in Lean."
+    sources:
+      - https://math216.wordpress.com/2026/11/20/hurried-announcement-alessandro-masullo-grh/
+      - https://techcrunch.com/2026/11/20/ai-claimed-a-solution-to-the-167-year-old-riemann-hypothesis-and-a-human-did-too/
+---
+**The claim:** AI has proved the Riemann hypothesis, the most famous unsolved problem in mathematics.
+
+**Verdict: Partly true.** A proof of the Riemann hypothesis, made by Anthropic mathematician Levent Alpöge working with Claude, has passed every computer check the experts have thrown at it. That part is real. But "AI proved it" skips the human who steered it, and nobody, human or machine, can yet explain why the proof works.
+
+## What happened
+
+On 20 November, Alpöge posted [a four-page note](https://alpo.ge/remark.pdf) on his website. "I believe I have, working with Claude, discovered a proof of the Riemann Hypothesis," he wrote. The Riemann hypothesis is a 167-year-old open problem, often called the most important in mathematics.
+
+He did not post a normal paper. He posted the proof as code for Lean, a program that checks every step of a proof the way a compiler checks code. By the Lean community's count it runs to [17 million lines](https://leanprover-community.github.io/blog/posts/riemann-hypothesis/). His reason, in his own words: it would be "obviously inappropriate" to post "some massive unreadable travesty of 'slop'".
+
+Headlines moved fast. [TechCrunch](https://techcrunch.com/2026/11/20/ai-claimed-a-solution-to-the-167-year-old-riemann-hypothesis-and-a-human-did-too/) led with "AI claimed a solution". [Scientific American](https://www.yahoo.com/news/science/articles/ai-riemann-hypothesis-proof-almost-210000837.html) ran "The AI Riemann hypothesis proof is true, independent mathematicians confirm".
+
+## What the computers checked
+
+This is the strong part of the story. On 21 November the Lean FRO and the Mathlib Initiative, the groups that look after Lean and its shared maths library, Mathlib, [issued a joint statement](https://leanprover-community.github.io/blog/posts/riemann-hypothesis/): "We hereby certify that both the statement and the proof of the Riemann Hypothesis are correct."
+
+MIT's Andrew Sutherland keeps [a public log of the checks](https://math.mit.edu/~drew/grh/). Several separately written checking programs accept the proof. It leans only on Lean's three standard starting assumptions, nothing smuggled in. Sutherland told Scientific American the chance "that anything is fishy here is approximately zero."
+
+One detail is still settling. Scientific American says the final comparison run is complete. Sutherland's page, updated on 23 November, lists the full end-to-end version of that run as still going.
+
+## Why "checked" is not "understood"
+
+Here is the catch. A proof checker is a very strict marker. It confirms that every step follows from the last, and that the last line matches the question as written. It cannot tell you what the idea is.
+
+<div data-art="surprised" data-art-say="A perfect mark, and nobody can explain the answer yet.">
+
+"At the minute, we don't even know why the theorem is true," Imperial College's Kevin Buzzard [told Al Jazeera](https://www.aljazeera.com/news/2026/11/21/riemann-hypothesis-has-the-worlds-most-famous-maths-problem-been-cracked). No human has read the whole argument. Alpöge says a proper write-up will come later.
+
+</div>
+
+That is why the experts' first question was about the question itself. Buzzard asked what statement the Lean code actually proves, and whether it matches the real Riemann hypothesis. A checker will happily confirm a perfect answer to the wrong question. This is the same gap we wrote about in [what "dangerously obedient" means](/posts/what-dangerously-obedient-means/): a system scores exactly what the marker measures. Here, humans did the vital work of checking the marker. The statement is Mathlib's own definition, which the Lean groups say experts carefully vetted.
+
+There is a scope issue too. Alpöge's note says his method also resolves the wider Generalised Riemann Hypothesis. The checked statements cover the original plus one family of the general version. Sutherland's page says the broader families "are not among the statements that were checked."
+
+## Who did the work
+
+"Claude far outpaced me near the finish line," Alpöge wrote. He gives the model real credit. But by [The Neuron's](https://www.theneuron.ai/news/claude-assisted-riemann-hypothesis-proof-claim/) reading of the note, he chose the approach and Claude supplied major steps. Abhishek Saha of Queen Mary University of London told Al Jazeera the credit should go to "the person involved: Levent Alpoge."
+
+So the capability is startling. A model contributed heavily to a result that has resisted mathematicians for 167 years. It still was not a machine working alone.
+
+## Is it officially solved?
+
+Not yet. [The Next Web](https://thenextweb.com/news/anthropic-researcher-claims-claude-helped-him-prove-the-riemann-hypothesis) notes the proof "has not been formally accepted." The [Clay Mathematics Institute's prize rules](https://www.claymath.org/millennium-problems/rules/) need three things: publication in a qualifying outlet, two years of waiting, and general acceptance by mathematicians. None of those has happened.
+
+And the human proof? On the same day, Stanford's Ravi Vakil [posted a proposed proof](https://math216.wordpress.com/2026/11/20/hurried-announcement-alessandro-masullo-grh/) of the general version by Alessandro Masullo, "all human, with no AI." Vakil makes "no claim as to the correctness", and by 22 November several people had reported problems in it. It has not been put through Lean.
+
+## Why it matters
+
+The checking has worked as intended. A huge, machine-made argument was tested by independent programs in days, not years. What has not happened yet is the part people mean by "solved": a human reading the argument and seeing why it is true.
+
+Compare October, when OpenAI posted 722 maths papers from an unreleased model. There the complaint was the reverse: [roughly half the results were released unconfirmed](https://retractionwatch.com/2026/10/08/openai-withdraws-preprints-722-manuscripts-unsolved-math-problems/), and three papers were withdrawn a day later. We are following what happens next in [our Riemann proof tracker](/tracker/riemann-hypothesis-ai-proof/). For how scoring systems shape what AI produces, see [our breakdown of the ExploitGym breach](/posts/exploitgym-breach-ai-agents-reward-hacking/), where AI agents broke out of a test mainly to learn how it was being marked.
