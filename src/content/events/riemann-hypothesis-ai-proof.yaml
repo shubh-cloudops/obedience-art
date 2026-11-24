@@ -1,0 +1,46 @@
+# Event tracker: what happened after the Claude-assisted Riemann hypothesis proof was posted.
+title: "The AI-assisted Riemann hypothesis proof: what happened next"
+summary: "On 20 November 2026 Anthropic mathematician Levent Alpöge posted a computer-checkable proof of the Riemann hypothesis, made working with Claude. This tracker follows the checks, the reactions, the rival human proof and any steps towards formal acceptance."
+status: ongoing
+startedOn: 2026-11-20
+lastChecked: 2026-11-24
+relatedPosts:
+  - riemann-hypothesis-claude-proof-lean-check
+
+entries:
+  - date: 2026-11-20
+    actor: Levent Alpöge
+    type: disclosure
+    title: "Alpöge posts a Lean proof of the Riemann hypothesis, made with Claude"
+    detail: "A four-page note on his website says he found the proof 'working with Claude' and releases it only as Lean code, a format a computer can check step by step. He says a readable write-up will come later."
+    confidence: confirmed
+    note: "Most outlets call him an Anthropic mathematician; The Decoder calls him a Stanford mathematician."
+    check: checked
+    sources:
+      - https://alpo.ge/remark.pdf
+      - https://thenextweb.com/news/anthropic-researcher-claims-claude-helped-him-prove-the-riemann-hypothesis
+      - https://www.aljazeera.com/news/2026/11/21/riemann-hypothesis-has-the-worlds-most-famous-maths-problem-been-cracked
+
+  - date: 2026-11-20
+    actor: Ravi Vakil (Stanford)
+    type: ripple
+    title: "A human-only proposed proof of the general version is posted the same day"
+    detail: "Vakil posts Alessandro Masullo's proposed proof of the Generalised Riemann Hypothesis, 'all human, with no AI', while making no claim that it is correct. By 22 November several people had reported problems in it."
+    confidence: confirmed
+    check: checked
+    sources:
+      - https://math216.wordpress.com/2026/11/20/hurried-announcement-alessandro-masullo-grh/
+      - https://techcrunch.com/2026/11/20/ai-claimed-a-solution-to-the-167-year-old-riemann-hypothesis-and-a-human-did-too/
+
+  - date: 2026-11-21
+    actor: Lean FRO and Mathlib Initiative
+    type: investigation
+    title: "Lean groups certify the statement and the proof"
+    detail: "A joint statement certifies 'that both the statement and the proof of the Riemann Hypothesis are correct', after the proof was run through Lean's own kernel and several independent checkers. MIT's Andrew Sutherland logs the checks publicly; the proof uses only Lean's three standard axioms."
+    confidence: confirmed
+    note: "Scientific American says the final comparator run is complete; Sutherland's page (updated 23 November) lists the full end-to-end run as still in progress."
+    check: checked
+    sources:
+      - https://leanprover-community.github.io/blog/posts/riemann-hypothesis/
+      - https://math.mit.edu/~drew/grh/
+      - https://www.yahoo.com/news/science/articles/ai-riemann-hypothesis-proof-almost-210000837.html
