@@ -4,7 +4,7 @@ tagline: 722 maths papers written by an unreleased OpenAI model, published as ra
   computer-checked proofs.
 category: research
 license: Apache-2.0
-stars: 17693
+stars: 17707
 statsCheckedOn: 2026-11-24
 createdOn: 2026-10-06
 addedOn: 2026-11-24
@@ -64,4 +64,4 @@ coverage:
     url: https://www.quantamagazine.org/ai-proved-the-quasi-riemann-hypothesis-what-happens-now-20261019/
 starHistory:
   - date: 2026-11-24
-    stars: 17693
+    stars: 17707
