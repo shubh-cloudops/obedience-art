@@ -15,5 +15,7 @@
   "github":       { "name": "GitHub",             "simpleIcon": "github" },
   "cursor":       { "name": "Cursor",             "simpleIcon": "cursor" },
   "railway":      { "name": "Railway",            "simpleIcon": "railway" },
-  "california-ag": { "name": "California Attorney General" }
+  "california-ag": { "name": "California Attorney General" },
+  "arizona-ag":   { "name": "Arizona Attorney General" },
+  "federal-reserve": { "name": "Federal Reserve" }
 }
