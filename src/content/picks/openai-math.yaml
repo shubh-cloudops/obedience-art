@@ -4,8 +4,8 @@ tagline: 722 maths papers written by an unreleased OpenAI model, published as ra
   computer-checked proofs.
 category: research
 license: Apache-2.0
-stars: 17707
-statsCheckedOn: 2026-11-24
+stars: 18131
+statsCheckedOn: 2026-11-25
 createdOn: 2026-10-06
 addedOn: 2026-11-24
 whatItDoes: >-
@@ -65,3 +65,5 @@ coverage:
 starHistory:
   - date: 2026-11-24
     stars: 17707
+  - date: 2026-11-25
+    stars: 18131
