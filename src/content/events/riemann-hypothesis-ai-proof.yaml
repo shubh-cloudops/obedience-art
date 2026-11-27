@@ -3,7 +3,7 @@ title: "The AI-assisted Riemann hypothesis proof: what happened next"
 summary: "On 20 November 2026 Anthropic mathematician Levent Alpöge posted a computer-checkable proof of the Riemann hypothesis, made working with Claude. This tracker follows the checks, the reactions, the rival human proof and any steps towards formal acceptance."
 status: ongoing
 startedOn: 2026-11-20
-lastChecked: 2026-11-24
+lastChecked: 2026-11-27
 relatedPosts:
   - riemann-hypothesis-claude-proof-lean-check
 
@@ -44,3 +44,15 @@ entries:
       - https://leanprover-community.github.io/blog/posts/riemann-hypothesis/
       - https://math.mit.edu/~drew/grh/
       - https://www.yahoo.com/news/science/articles/ai-riemann-hypothesis-proof-almost-210000837.html
+
+  - date: 2026-11-25
+    actor: Luke Sernau and colleagues (Anthropic)
+    type: ripple
+    title: "A far shorter Lean proof of the same theorems passes independent checks"
+    detail: "Luke Sernau, with colleagues at Anthropic and Claude, posted a much shorter Lean proof of the same five theorems: about 76,000 lines in a compact edition and 300,000 in a readable one, against roughly 17 million lines for the original. By 26 November, Andrew Sutherland at MIT and Michael Rubinstein at the University of Waterloo had each run it through Lean's checkers and reported it accepted, using only Lean's three standard axioms."
+    confidence: confirmed
+    note: "Sutherland's page says the two proofs rest on different versions of Lean's maths library, and 'we have not checked formally that the two versions are equivalent'. Rubinstein checked only the compact edition, without Comparator's sandbox; Sutherland's sandboxed runs reached the same verdict. Sutherland also stresses the checks 'say nothing about whether the argument has been read or understood by a mathematician'."
+    check: checked
+    sources:
+      - https://math.mit.edu/~drew/shortgrh/
+      - https://www.math.uwaterloo.ca/~mrubinst/alpoge_claude_grh/
