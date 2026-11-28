@@ -1,0 +1,135 @@
+---
+title: "Claim Check: have AI labs secretly broken RSA encryption?"
+seoTitle: "Has AI Broken RSA Encryption? What Aaronson Said"
+ogTitle: "'A rumor is a rumor is a rumor': what Scott Aaronson actually said about AI and RSA"
+description: "Did Scott Aaronson say OpenAI or Anthropic can break RSA encryption? He heard rumours of AI cryptography 'bombshells'. No break has been published."
+pubDate: 2026-11-27
+pillar: claim-check
+verdict: unverified
+coverOrgs: [openai, anthropic, deepmind]
+cover: ../../assets/covers/aaronson-ai-labs-rsa-encryption-rumour.jpg
+coverAlt: "Logos of OpenAI, Anthropic and Google DeepMind, the organisations in this story."
+coverLine: "A rumour about a rumour, not a broken lock"
+tags: [claim-check, cryptography, rsa, encryption, scott-aaronson, openai, anthropic, google-deepmind, rumours]
+factCheckedOn: 2026-11-27
+sources:
+  - title: "HOLY SHIT HOLY SHIT HOLY SHIT HOLY SHIT"
+    url: https://scottaaronson.blog/?p=10379
+    publisher: Scott Aaronson, Shtetl-Optimized
+    kind: primary
+  - title: "I've been drinking wine in my kitchen (comment #23 and added note)"
+    url: https://scottaaronson.blog/?p=10362
+    publisher: Scott Aaronson, Shtetl-Optimized
+    kind: primary
+  - title: "Scott Aaronson says AI labs are sitting on cryptography 'bombshells'"
+    url: https://thenextweb.com/news/scott-aaronson-ai-labs-cryptography-rsa-rumours
+    publisher: The Next Web
+    kind: news
+  - title: "Quantum Computing Sold the Wrong Fear as AI Labs Close In on RSA"
+    url: https://quantumzeitgeist.com/ai-break-rsa-quantum-computing/
+    publisher: Quantum Zeitgeist
+    kind: news
+  - title: "Scott Aaronson Cites Rumors of a Factoring Breakthrough at OpenAI or Anthropic"
+    url: https://en.coinotag.com/scott-aaronson-cites-rumors-factoring-breakthrough-openai-anthropic
+    publisher: COINOTAG
+    kind: news
+  - title: "1,600x faster: Google DeepMind agents expose weaknesses in older encryption methods"
+    url: https://interestingengineering.com/ai-robotics/google-deepmind-agents-expose-older-encryption-flaws
+    publisher: Interesting Engineering
+    kind: news
+  - title: "Google DeepMind AI agents find faster attacks on legacy RSA-1024"
+    url: https://letsdatascience.com/news/google-deepmind-ai-agents-find-faster-attacks-on-legacy-rsa-5d679013
+    publisher: Let's Data Science
+    kind: news
+  - title: "No One Has Secretly Broken RSA-2048 or RSA-4096 — Here's the Science"
+    url: https://postquantum.com/post-quantum/no-broken-rsa-2048-4096/
+    publisher: PostQuantum.com
+    kind: independent
+claims:
+  - text: "Scott Aaronson says AI labs can now break RSA encryption."
+    verdict: "false"
+    check: checked
+    note: "In a blog comment on 24 November he wrote that he had heard 'many, many rumors that one or both labs are sitting on Factoring in P' and 'I don't know how much to credit this.' He later struck the comment through and added: 'Please stop citing me as an authority who claims that the labs are sitting on Factoring in P'. The Next Web says he 'never confirmed a rumoured break of RSA'."
+    sources:
+      - https://scottaaronson.blog/?p=10362
+      - https://thenextweb.com/news/scott-aaronson-ai-labs-cryptography-rsa-rumours
+      - https://quantumzeitgeist.com/ai-break-rsa-quantum-computing/
+  - text: "Aaronson says he is 'virtually certain' AI labs are sitting on cryptography 'bombshells'."
+    verdict: "true"
+    check: checked
+    note: "His 25 November post says he is 'virtually certain, from multiple reliable sources, that the AI labs are now sitting on one or more bombshells in that area', but feels 'much, much less confident about the specific nature of those bombshells' until he sees details or hears from someone at a lab. His sources are unnamed."
+    sources:
+      - https://scottaaronson.blog/?p=10379
+      - https://thenextweb.com/news/scott-aaronson-ai-labs-cryptography-rsa-rumours
+      - https://quantumzeitgeist.com/ai-break-rsa-quantum-computing/
+  - text: "AI labs have secretly broken RSA encryption."
+    verdict: unverified
+    check: checked
+    note: "Quantum Zeitgeist: 'No method to break RSA has been published or verified' and the rumour 'is unproven and may well be wrong.' Aaronson says the parts he is 'virtually certain' about 'fall well short of Factoring in P'. None of the reports we read carries a response from OpenAI or Anthropic."
+    sources:
+      - https://quantumzeitgeist.com/ai-break-rsa-quantum-computing/
+      - https://scottaaronson.blog/?p=10362
+      - https://thenextweb.com/news/scott-aaronson-ai-labs-cryptography-rsa-rumours
+  - text: "Google DeepMind's AI agents found faster attacks on older 1024-bit RSA keys."
+    verdict: "true"
+    check: checked
+    note: "Announced on 6 November by DeepMind's Pushmeet Kohli. The measured result is a 3.5x saving in computer time on an already-solved test key; the widely quoted '1,600x' is a theoretical estimate for one forgery scenario. A second algorithm cuts the average cost of factoring each extra 1024-bit key in a batch by about 30x. Let's Data Science names Nadia Heninger and Emmanuel Thomé as co-authors; Interesting Engineering names only the DeepMind leads."
+    sources:
+      - https://interestingengineering.com/ai-robotics/google-deepmind-agents-expose-older-encryption-flaws
+      - https://letsdatascience.com/news/google-deepmind-ai-agents-find-faster-attacks-on-legacy-rsa-5d679013
+  - text: "DeepMind's results put today's 2048-bit RSA keys at risk."
+    verdict: "false"
+    check: checked
+    note: "Let's Data Science reports DeepMind saying modern keys of 2048 bits or larger remain secure. Interesting Engineering says the research focused on 1024-bit keys and does not threaten online banking, messaging or digital currencies."
+    sources:
+      - https://letsdatascience.com/news/google-deepmind-ai-agents-find-faster-attacks-on-legacy-rsa-5d679013
+      - https://interestingengineering.com/ai-robotics/google-deepmind-agents-expose-older-encryption-flaws
+---
+
+**The claim:** AI labs have quietly broken RSA, the encryption that protects much of the internet, and a famous computer scientist has confirmed it.
+
+**Verdict: Unverified.** Computer scientist Scott Aaronson says he has heard from "multiple reliable sources" that AI labs hold cryptography "bombshells". He also says he does not know what they are, and he has asked people to stop quoting him as saying anyone can break RSA. No break has been published.
+
+## What happened
+
+RSA is a lock built on one hard sum. Multiplying two huge prime numbers is easy. Working backwards from the product to the two primes, called factoring, is so slow on ordinary computers that nobody can do it for the key sizes in use. A fast method would open that lock.
+
+On the evening of 24 November, in the comments under [a post on his blog, Shtetl-Optimized](https://scottaaronson.blog/?p=10362), Aaronson wrote: "I've now heard many, many rumors that one or both labs are sitting on Factoring in P." "Factoring in P" is shorthand for a fast factoring method on a normal computer. The labs his post had just discussed were OpenAI and Anthropic. In the same comment he wrote: "I don't know how much to credit this."
+
+The first half of that comment travelled. The second half mostly did not.
+
+## How it was reported
+
+On 25 November he followed up in [a new post](https://scottaaronson.blog/?p=10379): "yes, I'm virtually certain, from multiple reliable sources, that the AI labs are now sitting on one or more bombshells in that area." A day later, headlines went further than the words. [Quantum Zeitgeist](https://quantumzeitgeist.com/ai-break-rsa-quantum-computing/) ran "AI Labs Close In on RSA". [COINOTAG](https://en.coinotag.com/scott-aaronson-cites-rumors-factoring-breakthrough-openai-anthropic) went with "Rumors of a Factoring Breakthrough at OpenAI or Anthropic". [The Next Web](https://thenextweb.com/news/scott-aaronson-ai-labs-cryptography-rsa-rumours) stayed closest to his quote, and its own text says he "never confirmed a rumoured break of RSA".
+
+Even Quantum Zeitgeist, under its headline, says: "No method to break RSA has been published or verified." The rumour "is unproven and may well be wrong."
+
+## What Aaronson actually said
+
+Read in full, his words are careful. Until he sees details or hears from someone at a lab, he writes, "I feel much, much less confident about the specific nature of those bombshells." He adds that he does "not wish to be responsible for spreading unverified rumors", and that the exact claims "may have been mangled in a game of Telephone".
+
+<div data-art="surprised" data-art-say="Half a sentence went viral. The other half matters more.">
+
+Then he went back to the original comment, struck it through and added a note: "Please stop citing me as an authority who claims that the labs are sitting on Factoring in P." The note goes on: "a rumor is a rumor is a rumor, and the parts that I'm 'virtually certain' about fall well short of Factoring in P."
+
+</div>
+
+So two separate things are true. He believes, on unnamed sources, that labs have significant unpublished cryptography results. He does not claim to know that any of them breaks RSA. His post does predict that some algorithms found in this wave of AI research "will break currently deployed cryptosystems". That is a forecast about the future, not a report of something done.
+
+None of the reports we read includes a response from OpenAI or Anthropic.
+
+## The real result people are mixing in
+
+There is a genuine AI-and-RSA story this month, and it is smaller. On 6 November, Google DeepMind's Pushmeet Kohli announced that AI agents, working under human supervision, had found faster attacks on 1024-bit RSA, an older and shorter key size. [Interesting Engineering](https://interestingengineering.com/ai-robotics/google-deepmind-agents-expose-older-encryption-flaws) headlined it "1,600x faster".
+
+That figure is a theoretical estimate for one kind of signature forgery. The measured result, [Let's Data Science reports](https://letsdatascience.com/news/google-deepmind-ai-agents-find-faster-attacks-on-legacy-rsa-5d679013), was a 3.5x saving in computer time on a test key that had already been cracked. A second method makes factoring each extra 1024-bit key in a batch about 30 times cheaper. DeepMind says keys of 2048 bits or larger remain secure.
+
+Useful work. Not a broken lock.
+
+## Why it matters
+
+This is the same pattern we saw with [the AI-assisted Riemann hypothesis proof](/posts/riemann-hypothesis-claude-proof-lean-check/). AI is now producing real maths results, and Aaronson's working assumption is that proofs from OpenAI or Anthropic backed by computer-checked certificates are correct. That makes a cryptography surprise plausible. Plausible is not shown.
+
+A claim that RSA is broken should come with something you can test: a paper, a factored challenge number, a checkable proof. [PostQuantum.com](https://postquantum.com/post-quantum/no-broken-rsa-2048-4096/), writing in March about earlier claims, put it plainly: "Every prior public claim of breaking RSA-2048 has been debunked, withdrawn, or exposed as misleading." This one has not even been made by anyone willing to put a name to it.
+
+Rumours like this spread because they fit a story people already expect. We saw the same with [the viral "secret AI civilisation" claim](/posts/claim-check-secret-ai-civilisation/). If a lab can break RSA, the test is simple: it publishes, and the rest of the world checks. Until then, the honest answer to "has AI broken RSA?" is that nobody has shown it.
