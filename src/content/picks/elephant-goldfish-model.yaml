@@ -4,8 +4,8 @@ tagline: Google's free add-on that makes your AI coding helper write a design fi
   pick it apart.
 category: coding
 license: Apache-2.0
-stars: 23271
-statsCheckedOn: 2026-11-27
+stars: 23493
+statsCheckedOn: 2026-11-28
 createdOn: 2026-09-13
 addedOn: 2026-11-08
 whatItDoes: >-
@@ -88,3 +88,5 @@ starHistory:
     stars: 23114
   - date: 2026-11-27
     stars: 23271
+  - date: 2026-11-28
+    stars: 23493
